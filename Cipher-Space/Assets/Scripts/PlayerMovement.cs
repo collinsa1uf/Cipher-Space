@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb; // Reference to the Rigidbody2D component
     private Vector2 movementVector; // Stores movement input vector
     private bool isMoving = false; // Tracks if the player is currently moving
+    private bool canMove = true; // Flag to enable/disable movement
 
     [Header("Animator Settings")]
     public Animator animator; // Reference to the Animator component
@@ -48,21 +49,35 @@ public class PlayerMovement : MonoBehaviour
         UpdateAnimator(); // Update animator parameters based on movement
     }
 
+    public void SetCanMove(bool value) // Method to enable or disable player movement
+    {
+        canMove = value;
+        if (!canMove)
+        {
+            movementVector = Vector2.zero; // Stop movement immediately when disabled
+            rb.linearVelocity = Vector2.zero; // Stop the player immediately when movement is disabled
+        }
+    }
+
     void FixedUpdate() // Uses physics update instead of framerate update
     {
-        rb.linearVelocity = movementVector * movementSpeed; // Move the player based on input
+        if (canMove)
+        {
+            rb.linearVelocity = movementVector * movementSpeed; // Move the player based on input
+        }
     }
 
     void UpdateAnimator()
     {
-        
-        animator.SetBool("isMoving", isMoving); // Update animator parameter based on movement state
-        animator.SetFloat("moveX", movementVector.x); // Update animator parameter for horizontal movement
-        animator.SetFloat("moveY", movementVector.y); // Update animator parameter for vertical movement
-        
-        if (isMoving){
-                animator.SetFloat("lastMoveX", movementVector.x); // Update last move X value
-                animator.SetFloat("lastMoveY", movementVector.y); // Update last move Y value
+        if (canMove){
+            animator.SetBool("isMoving", isMoving); // Update animator parameter based on movement state
+            animator.SetFloat("moveX", movementVector.x); // Update animator parameter for horizontal movement
+            animator.SetFloat("moveY", movementVector.y); // Update animator parameter for vertical movement
+            
+            if (isMoving){
+                    animator.SetFloat("lastMoveX", movementVector.x); // Update last move X value
+                    animator.SetFloat("lastMoveY", movementVector.y); // Update last move Y value
             }
+        }
     }
 }
