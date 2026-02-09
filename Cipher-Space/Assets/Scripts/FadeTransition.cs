@@ -39,5 +39,15 @@ public class FadeTransition : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        // Ensure float value fully reaches end alpha
+        if (endAlpha == 0f)
+        {
+            cg.alpha = 0f;
+        }
+        else if (endAlpha == 1f)
+        {
+            cg.alpha = 1f;
+        }
     }
 }
