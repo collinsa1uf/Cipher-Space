@@ -475,7 +475,7 @@ GameObject:
   - component: {fileID: 518081799}
   - component: {fileID: 518081798}
   - component: {fileID: 518081801}
-  - component: {fileID: 518081802}
+  - component: {fileID: 518081803}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -601,7 +601,7 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!114 &518081802
+--- !u!114 &518081803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -610,11 +610,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 518081797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 404d4940456204c4a978958c131d3706, type: 3}
+  m_Script: {fileID: 11500000, guid: 26b9721aec59e4ba394d1e09ca9bb2cf, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraController
+  m_EditorClassIdentifier: Assembly-CSharp::DigitalWorlds.StarterPackage2D.CameraController2D
   target: {fileID: 7899911022313765930}
-  followSpeed: 3
+  followSpeed: 7.5
   offset: {x: 0, y: 0}
   minBounds: {x: -500, y: -500}
   maxBounds: {x: 500, y: 500}
@@ -1624,7 +1624,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 824597434760713125, guid: 6b4bd99da105943878666ac4cf110d4b, type: 3}
+  m_Sprite: {fileID: 4487387726830702904, guid: c42611394e47601c3be10677cc705131, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1657,7 +1657,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -1717,8 +1717,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.003186977, y: 0}
-  m_Size: {x: 0.11494329, y: 0.20406513}
+  m_Offset: {x: 0.0018498898, y: 0.015019369}
+  m_Size: {x: 0.26645383, y: 0.6168213}
   m_Direction: 0
 --- !u!4 &7899911022313765930
 Transform:
@@ -1730,7 +1730,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.043997, y: -0.4389197, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
