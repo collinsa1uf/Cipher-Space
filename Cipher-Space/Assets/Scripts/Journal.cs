@@ -9,6 +9,8 @@ public class Journal : MonoBehaviour
     [SerializeField] private TextMeshProUGUI journalText;
     [SerializeField] private GameObject toggleJ;
 
+    [SerializeField] private PasswordManager passwordManager; // Reference to the PasswordManager component
+
     List<string> entries = new List<string>
      {
         "A=F",
@@ -30,6 +32,7 @@ public class Journal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
         if (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame)
         {
             journalObject.SetActive(!journalObject.activeSelf);

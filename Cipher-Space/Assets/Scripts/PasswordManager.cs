@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PasswordManager : MonoBehaviour
 {
@@ -33,8 +34,9 @@ public class PasswordManager : MonoBehaviour
     {
         playerMovement.SetCanMove(false); // Disable player movement when entering password
         passwordInputField.text = ""; // Clear any previous input
-        passwordInputField.ActivateInputField(); // Activate the input field
-        passwordInputField.Select(); // Select the input field
+        // passwordInputField.ActivateInputField(); // Activate the input field
+        // passwordInputField.Select(); // Select the input field
+        StartCoroutine(FocusInputField()); // Focus the input field on the next frame to ensure it works correctly
     }
 
     void OnDisable()
@@ -44,6 +46,7 @@ public class PasswordManager : MonoBehaviour
 
     public void Open(string password, string message, UnityEvent onSuccess)
     {
+        this.playerMovement = playerMovement;
         correctPassword = password.ToUpperInvariant(); // Set the correct password for validation
         gameObject.SetActive(true); // Show password entry UI
 
@@ -82,4 +85,13 @@ public class PasswordManager : MonoBehaviour
             passwordInputField.ActivateInputField(); //refocus input field
         }
     }
+
+    private IEnumerator FocusInputField()
+    {
+        yield return null; // wait one frame
+
+        passwordInputField.ActivateInputField();
+        passwordInputField.Select();
+    }
+
 }

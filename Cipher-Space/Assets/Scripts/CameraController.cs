@@ -1,4 +1,7 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class CameraController : MonoBehaviour
 {
@@ -11,20 +14,42 @@ public class CameraController : MonoBehaviour
     public Vector2 minBounds = new(-500f, -500f); // Minimum bounds for the camera's position
     public Vector2 maxBounds = new(500f, 500f); // Maximum bounds for the camera's position
 
+    [Header("Pixel Snapping Settings")]
+    public float pixelsPerUnit = 16f;
+
+    [Header("Edge Follow Settings")]
+    public bool boostSpeedNearEdges = true; // Whether to boost speed when near edges
+    public float edgeBuffer = 0.5f; // Distance from the edge at which to start boosting speed
+    public float edgeBoostMultiplier = 2f; // Multiplier for speed boost when near
+
     private void LateUpdate()
     {
-        if (target == null) return; // If no target is assigned, do nothing
+        if (target == null) return;
 
+        Rigidbody2D rb = target.GetComponent<Rigidbody2D>();
+        Vector2 velocity = rb ? rb.linearVelocity : Vector2.zero;
+
+        float leadDistance = 2f;
+        Vector2 lead = velocity.normalized * leadDistance;
+
+        Vector2 targetPosition = (Vector2)target.position + offset + lead;
+
+        Vector2 clampedTargetPos = new Vector2(
+            Mathf.Clamp(targetPosition.x, minBounds.x, maxBounds.x),
+            Mathf.Clamp(targetPosition.y, minBounds.y, maxBounds.y)
+        );
+
+        Vector3 smoothedPosition = Vector3.Lerp(
+            transform.position,
+            new Vector3(clampedTargetPos.x, clampedTargetPos.y, transform.position.z),
+            1 - Mathf.Exp(-followSpeed * Time.deltaTime)
+        );
+
+        float unitPerPixel = 1f / pixelsPerUnit;
+        smoothedPosition.x = Mathf.Round(smoothedPosition.x / unitPerPixel) * unitPerPixel;
+        smoothedPosition.y = Mathf.Round(smoothedPosition.y / unitPerPixel) * unitPerPixel;
         
-        Vector2 desiredPosition = (Vector2)target.position + offset; // Calculate the desired position of the camera based on the target's position
-
-        float clampedX = Mathf.Clamp(desiredPosition.x, minBounds.x, maxBounds.x); // Clamp the x position within the defined bounds
-        float clampedY = Mathf.Clamp(desiredPosition.y, minBounds.y, maxBounds.y); // Clamp the y position within the defined bounds
-        
-        Vector3 clampedPosition = new(clampedX, clampedY, transform.position.z); // Create a new position vector with the clamped x and y values
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, clampedPosition, 1 - Mathf.Exp(-followSpeed * Time.deltaTime)); // Smoothly interpolate the camera's position towards the clamped position
-
-        transform.position = smoothedPosition; // Update the camera's position
+        transform.position = smoothedPosition;
     }
 
     private void OnDrawGizmosSelected()
@@ -39,7 +64,9 @@ public class CameraController : MonoBehaviour
 
     private void OnValidate()
     {
-        if (followSpeed < 0) followSpeed = 0; // Ensure follow speed is not negative
-        
+        if (followSpeed < 0) followSpeed = 0;
+        if (pixelsPerUnit <= 0) pixelsPerUnit = 16f;
+        if (edgeBuffer < 0) edgeBuffer = 0;
+        if (edgeBoostMultiplier < 1f) edgeBoostMultiplier = 1f;
     }
 }
