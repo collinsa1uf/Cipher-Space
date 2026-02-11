@@ -14,6 +14,7 @@ public class EnlargeObject : MonoBehaviour
     public UnityEngine.UI.Image inspectImage;
     public Sprite enlargedSprite; // changes per object user inspects
     private bool isInspecting = false;
+    private PlayerMovement playerMovement;
 
     
     void Update()
@@ -25,11 +26,21 @@ public class EnlargeObject : MonoBehaviour
                 inspectImage.sprite = enlargedSprite; // assign the enlarged sprite to the correct image
                 inspectPanel.SetActive(true); // show the inspect panel
                 isInspecting = true;
+
+                if (playerMovement != null)
+                {
+                    playerMovement.SetCanMove(false); // disable player movement while inspecting
+                }
             }
             else // close the enlaged image
             {
                 inspectPanel.SetActive(false); // hide the inspect panel
                 isInspecting = false;
+
+                if (playerMovement != null)
+                {
+                    playerMovement.SetCanMove(true); // re-enable player movement when done inspecting
+                }
             }
         }
         else
@@ -43,6 +54,7 @@ public class EnlargeObject : MonoBehaviour
         if (collider.CompareTag(tagName)) // Check if the colliding object has the specified tag
         {
             isInTrigger = true;
+            playerMovement = collider.GetComponent<PlayerMovement>(); // Get the PlayerMovement component from the colliding object
         }
 
     }
@@ -52,6 +64,7 @@ public class EnlargeObject : MonoBehaviour
         if (collider.CompareTag(tagName)) // Check if the exiting object has the specified tag
         {
             isInTrigger = false;
+            
         }
     }
 

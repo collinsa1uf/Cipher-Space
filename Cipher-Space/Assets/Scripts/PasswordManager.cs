@@ -46,6 +46,7 @@ public class PasswordManager : MonoBehaviour
 
     public void Open(string password, string message, UnityEvent onSuccess)
     {
+        this.playerMovement = playerMovement;
         correctPassword = password.ToUpperInvariant(); // Set the correct password for validation
         gameObject.SetActive(true); // Show password entry UI
 
