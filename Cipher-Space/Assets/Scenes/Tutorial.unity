@@ -9353,6 +9353,7 @@ MonoBehaviour:
   journalObject: {fileID: 878080611}
   journalText: {fileID: 0}
   toggleJ: {fileID: 1324813430}
+  passwordManager: {fileID: 1097425123}
 --- !u!4 &389979219
 Transform:
   m_ObjectHideFlags: 0
