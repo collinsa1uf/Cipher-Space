@@ -4,6 +4,8 @@ public class LogConsole : MonoBehaviour
 {
     public void LogMessage()
     {
-        Debug.Log("Successfully logged!"); // Logs the provided message to the Unity console
+        string word = "Cup";
+        string encryptedWord = CipherGeneration.Encrypt(word);
+        Debug.Log("Word: " + word + ", Encrypted: " + encryptedWord); // Logs the provided message to the Unity console
     }
 }

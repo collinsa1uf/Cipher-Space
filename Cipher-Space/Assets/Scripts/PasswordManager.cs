@@ -3,40 +3,35 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.InputSystem.Controls;
 
 public class PasswordManager : MonoBehaviour
 {
     [Header("UI Elements")]
+    public TextMeshProUGUI passwordDisplay; // Display message to the user
     public TextMeshProUGUI messageDisplay; // Display message to the user
-    public TMP_InputField passwordInputField; // Input field for password entry
 
     [Header("Player Reference")]
     public PlayerMovement playerMovement; // Reference to the PlayerMovement component
     private UnityEvent onSuccess; // Event to invoke on successful password entry
     private string correctPassword;
-    
-    void Start()
-    {
-        passwordInputField.onValidateInput += ValidateCharacter; // Set up character validation
-        passwordInputField.lineType = TMP_InputField.LineType.SingleLine;
-        passwordInputField.onSubmit.AddListener(ValidatePassword); // listen for enter key
-    }
+    private string currentInput = ""; // Input field for password entry
 
     void Update()
     {
+        if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
         if (Keyboard.current.escapeKey.wasPressedThisFrame) // Check if 'Escape' key was pressed this frame
         {
             Close(); // hide password entry UI
         }
+
+        HandleTyping(); // Handle character input for password entry
     }
 
     void OnEnable()
     {
         playerMovement.SetCanMove(false); // Disable player movement when entering password
-        passwordInputField.text = ""; // Clear any previous input
-        // passwordInputField.ActivateInputField(); // Activate the input field
-        // passwordInputField.Select(); // Select the input field
-        StartCoroutine(FocusInputField()); // Focus the input field on the next frame to ensure it works correctly
+        //StartCoroutine(FocusInputField()); // Focus the input field on the next frame to ensure it works correctly
     }
 
     void OnDisable()
@@ -46,11 +41,11 @@ public class PasswordManager : MonoBehaviour
 
     public void Open(string password, string message, UnityEvent onSuccess)
     {
-        this.playerMovement = playerMovement;
         correctPassword = password.ToUpperInvariant(); // Set the correct password for validation
+        currentInput = "";
         gameObject.SetActive(true); // Show password entry UI
 
-        messageDisplay.text = message; // Prompt the user to enter the password
+        passwordDisplay.text = BuildDisplay(); // Prompt the user to enter the password
         this.onSuccess = onSuccess; // Store success event to evoke
     }
 
@@ -59,39 +54,93 @@ public class PasswordManager : MonoBehaviour
         gameObject.SetActive(false); //hide password entry UI
     }
 
-    private char ValidateCharacter(string text, int charIndex, char addedChar) // validate each character as it's entered
-    {
-        if (!char.IsLetterOrDigit(addedChar)) // Allow only letters or digits
-        {
-            return '\0'; // Reject non-letter or non-digit characters (backspace)
-        }
-        else
-        {
-            return char.ToUpperInvariant(addedChar); // Accept the character
-        }
-    }
     private void ValidatePassword(string input) // validate password after enter is pressed
     {
-        if (input.ToUpperInvariant() == correctPassword.ToUpperInvariant())
+        if (CipherGeneration.Encrypt(input.ToUpperInvariant()) == correctPassword.ToUpperInvariant())
         {
-            messageDisplay.text = "Password Correct!";
+            //messageDisplay.text = "PASSWORD CORRECT!";
             onSuccess.Invoke(); // Invoke the success event
             Close();
         }
         else
         {
-            messageDisplay.text = "Incorrect Password!";
-            passwordInputField.text = ""; //clear password after enter
-            passwordInputField.ActivateInputField(); //refocus input field
+            //messageDisplay.text = "PASSWORD INCORRECT!";
+            currentInput = ""; // Clear the current input on failure
+            UpdateDisplay();
         }
     }
 
-    private IEnumerator FocusInputField()
+    private void HandleTyping()
     {
-        yield return null; // wait one frame
+        foreach (KeyControl key in Keyboard.current.allKeys)
+        {
+            if (!key.wasPressedThisFrame) continue; // Check if the key was pressed this frame
 
-        passwordInputField.ActivateInputField();
-        passwordInputField.Select();
+            if (key == Keyboard.current.backspaceKey)
+            {
+                if (currentInput.Length > 0)
+                {
+                    currentInput = currentInput.Substring(0, currentInput.Length - 1); // Remove the last character from the input
+                    UpdateDisplay();
+                    return;
+                }
+            }
+
+            if (key == Keyboard.current.enterKey)
+            {
+                ValidatePassword(currentInput); // Validate the password when 'Enter' is pressed
+                return;
+            }
+
+            char c = GetCharFromKey(key);
+            if (c == '\0') return;
+
+            if (currentInput.Length < correctPassword.Length) // Limit input length to the length of the correct password
+            {
+                currentInput += c; // Append the character to the current input
+                UpdateDisplay();
+            }
+        }
+    }
+
+    private char GetCharFromKey(KeyControl key) // Convert a KeyControl to its corresponding character, if it's a letter or digit
+    {
+        string keyName = key.displayName;
+
+        if (string.IsNullOrEmpty(keyName) || keyName.Length != 1) // Only process single-character keys (letters and digits)
+        {
+            return '\0';
+        }
+
+        char c = keyName[0]; // Get the character from the key's display name
+
+        if (!char.IsLetterOrDigit(c)) // Allow only letters or digits
+        {
+            return '\0';
+        }
+        return char.ToUpperInvariant(c); // Convert to uppercase for case-insensitive comparison
+    }
+    
+    private void UpdateDisplay()
+    {
+        passwordDisplay.text = "" + BuildDisplay(); // Update the display with the current input
+    }
+
+    private string BuildDisplay()
+    {
+        string display = "";
+        for (int i = 0; i < correctPassword.Length; i++)
+        {
+            if (i < currentInput.Length)
+            {
+                display += currentInput[i] + " "; // Show the entered character
+            }
+            else
+            {
+                display += "_ "; // Show an underscore for unentered characters
+            }
+        }
+        return display.TrimEnd(); // Remove the trailing space;
     }
 
 }
