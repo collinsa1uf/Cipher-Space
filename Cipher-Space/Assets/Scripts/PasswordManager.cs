@@ -56,15 +56,15 @@ public class PasswordManager : MonoBehaviour
 
     private void ValidatePassword(string input) // validate password after enter is pressed
     {
-        if (input.ToUpperInvariant() == correctPassword.ToUpperInvariant())
+        if (CipherGeneration.Encrypt(input.ToUpperInvariant()) == correctPassword.ToUpperInvariant())
         {
-            messageDisplay.text = "PASSWORD CORRECT!";
+            //messageDisplay.text = "PASSWORD CORRECT!";
             onSuccess.Invoke(); // Invoke the success event
             Close();
         }
         else
         {
-            messageDisplay.text = "PASSWORD INCORRECT!";
+            //messageDisplay.text = "PASSWORD INCORRECT!";
             currentInput = ""; // Clear the current input on failure
             UpdateDisplay();
         }

@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 90045606}
   - component: {fileID: 90045608}
   - component: {fileID: 90045609}
+  - component: {fileID: 90045610}
   m_Layer: 0
   m_Name: Escape Button
   m_TagString: Untagged
@@ -512,8 +513,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13d67b8b3d4a84f60a6ab71860af9ce5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Lock
-  password: 1234
-  message: PASSWORD IS 1234
+  password: 9876
+  message: 
   passwordManager: {fileID: 1097425123}
   onUnlock:
     m_PersistentCalls:
@@ -533,6 +534,18 @@ MonoBehaviour:
   onFailure:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &90045610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90045603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b0cb68b1cecf4f74a627e9d1bf8ace1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogConsole
 --- !u!1 &91296608
 GameObject:
   m_ObjectHideFlags: 0
@@ -9301,7 +9314,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 404386d4ec896a54b804402a478da098, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9508,7 +9521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnlargeObject
   tagName: Player
   inspectPanel: {fileID: 91296608}
-  inspectImage: {fileID: 91296610}
+  inspectImage: {fileID: 608343183}
   enlargedSprite: {fileID: 21300000, guid: 404386d4ec896a54b804402a478da098, type: 3}
 --- !u!61 &766135222
 BoxCollider2D:
@@ -9933,10 +9946,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Enter password
+  m_text: 9876
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: a7882a974f7020641adfb5ab0d2994ea, type: 2}
-  m_sharedMaterial: {fileID: -8523946434403279047, guid: a7882a974f7020641adfb5ab0d2994ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
+  m_sharedMaterial: {fileID: -2399468284608166799, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -9960,8 +9973,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 150
+  m_fontSizeBase: 150
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
