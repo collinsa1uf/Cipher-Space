@@ -1,22 +1,30 @@
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using UnityEngine.InputSystem;
 
 public class EnlargeObject : MonoBehaviour
 {
     [Header("Tag Settings")]
     public string tagName = "Player";
-
+    private PlayerMovement playerMovement;
+    
     [Header("Button Event Settings")]
     private bool isInTrigger = false;
 
+    [Header("Inspect Panel")]
     public GameObject inspectPanel;
     public UnityEngine.UI.Image inspectImage;
+
+    [Header("Inspect Object")]
     public Sprite enlargedSprite; // changes per object user inspects
     private bool isInspecting = false;
-    private PlayerMovement playerMovement;
 
-    
+    [Header("Inspect Data")]
+    public int objectIndex;
+    public TMP_Text inspectText;
+
     void Update()
     {
         if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger) // Check if 'E' key was pressed this frame and player is in trigger
@@ -24,9 +32,10 @@ public class EnlargeObject : MonoBehaviour
            if(!isInspecting) // inspect the image = display the enlarged sprite
             { 
                 inspectImage.sprite = enlargedSprite; // assign the enlarged sprite to the correct image
+                inspectText.text = CipherGeneration.Encrypt(ParsingAI.Instance.objectDescriptors[objectIndex]); // assign the object title text
                 inspectPanel.SetActive(true); // show the inspect panel
                 isInspecting = true;
-
+                
                 if (playerMovement != null)
                 {
                     playerMovement.SetCanMove(false); // disable player movement while inspecting
