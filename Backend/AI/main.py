@@ -1,10 +1,44 @@
-from transformers import T5Tokenizer, T5ForConditionalGeneration
+from transformers import AutoModelForCausalLM, AutoTokenizer
+import os
 
-tokenizer = T5Tokenizer.from_pretrained("google/flan-t5-small")
-model = T5ForConditionalGeneration.from_pretrained("google/flan-t5-small")
 
-input_text = "What is the capital of Russia"
-input_ids = tokenizer(input_text, return_tensors="pt").input_ids
+model_name = "Qwen/Qwen3-0.6B"
 
-outputs = model.generate(input_ids)
-print(tokenizer.decode(outputs[0]))
+# load the tokenizer and the model
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModelForCausalLM.from_pretrained(
+   model_name,
+   torch_dtype="auto",
+   device_map="auto"
+)
+
+# prepare the model input
+prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word 'mug' for drinking. These objects should closely resemble a mug in both appearance and function, and each should be distinct with no repetition."
+messages = [
+   {"role": "user", "content": prompt}
+]
+text = tokenizer.apply_chat_template(
+   messages,
+   tokenize=False,
+   add_generation_prompt=True,
+   enable_thinking=False # Switches between thinking and non-thinking modes. Default is True.
+)
+model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+
+# conduct text completion
+generated_ids = model.generate(
+   **model_inputs,
+   max_new_tokens=32768
+)
+output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
+
+# parsing thinking content
+try:
+   # rindex finding 151668 (</think>)
+   index = len(output_ids) - output_ids[::-1].index(151668)
+except ValueError:
+   index = 0
+
+content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
+
+print("content:", content)
