@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class ScrollText : MonoBehaviour
 {
+    public float scrollTextSpeed = 0.1f;
+
     private GameObject text;
     private Transform textTransform;
     private bool startScrolling = false;
@@ -26,7 +28,7 @@ public class ScrollText : MonoBehaviour
     {
         if (startScrolling)
         {
-            textTransform.position = new Vector3(textTransform.position.x, textTransform.position.y + 0.1f, textTransform.position.z);
+            textTransform.position = new Vector3(textTransform.position.x, textTransform.position.y + scrollTextSpeed, textTransform.position.z);
         }
     }
 
