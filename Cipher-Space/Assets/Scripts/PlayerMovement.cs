@@ -79,5 +79,10 @@ public class PlayerMovement : MonoBehaviour
                     animator.SetFloat("lastMoveY", movementVector.y); // Update last move Y value
             }
         }
+
+        else
+        {
+            animator.SetBool("isMoving", false); // Ensure the player is not moving in the animator when movement is disabled
+        }
     }
 }

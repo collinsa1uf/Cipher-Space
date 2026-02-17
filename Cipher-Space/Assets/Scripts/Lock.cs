@@ -18,6 +18,8 @@ public class Lock : MonoBehaviour
     private bool unlocked = false;
     public void Interact()
     {
+        if (passwordManager.gameObject.activeSelf) return; // If the password manager is already open, do nothing
+
         if (unlocked) return; // If already unlocked, do nothing
 
         UnityEvent successEvent = new UnityEvent();
