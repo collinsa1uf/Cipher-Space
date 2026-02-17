@@ -46,6 +46,7 @@ public class PasswordManager : MonoBehaviour
         gameObject.SetActive(true); // Show password entry UI
 
         passwordDisplay.text = BuildDisplay(); // Prompt the user to enter the password
+        messageDisplay.text = message; // Display the provided message to the user
         this.onSuccess = onSuccess; // Store success event to evoke
     }
 
