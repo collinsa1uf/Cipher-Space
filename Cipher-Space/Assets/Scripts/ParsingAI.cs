@@ -10,8 +10,8 @@ public class ParsingAI : MonoBehaviour
 
     public string[] objectDescriptors =
     {
-        "COFFEE MUG",
-        "BLOCK",
+        "ABCDEFGHIK",
+        "LMNOPQRS",
         "MEMO"
     };
 }

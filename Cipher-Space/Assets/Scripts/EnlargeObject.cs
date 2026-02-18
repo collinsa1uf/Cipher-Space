@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -25,9 +24,29 @@ public class EnlargeObject : MonoBehaviour
     public int objectIndex;
     public TMP_Text inspectText;
 
+    [Header("Password Settings")]
+    public PasswordManager objectinputmangager;
+    public string password;
+    public string message;
+    public UnityEvent onSuccessEvent;
+
     void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger) // Check if 'E' key was pressed this frame and player is in trigger
+        if (objectinputmangager != null && objectinputmangager.gameObject.activeSelf)
+        {
+            // If the password input manager is active, check to see if user pressed escape to close the input
+            if (Keyboard.current.escapeKey.wasPressedThisFrame)
+            {
+                objectinputmangager.Close();
+                inspectPanel.SetActive(false);
+                isInspecting = false;
+
+                if (playerMovement != null)
+                    playerMovement.SetCanMove(true);
+            }
+            return;
+        }
+        else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger) // Check if 'E' key was pressed this frame and player is in trigger
         {
            if(!isInspecting) // inspect the image = display the enlarged sprite
             { 
@@ -40,16 +59,11 @@ public class EnlargeObject : MonoBehaviour
                 {
                     playerMovement.SetCanMove(false); // disable player movement while inspecting
                 }
-            }
-            else // close the enlaged image
-            {
-                inspectPanel.SetActive(false); // hide the inspect panel
-                isInspecting = false;
+                
+                password = inspectText.text; // set password to the encrypted object descriptor
+                message = "Enter " + ParsingAI.Instance.objectDescriptors[objectIndex]; // temp message with password for testing
+                objectinputmangager.Open(password, message, onSuccessEvent); // open the object input manager, allowing the user to guess the secret language
 
-                if (playerMovement != null)
-                {
-                    playerMovement.SetCanMove(true); // re-enable player movement when done inspecting
-                }
             }
         }
         else

@@ -10,6 +10,10 @@ public class PasswordManager : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI passwordDisplay; // Display message to the user
     public TextMeshProUGUI messageDisplay; // Display message to the user
+    public Journal journal;
+
+    [Header("Inspect Panel")]
+    public GameObject inspectPanel;
 
     [Header("Player Reference")]
     public PlayerMovement playerMovement; // Reference to the PlayerMovement component
@@ -82,6 +86,7 @@ public class PasswordManager : MonoBehaviour
         gameObject.SetActive(true); // Show password entry UI
 
         passwordDisplay.text = BuildDisplay(); // Prompt the user to enter the password
+        messageDisplay.text = message; // Display the provided message to the user
         this.onSuccess = onSuccess; // Store success event to evoke
     }
 
@@ -96,6 +101,8 @@ public class PasswordManager : MonoBehaviour
         {
             //messageDisplay.text = "PASSWORD CORRECT!";
             onSuccess.Invoke(); // Invoke the success event
+            inspectPanel.SetActive(false); // hide the inspect panel if it's open
+            journal.UpdateJournalText(input.ToUpperInvariant());
             Close();
         }
         else

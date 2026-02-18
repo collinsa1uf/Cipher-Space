@@ -5,31 +5,35 @@ using System.Collections.Generic;
 
 public class Journal : MonoBehaviour
 {
-    [SerializeField] private GameObject journalObject; // assign the UI panel or root GameObject in the Inspector
-    [SerializeField] private TextMeshProUGUI journalText;
-    [SerializeField] private GameObject toggleJ;
+    [SerializeField] private GameObject journalObject; // the journal UI object to toggle on and off
+    [SerializeField] private TextMeshProUGUI alienText; // left page alien text 
+    [SerializeField] private TextMeshProUGUI journalText; // left page translation
+    [SerializeField] private TextMeshProUGUI equalsText;
+    [SerializeField] private TextMeshProUGUI alienText2; // right page alien text
+    [SerializeField] private TextMeshProUGUI journalText2; // right page translation
+    [SerializeField] private TextMeshProUGUI equalsText2;
+    [SerializeField] private GameObject toggleJ; // UI button to toggle journal on and off
 
     [SerializeField] private PasswordManager passwordManager; // Reference to the PasswordManager component
 
-    List<string> entries = new List<string>
-     {
-        "A=F",
-        "6=7",
-        "F=R",
-        "T=Y"
-    };
+    List<string> entries = new List<string> {}; // list of journal entries to be displayed in the journal, populated as the user discovers new letters
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         journalObject.SetActive(false); // Ensure the journal is hidden at the start
         toggleJ.SetActive(true); // Ensure the toggle button is visible
-        journalText.text = ""; // initialize journal text
+
+        // initialize all the text fields to be empty at the start of the game
+        journalText.text = ""; 
+        alienText.text = ""; 
+        equalsText.text = "";
+        journalText2.text = "";
+        alienText2.text = "";
+        equalsText2.text = "";
+
         createJournal(); // populate journal with initial entries
-        UpdateJournalText("M=C"); // Example of adding a new entry, testing if it sorts correctly
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
@@ -40,18 +44,46 @@ public class Journal : MonoBehaviour
         }
 
     }
-    void createJournal()
+    void createJournal() // recreates the journal text with the current list of entries 
     {
-        entries.Sort();
+        entries.Sort(); // sort entries alphabetically
+        int index = 0;
+
         foreach (string entry in entries)
         {
-            journalText.text += entry + "\n";
+            // split entries between the two pages if there are more than 13 entries
+            if (index < 13)
+            {
+                journalText.text += entry + "\n";
+                alienText.text += CipherGeneration.Encrypt(entry) + "\n";
+                equalsText.text += "=\n";
+            }
+            else {
+                journalText2.text += entry + "\n";
+                alienText2.text += CipherGeneration.Encrypt(entry) + "\n";
+                equalsText2.text += "=\n";
+            }
+            index++;
         }
     }
-    void UpdateJournalText(string newEntry)
+    public void UpdateJournalText(string discWord)
     {
-        entries.Add(newEntry);
+        for (int i = 0; i < discWord.Length; i++)
+        {
+            if (!entries.Contains(discWord.Substring(i,1)))
+            { 
+                entries.Add(discWord.Substring(i,1));
+            }
+        }
+
+        // reinitialize all the text fields to be empty before repopulating them with the updated list of entries
         journalText.text = "";
+        alienText.text = "";
+        equalsText.text = "";
+        journalText2.text = "";
+        alienText2.text = "";
+        equalsText2.text = "";
+
         createJournal(); // recreate the journal text with the new entry so it's sorted
     }
 
