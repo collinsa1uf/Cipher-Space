@@ -59,10 +59,10 @@ public class EnlargeObject : MonoBehaviour
                 {
                     playerMovement.SetCanMove(false); // disable player movement while inspecting
                 }
-                // open input for user to type in their guess 
-                password = ParsingAI.Instance.objectDescriptors[objectIndex];
-                message = "Enter " + ParsingAI.Instance.objectDescriptors[objectIndex];
-                objectinputmangager.Open(password, message, onSuccessEvent);
+                
+                password = inspectText.text; // set password to the encrypted object descriptor
+                message = "Enter " + ParsingAI.Instance.objectDescriptors[objectIndex]; // temp message with password for testing
+                objectinputmangager.Open(password, message, onSuccessEvent); // open the object input manager, allowing the user to guess the secret language
 
             }
         }
