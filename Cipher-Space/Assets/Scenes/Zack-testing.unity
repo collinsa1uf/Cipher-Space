@@ -9121,6 +9121,7 @@ MonoBehaviour:
   equalsText2: {fileID: 126051704}
   toggleJ: {fileID: 1324813430}
   passwordManager: {fileID: 1097425123}
+  translationManager: {fileID: 0}
 --- !u!4 &389979219
 Transform:
   m_ObjectHideFlags: 0
@@ -9431,10 +9432,11 @@ GameObject:
   m_Component:
   - component: {fileID: 605723247}
   - component: {fileID: 605723246}
-  - component: {fileID: 605723249}
   - component: {fileID: 605723248}
+  - component: {fileID: 605723249}
+  - component: {fileID: 605723250}
   m_Layer: 0
-  m_Name: Dialogue Trigger
+  m_Name: Hiding Spot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9548,7 +9550,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.016121149, y: -0.036273003}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9558,9 +9560,55 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.515878, y: 1.3788476}
   m_EdgeRadius: 0
---- !u!114 &605723249
+--- !u!61 &605723249
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605723245}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.0040304065, y: 0.0040302277}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.00806, y: 0.9919392}
+  m_EdgeRadius: 0
+--- !u!114 &605723250
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9569,13 +9617,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 605723245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f998ed57d122f4e7c9eed0e055e95b78, type: 3}
+  m_Script: {fileID: 11500000, guid: 1d0a1bb2893a94d3d84ce2a052e07ed4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
-  dialogueManager: {fileID: 1195005391}
-  textFile: {fileID: 4900000, guid: 2e672103f5b994286b21e90fd3bf0d56, type: 3}
-  playerTag: Player
-  singleUse: 1
+  m_EditorClassIdentifier: Assembly-CSharp::HidingSpot
+  tagName: Player
 --- !u!1 &608343181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9919,7 +9964,7 @@ MonoBehaviour:
   enlargedSprite: {fileID: 21300000, guid: 404386d4ec896a54b804402a478da098, type: 3}
   objectIndex: 0
   inspectText: {fileID: 0}
-  objectinputmangager: {fileID: 0}
+  translationManager: {fileID: 0}
   password: 
   message: 
   onSuccessEvent:
@@ -10547,7 +10592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9876
+  m_text: QWER
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
   m_sharedMaterial: {fileID: -2399468284608166799, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
@@ -15733,6 +15778,7 @@ GameObject:
   - component: {fileID: 401158281778333455}
   - component: {fileID: 5483353309077389642}
   - component: {fileID: 6049893300907492626}
+  - component: {fileID: 7899911021740652631}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -15900,6 +15946,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7899911021740652631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1571776171641337905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb05652e9fee4c03a917b22474d8766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHiding
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
