@@ -829,9 +829,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 289802136}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8cacf77a7c2342adb7424e0229e632d, type: 3}
+  m_Script: {fileID: 11500000, guid: fb92b8af6015fe94abd1ca46f0c0d568, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PasswordManager
+  m_EditorClassIdentifier: Assembly-CSharp::TranslationManager
   passwordDisplay: {fileID: 2077152777}
   messageDisplay: {fileID: 1806853732}
   journal: {fileID: 389979218}
@@ -9183,7 +9183,8 @@ MonoBehaviour:
   journalText2: {fileID: 682410247}
   equalsText2: {fileID: 108086496}
   toggleJ: {fileID: 1324813430}
-  passwordManager: {fileID: 0}
+  passwordManager: {fileID: 81473657}
+  translationManager: {fileID: 289802138}
 --- !u!4 &389979219
 Transform:
   m_ObjectHideFlags: 0
@@ -9928,7 +9929,7 @@ MonoBehaviour:
   enlargedSprite: {fileID: 21300000, guid: 40689d6b774b6ff4db2dd1fd8c1665d3, type: 3}
   objectIndex: 0
   inspectText: {fileID: 2063201322}
-  objectinputmangager: {fileID: 289802138}
+  translationManager: {fileID: 289802138}
   password: 
   message: ' '
   onSuccessEvent:
@@ -15093,7 +15094,7 @@ MonoBehaviour:
   enlargedSprite: {fileID: 21300000, guid: 7e48e3c61614a7e44b87319404af52d0, type: 3}
   objectIndex: 1
   inspectText: {fileID: 2063201322}
-  objectinputmangager: {fileID: 289802138}
+  translationManager: {fileID: 289802138}
   password: 
   message: 
   onSuccessEvent:

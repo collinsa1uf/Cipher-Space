@@ -15,6 +15,7 @@ public class Journal : MonoBehaviour
     [SerializeField] private GameObject toggleJ; // UI button to toggle journal on and off
 
     [SerializeField] private PasswordManager passwordManager; // Reference to the PasswordManager component
+    [SerializeField] private TranslationManager translationManager;
 
     List<string> entries = new List<string> {}; // list of journal entries to be displayed in the journal, populated as the user discovers new letters
 
@@ -37,6 +38,7 @@ public class Journal : MonoBehaviour
     void Update()
     {
         if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
+        if (translationManager != null && translationManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the translation manager is open
         if (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame)
         {
             journalObject.SetActive(!journalObject.activeSelf);

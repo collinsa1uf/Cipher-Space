@@ -25,19 +25,19 @@ public class EnlargeObject : MonoBehaviour
     public TMP_Text inspectText;
 
     [Header("Password Settings")]
-    public PasswordManager objectinputmangager;
+    [SerializeField] private TranslationManager translationManager;
     public string password;
     public string message;
     public UnityEvent onSuccessEvent;
 
     void Update()
     {
-        if (objectinputmangager != null && objectinputmangager.gameObject.activeSelf)
+        if (translationManager != null && translationManager.gameObject.activeSelf)
         {
             // If the password input manager is active, check to see if user pressed escape to close the input
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
-                objectinputmangager.Close();
+                translationManager.Close();
                 inspectPanel.SetActive(false);
                 isInspecting = false;
 
@@ -62,7 +62,7 @@ public class EnlargeObject : MonoBehaviour
                 
                 password = inspectText.text; // set password to the encrypted object descriptor
                 message = "Enter " + ParsingAI.Instance.objectDescriptors[objectIndex]; // temp message with password for testing
-                objectinputmangager.Open(password, message, onSuccessEvent); // open the object input manager, allowing the user to guess the secret language
+                translationManager.Open(password, message, onSuccessEvent); // open the object input manager, allowing the user to guess the secret language
 
             }
         }
