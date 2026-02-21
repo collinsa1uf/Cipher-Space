@@ -2,13 +2,18 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
-using Unity.VisualScripting;
+using System.Collections;
+using UnityEngine.InputSystem.Controls;
 
-public class PasswordManager : MonoBehaviour
+public class TranslationManager : MonoBehaviour
 {
     [Header("UI Elements")]
     public TextMeshProUGUI passwordDisplay; // Display message to the user
     public TextMeshProUGUI messageDisplay; // Display message to the user
+    public Journal journal;
+
+    [Header("Inspect Panel")]
+    public GameObject inspectPanel;
 
     [Header("Player Reference")]
     public PlayerMovement playerMovement; // Reference to the PlayerMovement component
@@ -16,12 +21,10 @@ public class PasswordManager : MonoBehaviour
     private string correctPassword;
     private string currentInput = ""; // Input field for password entry
 
-    [UnitHeaderInspectable("Journal Reference")]
-    public Journal journal; // Reference to the Journal component, set in the Inspector
-
     void Update()
     {
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame) // Check if 'Escape' key was pressed this frame
         {
             Close(); // hide password entry UI
@@ -43,7 +46,7 @@ public class PasswordManager : MonoBehaviour
             ValidatePassword(currentInput);
             return;
         }
-            
+
     }
 
     void OnEnable()
@@ -81,6 +84,7 @@ public class PasswordManager : MonoBehaviour
         gameObject.SetActive(true); // Show password entry UI
 
         passwordDisplay.text = BuildDisplay(); // Prompt the user to enter the password
+        messageDisplay.text = message; // Display the provided message to the user
         this.onSuccess = onSuccess; // Store success event to evoke
     }
 
@@ -91,21 +95,22 @@ public class PasswordManager : MonoBehaviour
 
     private void ValidatePassword(string input) // validate password after enter is pressed
     {
-        if (CipherGeneration.Encrypt(input.ToUpperInvariant()) == correctPassword.ToUpperInvariant())
+        if (input.Length == correctPassword.Length)    
         {
-            //messageDisplay.text = "PASSWORD CORRECT!";
+            // update journal with translation as long as input is the correct length
+            onSuccess.Invoke(); // Invoke the success event
+            inspectPanel.SetActive(false); // hide the inspect panel if it's open
             journal.UpdateJournalText(input.ToUpperInvariant());
-            onSuccess?.Invoke(); // Invoke the success event
             Close();
         }
         else
         {
-            //messageDisplay.text = "PASSWORD INCORRECT!";
+            // input too short
             currentInput = ""; // Clear the current input on failure
             UpdateDisplay();
         }
     }
-    
+
     private void UpdateDisplay()
     {
         passwordDisplay.text = "" + BuildDisplay(); // Update the display with the current input
@@ -127,5 +132,4 @@ public class PasswordManager : MonoBehaviour
         }
         return display.TrimEnd(); // Remove the trailing space;
     }
-
 }
