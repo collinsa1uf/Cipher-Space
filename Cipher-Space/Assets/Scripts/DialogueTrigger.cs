@@ -8,27 +8,30 @@ public class DialogueTrigger : MonoBehaviour
     public TextAsset textFile;
     public string playerTag = "Player";
     public bool singleUse = false;
+    public PasswordManager passwordManager;
 
     private Queue<string> dialogueLines = new();
     private PlayerMovement playerMovement;
     private bool hasBeenUsed = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void StartDialogue()
     {
-        if (hasBeenUsed && singleUse == true) return;
+        if (hasBeenUsed && singleUse) return;
 
-        if (collision.CompareTag(playerTag))
+        Collider2D col = Physics2D.OverlapBox(transform.position, GetComponent<Collider2D>().bounds.size, 0);
+        if (col != null && col.CompareTag(playerTag))
         {
-            hasBeenUsed = true;
-
-            playerMovement = collision.GetComponent<PlayerMovement>();
+            playerMovement = col.GetComponent<PlayerMovement>();
             if (playerMovement != null)
-                playerMovement.SetCanMove(false);
+                playerMovement.SetCanMove(false); // freeze player
 
             ReadTextFile();
+
             dialogueManager.CurrentTrigger = this;
-            dialogueManager.onDialogueEnded.AddListener(OnDialogueEnded); // callback
+            dialogueManager.onDialogueEnded.AddListener(OnDialogueEnded);
             dialogueManager.BeginDialogue(dialogueLines);
+
+            hasBeenUsed = true;
         }
     }
 
@@ -47,7 +50,7 @@ public class DialogueTrigger : MonoBehaviour
 
     private void OnDialogueEnded()
     {
-        if (playerMovement != null)
+        if (playerMovement != null && !passwordManager.gameObject.activeSelf)
             playerMovement.SetCanMove(true);
 
         dialogueManager.onDialogueEnded.RemoveListener(OnDialogueEnded);

@@ -9,6 +9,7 @@ public class PasswordManager : MonoBehaviour
     [Header("UI Elements")]
     public TextMeshProUGUI passwordDisplay; // Display message to the user
     public TextMeshProUGUI messageDisplay; // Display message to the user
+    public DialogueManager dialogueManager;
 
     [Header("Player Reference")]
     public PlayerMovement playerMovement; // Reference to the PlayerMovement component
@@ -20,7 +21,10 @@ public class PasswordManager : MonoBehaviour
     public Journal journal; // Reference to the Journal component, set in the Inspector
 
     void Update()
-    {
+    {   
+        if (dialogueManager != null && dialogueManager.isInDialogue)
+            return;
+
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
         if (Keyboard.current.escapeKey.wasPressedThisFrame) // Check if 'Escape' key was pressed this frame
         {
@@ -63,6 +67,9 @@ public class PasswordManager : MonoBehaviour
 
     private void OnTextInput(char c)
     {
+        if (dialogueManager != null && dialogueManager.isInDialogue)
+            return;
+            
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
         if (!char.IsLetterOrDigit(c)) return; // Only allow letters and digits
