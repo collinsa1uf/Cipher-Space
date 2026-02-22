@@ -20,8 +20,6 @@ public class PlayerHiding : MonoBehaviour
         
         sprite.enabled = !isHiding; // Enable or disable the SpriteRenderer based on the hiding state
         playerMovement.enabled = !isHiding; // Enable or disable player movement based on the hiding state 
-
-        Debug.Log(isHiding); // Log the current hiding state to the console for debugging purposes
     
     }
 

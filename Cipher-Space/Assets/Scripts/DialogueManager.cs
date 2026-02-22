@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
 
     public void BeginDialogue(Queue<string> dialogue)
     {
+
         isInDialogue = true;
         dialogueManager.SetActive(true);
         continueImage.SetActive(true);
@@ -108,7 +109,6 @@ public class DialogueManager : MonoBehaviour
         if (speakerAnimator != null)
         {
             speakerAnimator.SetBool(isSpeakingParam, true);
-            Debug.Log("isSpeaking set true: " + speakerAnimator.GetBool(isSpeakingParam));
         }
         while (isTyping && !cancelTyping && (letter < lineOfText.Length))
         {
@@ -122,7 +122,6 @@ public class DialogueManager : MonoBehaviour
         if (speakerAnimator != null)
         {
             speakerAnimator.SetBool(isSpeakingParam, false);
-            Debug.Log("isSpeaking set false: " + speakerAnimator.GetBool(isSpeakingParam));
         }
 
         continueImage.SetActive(true);

@@ -6,30 +6,21 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Dialogue Settings")]
     public DialogueManager dialogueManager;
     public TextAsset textFile;
-    public string playerTag = "Player";
     public bool singleUse = false;
 
     private Queue<string> dialogueLines = new();
-    private PlayerMovement playerMovement;
     private bool hasBeenUsed = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void StartDialogue()
     {
-        if (hasBeenUsed && singleUse == true) return;
+        if (hasBeenUsed && singleUse) return;
 
-        if (collision.CompareTag(playerTag))
-        {
-            hasBeenUsed = true;
+        ReadTextFile();
 
-            playerMovement = collision.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
-                playerMovement.SetCanMove(false);
+        dialogueManager.CurrentTrigger = this;
+        dialogueManager.BeginDialogue(dialogueLines);
 
-            ReadTextFile();
-            dialogueManager.CurrentTrigger = this;
-            dialogueManager.onDialogueEnded.AddListener(OnDialogueEnded); // callback
-            dialogueManager.BeginDialogue(dialogueLines);
-        }
+        hasBeenUsed = true;
     }
 
     private void ReadTextFile()
@@ -43,13 +34,5 @@ public class DialogueTrigger : MonoBehaviour
                 dialogueLines.Enqueue(trimmed);
         }
         dialogueLines.Enqueue("End");
-    }
-
-    private void OnDialogueEnded()
-    {
-        if (playerMovement != null)
-            playerMovement.SetCanMove(true);
-
-        dialogueManager.onDialogueEnded.RemoveListener(OnDialogueEnded);
     }
 }
