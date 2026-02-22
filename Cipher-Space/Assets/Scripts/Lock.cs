@@ -1,40 +1,46 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class Lock : MonoBehaviour
 {
     [Header("Password Settings")]
-    public string password; // The password required to unlock
-    public string message; // Message to display when prompting for password
-    public PasswordManager passwordManager; // Reference to the PasswordManager component
+    public string password;
+    public string message;
+    public PasswordManager passwordManager;
 
     [Header("On Success")]
-    public UnityEvent onUnlock; // Event to invoke when the correct password is entered
+    public UnityEvent onUnlock;
 
-    [Header("On Failure")]
-    public UnityEvent onFailure; // Event to invoke when an incorrect password is entered]
-    
+    [Header("UI Customization")]
+    public GameObject customLayout;   // Which layout to use (optional)
+    public Sprite lockSprite;         // Optional lock sprite override
+
     private bool unlocked = false;
+
     public void Interact()
     {
-        if (passwordManager.gameObject.activeSelf) return; // If the password manager is already open, do nothing
-
-        if (unlocked) return; // If already unlocked, do nothing
+        if (passwordManager.gameObject.activeSelf) return;
+        if (unlocked) return;
 
         UnityEvent successEvent = new UnityEvent();
-        successEvent.AddListener(() => {
+        successEvent.AddListener(() =>
+        {
             Unlock();
-            onUnlock.Invoke();
+            onUnlock?.Invoke();
         });
 
-        passwordManager.Open(password, message, successEvent); // Open the password manager with the specified password and events
+        PasswordUIConfig config = new PasswordUIConfig
+        {
+            customLayout = customLayout,
+            lockImage = lockSprite
+        };
+
+        passwordManager.Open(password, message, successEvent, config);
     }
 
     private void Unlock()
     {
         unlocked = true;
-        enabled = false; // Disable this script to prevent further interaction
+        enabled = false;
     }
-    
 }

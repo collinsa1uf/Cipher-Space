@@ -3,32 +3,44 @@ using TMPro;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using UnityEngine.UI;
+using JetBrains.Annotations;
 
+
+[System.Serializable]
+public class PasswordUIConfig
+{
+    public GameObject customLayout;   // Which layout to use
+    public Sprite lockImage;          // Optional lock sprite override
+}
 public class PasswordManager : MonoBehaviour
 {
-    [Header("UI Elements")]
-    public TextMeshProUGUI passwordDisplay; // Display message to the user
-    public TextMeshProUGUI messageDisplay; // Display message to the user
+    [Header("Layout Root")]
+    public GameObject passwordPanelRoot;   // Parent of all layouts
+    public GameObject defaultLayout;       // Fallback layout
+
+    [Header("References")]
+    public PlayerMovement playerMovement;
     public DialogueManager dialogueManager;
+    public Journal journal;
 
-    [Header("Player Reference")]
-    public PlayerMovement playerMovement; // Reference to the PlayerMovement component
-    private UnityEvent onSuccess; // Event to invoke on successful password entry
+    private PasswordLayout activeLayout;
+
+    private UnityEvent onSuccess;
     private string correctPassword;
-    private string currentInput = ""; // Input field for password entry
-
-    [UnitHeaderInspectable("Journal Reference")]
-    public Journal journal; // Reference to the Journal component, set in the Inspector
+    private string currentInput = "";
 
     void Update()
-    {   
+    {
+        if (!gameObject.activeSelf)
+            return;
+
         if (dialogueManager != null && dialogueManager.isInDialogue)
             return;
 
-        if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
-        if (Keyboard.current.escapeKey.wasPressedThisFrame) // Check if 'Escape' key was pressed this frame
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
-            Close(); // hide password entry UI
+            Close();
             return;
         }
 
@@ -47,92 +59,121 @@ public class PasswordManager : MonoBehaviour
             ValidatePassword(currentInput);
             return;
         }
-            
     }
 
     void OnEnable()
     {
-        playerMovement.SetCanMove(false); // Disable player movement when entering password
+        if (playerMovement != null)
+            playerMovement.SetCanMove(false);
 
-        currentInput = ""; // Clear any previous input
+        currentInput = "";
         UpdateDisplay();
-        Keyboard.current.onTextInput += OnTextInput; // Subscribe to text input events
+
+        if (Keyboard.current != null)
+            Keyboard.current.onTextInput += OnTextInput;
     }
 
     void OnDisable()
     {
-        playerMovement.SetCanMove(true); // Re-enable player movement when done
-        Keyboard.current.onTextInput -= OnTextInput; // Unsubscribe from text input events
+        if (playerMovement != null)
+            playerMovement.SetCanMove(true);
+
+        if (Keyboard.current != null)
+            Keyboard.current.onTextInput -= OnTextInput;
     }
 
     private void OnTextInput(char c)
     {
+        if (!gameObject.activeSelf)
+            return;
+
         if (dialogueManager != null && dialogueManager.isInDialogue)
             return;
-            
-        if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
-        if (!char.IsLetterOrDigit(c)) return; // Only allow letters and digits
+        if (!char.IsLetterOrDigit(c))
+            return;
 
-        if (currentInput.Length < correctPassword.Length) // Limit input length to the length of the correct password
+        if (currentInput.Length < correctPassword.Length)
         {
-            currentInput += char.ToUpperInvariant(c); // Append the character to the current input, converting to uppercase for case-insensitivity
+            currentInput += char.ToUpperInvariant(c);
             UpdateDisplay();
         }
     }
 
-    public void Open(string password, string message, UnityEvent onSuccess)
+    public void Open(string password, string message, UnityEvent successEvent, PasswordUIConfig config = null)
     {
-        correctPassword = password.ToUpperInvariant(); // Set the correct password for validation
+        correctPassword = password.ToUpperInvariant();
         currentInput = "";
-        gameObject.SetActive(true); // Show password entry UI
+        onSuccess = successEvent;
 
-        passwordDisplay.text = BuildDisplay(); // Prompt the user to enter the password
-        this.onSuccess = onSuccess; // Store success event to evoke
+        SetLayout(config != null ? config.customLayout : null);
+
+        if (activeLayout == null)
+        {
+            Debug.LogError("No active layout found!");
+            return;
+        }
+
+        activeLayout.messageDisplay.text = message;
+
+        if (config != null && config.lockImage != null)
+            activeLayout.lockImageDisplay.sprite = config.lockImage;
+
+        gameObject.SetActive(true);
+        UpdateDisplay();
     }
 
     public void Close()
     {
-        gameObject.SetActive(false); //hide password entry UI
+        gameObject.SetActive(false);
     }
 
-    private void ValidatePassword(string input) // validate password after enter is pressed
+    private void ValidatePassword(string input)
     {
-        if (CipherGeneration.Encrypt(input.ToUpperInvariant()) == correctPassword.ToUpperInvariant())
+        if (CipherGeneration.Encrypt(input.ToUpperInvariant()) ==
+            correctPassword.ToUpperInvariant())
         {
-            //messageDisplay.text = "PASSWORD CORRECT!";
-            journal.UpdateJournalText(input.ToUpperInvariant());
-            onSuccess?.Invoke(); // Invoke the success event
+            journal?.UpdateJournalText(input.ToUpperInvariant());
+            onSuccess?.Invoke();
             Close();
         }
         else
         {
-            //messageDisplay.text = "PASSWORD INCORRECT!";
-            currentInput = ""; // Clear the current input on failure
+            currentInput = "";
             UpdateDisplay();
         }
     }
-    
+
     private void UpdateDisplay()
     {
-        passwordDisplay.text = "" + BuildDisplay(); // Update the display with the current input
+        if (activeLayout == null) return;
+
+        activeLayout.passwordDisplay.text = BuildDisplay();
     }
 
     private string BuildDisplay()
     {
         string display = "";
+
         for (int i = 0; i < correctPassword.Length; i++)
         {
             if (i < currentInput.Length)
-            {
-                display += currentInput[i] + " "; // Show the entered character
-            }
+                display += currentInput[i] + " ";
             else
-            {
-                display += "_ "; // Show an underscore for unentered characters
-            }
+                display += "_ ";
         }
-        return display.TrimEnd(); // Remove the trailing space;
+
+        return display.TrimEnd();
     }
 
+    private void SetLayout(GameObject layoutObject)
+    {
+        foreach (Transform child in passwordPanelRoot.transform)
+            child.gameObject.SetActive(false);
+
+        GameObject selected = layoutObject != null ? layoutObject : defaultLayout;
+        selected.SetActive(true);
+
+        activeLayout = selected.GetComponent<PasswordLayout>();
+    }
 }
