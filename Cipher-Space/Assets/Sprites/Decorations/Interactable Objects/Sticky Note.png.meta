@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 4cfb6f04f944840a5a8ec79927d4cbfc
+guid: da9712f41f707c34f9952d87022b371e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5615183812813889625
-    second: Flask-Sheet_0
+      213: -5175051502461412580
+    second: Sticky Note_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Flask-Sheet_0
+      name: Sticky Note_0
       rect:
         serializedVersion: 2
-        x: 13
-        y: 1
-        width: 38
-        height: 63
+        x: 15
+        y: 14
+        width: 34
+        height: 31
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7af54b0a21cd212b0800000000000000
-      internalID: -5615183812813889625
+      spriteID: c1b9f6db3168e28b0800000000000000
+      internalID: -5175051502461412580
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Flask-Sheet_0: -5615183812813889625
+      Sticky Note_0: -5175051502461412580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
