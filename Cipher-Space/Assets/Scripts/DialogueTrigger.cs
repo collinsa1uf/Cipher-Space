@@ -6,33 +6,21 @@ public class DialogueTrigger : MonoBehaviour
     [Header("Dialogue Settings")]
     public DialogueManager dialogueManager;
     public TextAsset textFile;
-    public string playerTag = "Player";
     public bool singleUse = false;
-    public PasswordManager passwordManager;
 
     private Queue<string> dialogueLines = new();
-    private PlayerMovement playerMovement;
     private bool hasBeenUsed = false;
 
     public void StartDialogue()
     {
         if (hasBeenUsed && singleUse) return;
 
-        Collider2D col = Physics2D.OverlapBox(transform.position, GetComponent<Collider2D>().bounds.size, 0);
-        if (col != null && col.CompareTag(playerTag))
-        {
-            playerMovement = col.GetComponent<PlayerMovement>();
-            if (playerMovement != null)
-                playerMovement.SetCanMove(false); // freeze player
+        ReadTextFile();
 
-            ReadTextFile();
+        dialogueManager.CurrentTrigger = this;
+        dialogueManager.BeginDialogue(dialogueLines);
 
-            dialogueManager.CurrentTrigger = this;
-            dialogueManager.onDialogueEnded.AddListener(OnDialogueEnded);
-            dialogueManager.BeginDialogue(dialogueLines);
-
-            hasBeenUsed = true;
-        }
+        hasBeenUsed = true;
     }
 
     private void ReadTextFile()
@@ -46,13 +34,5 @@ public class DialogueTrigger : MonoBehaviour
                 dialogueLines.Enqueue(trimmed);
         }
         dialogueLines.Enqueue("End");
-    }
-
-    private void OnDialogueEnded()
-    {
-        if (playerMovement != null && !passwordManager.gameObject.activeSelf)
-            playerMovement.SetCanMove(true);
-
-        dialogueManager.onDialogueEnded.RemoveListener(OnDialogueEnded);
     }
 }
