@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - Interactable Object
+  - Hiding Spot
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1258108821
+    locked: 0
+  - name: UI
+    uniqueID: 555060459
     locked: 0
   m_RenderingLayers:
   - Default
