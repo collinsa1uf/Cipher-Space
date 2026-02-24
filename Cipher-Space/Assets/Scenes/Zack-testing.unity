@@ -593,9 +593,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onFailure:
-    m_PersistentCalls:
-      m_Calls: []
+  customLayout: {fileID: 0}
+  lockSprite: {fileID: 0}
 --- !u!114 &90045610
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9137,6 +9136,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 976594300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &500241028
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 500241030}
+  - component: {fileID: 500241029}
+  m_Layer: 0
+  m_Name: Client Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &500241029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500241028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd78632e03e8438f887020c69590e0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackendClient
+--- !u!4 &500241030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 500241028}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 459.38623, y: 207.45027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &520102649
 GameObject:
   m_ObjectHideFlags: 0
@@ -9434,9 +9477,8 @@ GameObject:
   - component: {fileID: 605723246}
   - component: {fileID: 605723248}
   - component: {fileID: 605723249}
-  - component: {fileID: 605723250}
   m_Layer: 0
-  m_Name: Hiding Spot
+  m_Name: Client Request
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9550,7 +9592,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.016121149, y: -0.036273003}
+  m_Offset: {x: -0.010232627, y: 0.00494653}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -9560,55 +9602,9 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.515878, y: 1.3788476}
+  m_Size: {x: 1.0094653, y: 1.013759}
   m_EdgeRadius: 0
---- !u!61 &605723249
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 605723245}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.0040304065, y: 0.0040302277}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 1.00806, y: 0.9919392}
-  m_EdgeRadius: 0
---- !u!114 &605723250
+--- !u!114 &605723249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9617,10 +9613,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 605723245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d0a1bb2893a94d3d84ce2a052e07ed4, type: 3}
+  m_Script: {fileID: 11500000, guid: 4d636397075ab474ebbcff78814f07b4, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HidingSpot
+  m_EditorClassIdentifier: Assembly-CSharp::TriggerEvent
   tagName: Player
+  onTriggerEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 500241029}
+        m_TargetAssemblyTypeName: ClientManager, Assembly-CSharp
+        m_MethodName: RequestPuzzle
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onTriggerExit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &608343181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9966,7 +9980,6 @@ MonoBehaviour:
   inspectText: {fileID: 0}
   translationManager: {fileID: 0}
   password: 
-  message: 
   onSuccessEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -10813,9 +10826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cacf77a7c2342adb7424e0229e632d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PasswordManager
-  passwordDisplay: {fileID: 1281726320}
-  messageDisplay: {fileID: 1038305061}
+  passwordPanelRoot: {fileID: 0}
+  defaultLayout: {fileID: 0}
   playerMovement: {fileID: 401158281778333455}
+  dialogueManager: {fileID: 0}
   journal: {fileID: 389979218}
 --- !u!1 &1130968100
 GameObject:
@@ -15971,3 +15985,4 @@ SceneRoots:
   - {fileID: 2102533913}
   - {fileID: 626740795}
   - {fileID: 605723247}
+  - {fileID: 500241030}
