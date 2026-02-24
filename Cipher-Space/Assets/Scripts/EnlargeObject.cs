@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -27,7 +28,7 @@ public class EnlargeObject : MonoBehaviour
     [Header("Password Settings")]
     [SerializeField] private TranslationManager translationManager;
     public string password;
-    public string message;
+    //public string message;
     public UnityEvent onSuccessEvent;
 
     void Update()
@@ -51,7 +52,10 @@ public class EnlargeObject : MonoBehaviour
            if(!isInspecting) // inspect the image = display the enlarged sprite
             { 
                 inspectImage.sprite = enlargedSprite; // assign the enlarged sprite to the correct image
+                Console.WriteLine("Object Index: " + objectIndex); 
+                Console.WriteLine("Object Descriptor: " + ParsingAI.Instance.objectDescriptors[objectIndex]);
                 inspectText.text = CipherGeneration.Encrypt(ParsingAI.Instance.objectDescriptors[objectIndex]); // assign the object title text
+                Console.WriteLine("Encrypted Object Descriptor: " + inspectText.text);
                 inspectPanel.SetActive(true); // show the inspect panel
                 isInspecting = true;
                 
@@ -61,8 +65,8 @@ public class EnlargeObject : MonoBehaviour
                 }
                 
                 password = inspectText.text; // set password to the encrypted object descriptor
-                message = "Enter " + ParsingAI.Instance.objectDescriptors[objectIndex]; // temp message with password for testing
-                translationManager.Open(password, message, onSuccessEvent); // open the object input manager, allowing the user to guess the secret language
+                //message = "Enter " + ParsingAI.Instance.objectDescriptors[objectIndex]; // temp message with password for testing
+                translationManager.Open(password, onSuccessEvent); // open the object input manager, allowing the user to guess the secret language
 
             }
         }

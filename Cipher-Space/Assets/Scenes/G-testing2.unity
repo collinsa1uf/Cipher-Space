@@ -335,11 +335,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8cacf77a7c2342adb7424e0229e632d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PasswordManager
-  passwordDisplay: {fileID: 1822498658}
-  messageDisplay: {fileID: 138821984}
-  journal: {fileID: 0}
-  inspectPanel: {fileID: 0}
+  passwordPanelRoot: {fileID: 0}
+  defaultLayout: {fileID: 0}
   playerMovement: {fileID: 0}
+  dialogueManager: {fileID: 0}
+  journal: {fileID: 0}
 --- !u!1 &91296608
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,7 +833,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TranslationManager
   passwordDisplay: {fileID: 2077152777}
-  messageDisplay: {fileID: 1806853732}
   journal: {fileID: 389979218}
   inspectPanel: {fileID: 91296608}
   playerMovement: {fileID: 401158281778333455}
@@ -9213,7 +9212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ParsingAI
   objectDescriptors:
-  - ABCDEFGHIK
+  - MUG
   - LMNOPQRS
   - MEMO
 --- !u!1 &509731938
@@ -9931,7 +9930,6 @@ MonoBehaviour:
   inspectText: {fileID: 2063201322}
   translationManager: {fileID: 289802138}
   password: 
-  message: ' '
   onSuccessEvent:
     m_PersistentCalls:
       m_Calls:
@@ -15096,7 +15094,6 @@ MonoBehaviour:
   inspectText: {fileID: 2063201322}
   translationManager: {fileID: 289802138}
   password: 
-  message: 
   onSuccessEvent:
     m_PersistentCalls:
       m_Calls:
@@ -15433,9 +15430,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onFailure:
-    m_PersistentCalls:
-      m_Calls: []
+  customLayout: {fileID: 0}
+  lockSprite: {fileID: 0}
 --- !u!114 &1985227230
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -17,7 +17,8 @@ public class Journal : MonoBehaviour
     [SerializeField] private PasswordManager passwordManager; // Reference to the PasswordManager component
     [SerializeField] private TranslationManager translationManager;
 
-    List<string> entries = new List<string> {}; // list of journal entries to be displayed in the journal, populated as the user discovers new letters
+    List<(string letter, string guess)> entries = new List<(string, string)> {}; // list of journal entries
+    // each entry is a tuple of the human letter and the player's guess for the alien letter visually represented 
 
     void Start()
     {
@@ -48,34 +49,33 @@ public class Journal : MonoBehaviour
     }
     void createJournal() // recreates the journal text with the current list of entries 
     {
-        entries.Sort(); // sort entries alphabetically
-        int index = 0;
+        entries.Sort((a, b) => a.letter.CompareTo(b.letter)); // sort entries alphabetically
 
-        foreach (string entry in entries)
+        for (int i = 0; i < entries.Count; i++)
         {
-            // split entries between the two pages if there are more than 13 entries
-            if (index < 13)
             {
-                journalText.text += entry + "\n";
-                alienText.text += CipherGeneration.Encrypt(entry) + "\n";
-                equalsText.text += "=\n";
+                // split entries between the two pages if there are more than 13 entries
+                if (i < 13)
+                {
+                    journalText.text += entries[i].letter + "\n";
+                    alienText.text += entries[i].guess + "\n";
+                    equalsText.text += "=\n";
+                }
+                else
+                {
+                    journalText2.text += entries[i].letter + "\n";
+                    alienText2.text += entries[i].guess + "\n";
+                    equalsText2.text += "=\n";
+                }
             }
-            else {
-                journalText2.text += entry + "\n";
-                alienText2.text += CipherGeneration.Encrypt(entry) + "\n";
-                equalsText2.text += "=\n";
-            }
-            index++;
         }
     }
-    public void UpdateJournalText(string discWord)
+    public void UpdateJournalText(string guessWord, string givenWord)
     {
-        for (int i = 0; i < discWord.Length; i++)
+        for (int i = 0; i < guessWord.Length; i++)
         {
-            if (!entries.Contains(discWord.Substring(i,1)))
-            { 
-                entries.Add(discWord.Substring(i,1));
-            }
+            entries.RemoveAll(p => p.letter == guessWord.Substring(i,1));
+            entries.Add((guessWord.Substring(i,1), givenWord.Substring(i,1)));
         }
 
         // reinitialize all the text fields to be empty before repopulating them with the updated list of entries

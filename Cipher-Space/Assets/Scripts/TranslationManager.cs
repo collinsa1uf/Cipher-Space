@@ -9,7 +9,7 @@ public class TranslationManager : MonoBehaviour
 {
     [Header("UI Elements")]
     public TextMeshProUGUI passwordDisplay; // Display message to the user
-    public TextMeshProUGUI messageDisplay; // Display message to the user
+    //public TextMeshProUGUI messageDisplay; // Display message to the user
     public Journal journal;
 
     [Header("Inspect Panel")]
@@ -77,14 +77,14 @@ public class TranslationManager : MonoBehaviour
         }
     }
 
-    public void Open(string password, string message, UnityEvent onSuccess)
+    public void Open(string password, UnityEvent onSuccess)
     {
         correctPassword = password.ToUpperInvariant(); // Set the correct password for validation
         currentInput = "";
         gameObject.SetActive(true); // Show password entry UI
 
         passwordDisplay.text = BuildDisplay(); // Prompt the user to enter the password
-        messageDisplay.text = message; // Display the provided message to the user
+        //messageDisplay.text = message; // Display the provided message to the user
         this.onSuccess = onSuccess; // Store success event to evoke
     }
 
@@ -100,7 +100,7 @@ public class TranslationManager : MonoBehaviour
             // update journal with translation as long as input is the correct length
             onSuccess.Invoke(); // Invoke the success event
             inspectPanel.SetActive(false); // hide the inspect panel if it's open
-            journal.UpdateJournalText(input.ToUpperInvariant());
+            journal.UpdateJournalText(input.ToUpperInvariant(), correctPassword);
             Close();
         }
         else

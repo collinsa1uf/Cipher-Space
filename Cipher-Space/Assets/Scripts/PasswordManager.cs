@@ -133,7 +133,7 @@ public class PasswordManager : MonoBehaviour
         if (CipherGeneration.Encrypt(input.ToUpperInvariant()) ==
             correctPassword.ToUpperInvariant())
         {
-            journal?.UpdateJournalText(input.ToUpperInvariant());
+            journal?.UpdateJournalText(input.ToUpperInvariant(), correctPassword);
             onSuccess?.Invoke();
             Close();
         }
