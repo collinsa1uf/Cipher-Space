@@ -637,6 +637,7 @@ GameObject:
   - component: {fileID: 726461528}
   - component: {fileID: 726461530}
   - component: {fileID: 726461529}
+  - component: {fileID: 726461531}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -763,6 +764,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 726461527}
   m_CullTransparentMesh: 1
+--- !u!114 &726461531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726461527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7effc77b2b372048b768cac07de7bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchText
+  textMeshProUGUI: {fileID: 726461529}
+  font: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
+  englishDisplayLength: 10
+  alienDisplayLength: 1
 --- !u!1 &735843476
 GameObject:
   m_ObjectHideFlags: 0
@@ -6110,6 +6127,7 @@ GameObject:
   - component: {fileID: 1028011717}
   - component: {fileID: 1028011719}
   - component: {fileID: 1028011718}
+  - component: {fileID: 1028011720}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6236,6 +6254,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028011716}
   m_CullTransparentMesh: 1
+--- !u!114 &1028011720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1028011716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7effc77b2b372048b768cac07de7bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchText
+  textMeshProUGUI: {fileID: 1028011718}
+  font: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
+  englishDisplayLength: 10
+  alienDisplayLength: 1
 --- !u!1 &1049500971
 GameObject:
   m_ObjectHideFlags: 0
@@ -6494,6 +6528,7 @@ GameObject:
   - component: {fileID: 1404057476}
   - component: {fileID: 1404057478}
   - component: {fileID: 1404057477}
+  - component: {fileID: 1404057479}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6620,6 +6655,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404057475}
   m_CullTransparentMesh: 1
+--- !u!114 &1404057479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404057475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7effc77b2b372048b768cac07de7bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchText
+  textMeshProUGUI: {fileID: 1404057477}
+  font: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
+  englishDisplayLength: 10
+  alienDisplayLength: 1
 --- !u!1 &1512113876
 GameObject:
   m_ObjectHideFlags: 0
@@ -6631,6 +6682,7 @@ GameObject:
   - component: {fileID: 1512113877}
   - component: {fileID: 1512113879}
   - component: {fileID: 1512113878}
+  - component: {fileID: 1512113880}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6757,6 +6809,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1512113876}
   m_CullTransparentMesh: 1
+--- !u!114 &1512113880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1512113876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7effc77b2b372048b768cac07de7bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchText
+  textMeshProUGUI: {fileID: 1512113878}
+  font: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
+  englishDisplayLength: 10
+  alienDisplayLength: 1
 --- !u!1 &1552095808
 GameObject:
   m_ObjectHideFlags: 0
@@ -6871,6 +6939,7 @@ GameObject:
   - component: {fileID: 1801181335}
   - component: {fileID: 1801181337}
   - component: {fileID: 1801181336}
+  - component: {fileID: 1801181338}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -6997,6 +7066,22 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1801181334}
   m_CullTransparentMesh: 1
+--- !u!114 &1801181338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801181334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7effc77b2b372048b768cac07de7bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GlitchText
+  textMeshProUGUI: {fileID: 1801181336}
+  font: {fileID: 11400000, guid: 4c0b657b9fffd9c4fbb5bca9f8eb8eee, type: 2}
+  englishDisplayLength: 10
+  alienDisplayLength: 1
 --- !u!1 &1863850123
 GameObject:
   m_ObjectHideFlags: 0
