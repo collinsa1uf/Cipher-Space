@@ -1,15 +1,14 @@
 using System;
 using System.Collections;
 using System.Text;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class ClientManager : MonoBehaviour
 {
     
-    private string baseUrl = "http://localhost:5055";
-    private string generateEndpoint = "/receive_data";
+    private string baseUrl = "http://localhost:8000";
+    private string generateEndpoint = "/generate_objects";
     private int timeoutSeconds = 30;
     private bool requestInProgress = false;
 
