@@ -4,31 +4,38 @@ using UnityEngine.Rendering.Universal;
 
 public class EnemyTimer : MonoBehaviour
 {
+    [Header("Lighting")]
     public Light2D[] allLights;
     public Light2D[] sceneLights;
 
+    [Header("Timer")]
     public float countdownDuration = 30f; 
     private float timeLeft;
     private bool timerRunning = false;
-    
-    public GameObject enemySprite;
-    public string tagName = "Player";
 
+    [Header("Sprites")]
+    public GameObject enemySprite;
+    public EnemyController enemyController;
+    public Transform player;
+    private PlayerHiding playerHiding;
+
+
+    [Header("Audio")]
     public AudioSource alarmSound;
     [Range(0f, 1f)]
     public float startingVolume = 0.05f;
-    // Alarm warnings
     private readonly float[] warningTimes = { 9f, 7f, 5f, 3f, 2f, 1f }; // Times at which to play warnings
     private int warningIndex = 0;
 
+   
 
     void Start()
     {
-        timeLeft = countdownDuration;
-
-        enemySprite.SetActive(false);
-        timerRunning = true;
-        alarmSound.volume = startingVolume;
+        timeLeft = countdownDuration; // set countdown time
+        playerHiding = player.GetComponent<PlayerHiding>(); // get reference to the PlayerHiding component on the player
+        enemySprite.SetActive(false); // ensure enemy is hidden at the start
+        timerRunning = true; // start the countdwon
+        alarmSound.volume = startingVolume; // set the initial volume of the alarm sound
     }
 
     // Update is called once per frame
@@ -49,8 +56,9 @@ public class EnemyTimer : MonoBehaviour
             timerRunning = false;
             StartCoroutine(SpawnSequence());
         }
-
+        
     }
+
     void PlayWarning()
     {
         alarmSound.Play();
@@ -62,6 +70,7 @@ public class EnemyTimer : MonoBehaviour
             1f
         );
     }
+
     IEnumerator SpawnSequence()
     {
         yield return StartCoroutine(FlickerLights());
@@ -81,7 +90,8 @@ public class EnemyTimer : MonoBehaviour
         for (int i = 0; i < allLights.Length; i++)
             allLights[i].intensity = originalIntensities[i];
 
-        SpawnEnemy();
+        bool hidden = player.GetComponent<PlayerHiding>().getIsHiding();
+        enemyController.Activate(hidden, player);
     }
 
     IEnumerator FlickerLights()
@@ -109,19 +119,12 @@ public class EnemyTimer : MonoBehaviour
             sceneLights[i].intensity = originalIntensities[i];
     }
 
-    void SpawnEnemy()
-    {
-        
-        enemySprite.SetActive(true);
-        
-        timerRunning = false;
-    }
 
     public void RestartTimer()
     {
         timeLeft = countdownDuration;
         warningIndex = 0;
-        alarmSound.volume = 0.2f;
+        alarmSound.volume = 0.15f;
         timerRunning = true;
     }
     
