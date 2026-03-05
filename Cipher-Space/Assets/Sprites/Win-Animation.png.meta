@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 9665d36fb4aef0662bef1839db46fa0e
+guid: d120e2ba89558fb4e96d1ede14cfa322
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4463414390511278669
-    second: AI_Assistant-Sheet_0
+      213: 5663112159291392007
+    second: Win-Animation_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -72,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 8192
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: AI_Assistant-Sheet_0
+      name: Win-Animation_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 480
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,20 +128,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d4a9acf6dbb31fd30800000000000000
-      internalID: 4463414390511278669
+      spriteID: 70042c1218a679e40800000000000000
+      internalID: 5663112159291392007
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AI_Assistant-Sheet_1
+      name: Win-Animation_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 480
         y: 0
-        width: 32
-        height: 32
+        width: 480
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,20 +150,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9847844c22d683b6886562a50f82534a
-      internalID: 1607831159
+      spriteID: c709704d2c820d348a3b860440ce0c58
+      internalID: 1688288258
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AI_Assistant-Sheet_2
+      name: Win-Animation_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 960
         y: 0
-        width: 32
-        height: 32
+        width: 480
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -172,20 +172,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3ccee5327f4c7ab8d915d53ee27922ee
-      internalID: -1175517497
+      spriteID: 6ef762bca8b07c645864429a93222ec1
+      internalID: -1146127196
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AI_Assistant-Sheet_3
+      name: Win-Animation_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 1440
         y: 0
-        width: 32
-        height: 32
+        width: 480
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,20 +194,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd64eca3f0dbbff8490c726895ca64c7
-      internalID: -1213696261
+      spriteID: 101aca9cf9b335a4996923eeff7ed1ba
+      internalID: -771636312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AI_Assistant-Sheet_4
+      name: Win-Animation_4
       rect:
         serializedVersion: 2
-        x: 128
+        x: 1920
         y: 0
-        width: 32
-        height: 32
+        width: 480
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -216,20 +216,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a5f6f436f527b6649c6a2edce737479
-      internalID: -171665212
+      spriteID: c15c2d848c462bf4abbf9abe7aa99bfb
+      internalID: -863981391
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: AI_Assistant-Sheet_5
+      name: Win-Animation_5
       rect:
         serializedVersion: 2
-        x: 160
+        x: 2400
         y: 0
-        width: 32
-        height: 32
+        width: 480
+        height: 270
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -238,8 +238,140 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 34b9f9413b498dbc09b0f16486ca948e
-      internalID: 542699436
+      spriteID: 452c3558c94ea534690bd8d085c11679
+      internalID: 1094112462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Win-Animation_6
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fb0790c614189ef44a9ab8a867c38515
+      internalID: -878761248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Win-Animation_7
+      rect:
+        serializedVersion: 2
+        x: 3360
+        y: 0
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3d6faf7aa88e5c445954c0f0e4f5ec76
+      internalID: 675764050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Win-Animation_8
+      rect:
+        serializedVersion: 2
+        x: 3840
+        y: 0
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 47035018ba5b4c04795c0af0ff91522f
+      internalID: 485933563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Win-Animation_9
+      rect:
+        serializedVersion: 2
+        x: 4320
+        y: 0
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 927053a34150a8d449792aa6fa820589
+      internalID: 1166205418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Win-Animation_10
+      rect:
+        serializedVersion: 2
+        x: 4800
+        y: 0
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: caf05e26d20835345b3a530d788c70f5
+      internalID: 2041695183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Win-Animation_11
+      rect:
+        serializedVersion: 2
+        x: 5280
+        y: 0
+        width: 480
+        height: 270
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9924a513b4598824e9cb099c10741b89
+      internalID: 39821833
       vertices: []
       indices: 
       edges: []
@@ -248,7 +380,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 058264d0be3795db5b82bbe8d64ac5b1
+    spriteID: 9d49c59897ea8144d9aefaa9b69dd7e8
     internalID: 0
     vertices: []
     indices: 
@@ -258,14 +390,20 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":32.0,"y":32.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":480.0,"y":270.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      AI_Assistant-Sheet_0: 4463414390511278669
-      AI_Assistant-Sheet_1: 1607831159
-      AI_Assistant-Sheet_2: -1175517497
-      AI_Assistant-Sheet_3: -1213696261
-      AI_Assistant-Sheet_4: -171665212
-      AI_Assistant-Sheet_5: 542699436
+      Win-Animation_0: 5663112159291392007
+      Win-Animation_1: 1688288258
+      Win-Animation_10: 2041695183
+      Win-Animation_11: 39821833
+      Win-Animation_2: -1146127196
+      Win-Animation_3: -771636312
+      Win-Animation_4: -863981391
+      Win-Animation_5: 1094112462
+      Win-Animation_6: -878761248
+      Win-Animation_7: 675764050
+      Win-Animation_8: 485933563
+      Win-Animation_9: 1166205418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
