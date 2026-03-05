@@ -16,6 +16,7 @@ public class PlayerHiding : MonoBehaviour
 
     public void ToggleHiding()
     {
+        if (GameStateManager.InputLocked) return;
         isHiding = !isHiding; // Toggle the hiding state
         
         sprite.enabled = !isHiding; // Enable or disable the SpriteRenderer based on the hiding state
