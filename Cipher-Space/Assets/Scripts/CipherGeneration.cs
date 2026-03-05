@@ -36,10 +36,10 @@ public class CipherGeneration : MonoBehaviour
         }
         letterCipherMap = randomCipherMap;
 
-        Debug.Log("Generated Cipher:");
-        foreach (var pair in randomCipherMap)        {
-            Debug.Log(pair.Key + " -> " + pair.Value);
-        }
+        // Debug.Log("Generated Cipher:");
+        // foreach (var pair in randomCipherMap)        {
+        //     Debug.Log(pair.Key + " -> " + pair.Value);
+        // }
     }
 
     public static void GenerateNumberCipher()
@@ -64,24 +64,14 @@ public class CipherGeneration : MonoBehaviour
         }
         numberCipherMap = randomCipherMap;
 
-        Debug.Log("Generated Cipher:");
-        foreach (var pair in randomCipherMap)        {
-            Debug.Log(pair.Key + " -> " + pair.Value);
-        }
+        // Debug.Log("Generated Cipher:");
+        // foreach (var pair in randomCipherMap)        {
+        //     Debug.Log(pair.Key + " -> " + pair.Value);
+        // }
     }
 
     public static string Encrypt(string input)
     {
-        // if (letterCipherMap == null)
-        // {
-        //     GenerateLetterCipher(); // Ensure the cipher map is generated before encryption
-        // }
-
-        // if (numberCipherMap == null)
-        // {
-        //     GenerateNumberCipher(); // Ensure the cipher map is generated before encryption
-        // }
-
         string encrypted = "";
         foreach (char c in input)
         {
