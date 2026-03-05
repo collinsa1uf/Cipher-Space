@@ -31,8 +31,22 @@ public class EnlargeObject : MonoBehaviour
     //public string message;
     public UnityEvent onSuccessEvent;
 
+    private bool isInteractable;
+    public string objectKey;
+
     void Update()
     {
+        if (ClientManager.objects[objectKey] != "null")
+        {
+            isInteractable = true;
+            gameObject.tag = "Interactable Object";
+        }
+        else
+        {
+            isInteractable = false;
+            gameObject.tag = "Untagged";
+        }
+
         if (translationManager != null && translationManager.gameObject.activeSelf)
         {
             // If the password input manager is active, check to see if user pressed escape to close the input
@@ -47,15 +61,15 @@ public class EnlargeObject : MonoBehaviour
             }
             return;
         }
-        else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger) // Check if 'E' key was pressed this frame and player is in trigger
+        else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger && isInteractable) // Check if 'E' key was pressed this frame and player is in trigger
         {
            if(!isInspecting) // inspect the image = display the enlarged sprite
             { 
                 inspectImage.sprite = enlargedSprite; // assign the enlarged sprite to the correct image
-                Console.WriteLine("Object Index: " + objectIndex); 
-                Console.WriteLine("Object Descriptor: " + ParsingAI.Instance.objectDescriptors[objectIndex]);
-                inspectText.text = CipherGeneration.Encrypt(ParsingAI.Instance.objectDescriptors[objectIndex]); // assign the object title text
-                Console.WriteLine("Encrypted Object Descriptor: " + inspectText.text);
+                // Console.WriteLine("Object Index: " + objectIndex); 
+                // Console.WriteLine("Object Descriptor: " + ParsingAI.Instance.objectDescriptors[objectIndex]);
+                inspectText.text = CipherGeneration.Encrypt(ClientManager.objects[objectKey]); // assign the object title text
+                // Console.WriteLine("Encrypted Object Descriptor: " + inspectText.text);
                 inspectPanel.SetActive(true); // show the inspect panel
                 isInspecting = true;
                 
