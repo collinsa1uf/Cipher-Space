@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private PlayerMovement playerMovement;
 
-    public GameObject blackScreen;
+    //public GameObject blackScreen;
 
     private Vector3 exitPoint = new Vector3(287.7f, -120f, 0f);
     public float moveSpeed = 80f;
@@ -24,7 +24,8 @@ public class EnemyController : MonoBehaviour
 
     public void Activate(bool playerHidden, Transform player)
     {
-        gameObject.SetActive(true);
+        gameObject.SetActive(true); // Activate the enemy object
+
         if (playerHidden)
         {
             transform.position = hiddenSpawnPoint.position;
@@ -71,9 +72,11 @@ public class EnemyController : MonoBehaviour
         animator.SetBool("IsMoving", false);
         gameObject.SetActive(false);
         enemyTimer.RestartTimer();
+        enemyTimer.RestoreUI();
+        GameStateManager.InputLocked = false;
     }
 
     public void OnKillFinished() { 
-        blackScreen.SetActive(true);
+        //blackScreen.SetActive(true);
     }
 }

@@ -1,5 +1,6 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyTimer : MonoBehaviour
@@ -27,7 +28,10 @@ public class EnemyTimer : MonoBehaviour
     private readonly float[] warningTimes = { 9f, 7f, 5f, 3f, 2f, 1f }; // Times at which to play warnings
     private int warningIndex = 0;
 
-   
+    [Header("UI")]
+    private Dictionary<GameObject, bool> uiStateCache = new Dictionary<GameObject, bool>();
+    private int uiLayer;
+
 
     void Start()
     {
@@ -36,6 +40,7 @@ public class EnemyTimer : MonoBehaviour
         enemySprite.SetActive(false); // ensure enemy is hidden at the start
         timerRunning = true; // start the countdwon
         alarmSound.volume = startingVolume; // set the initial volume of the alarm sound
+        uiLayer = LayerMask.NameToLayer("UI"); // cache the UI layer index for later use
     }
 
     // Update is called once per frame
@@ -73,6 +78,8 @@ public class EnemyTimer : MonoBehaviour
 
     IEnumerator SpawnSequence()
     {
+        GameStateManager.InputLocked = true; // lock player input during spawn sequence
+
         yield return StartCoroutine(FlickerLights());
 
         // Store original intensities
@@ -96,6 +103,9 @@ public class EnemyTimer : MonoBehaviour
 
     IEnumerator FlickerLights()
     {
+        CacheUIState();
+        HideUI(); // hide UI during flicker
+
         float duration = 1f;
         float elapsed = 0f;
 
@@ -127,5 +137,38 @@ public class EnemyTimer : MonoBehaviour
         alarmSound.volume = 0.15f;
         timerRunning = true;
     }
-    
+
+    void HideUI()
+    {
+        foreach (var entry in uiStateCache)
+        {
+            entry.Key.SetActive(false);
+        }
+    }
+
+    public void RestoreUI()
+    {
+        foreach (var entry in uiStateCache)
+        {
+            entry.Key.SetActive(entry.Value);
+        }
+    }
+
+    void CacheUIState() // cache the active state of all UI objects so we can restore them after enemy attack
+    {
+        uiStateCache.Clear();
+
+        GameObject[] allObjects = Object.FindObjectsByType<GameObject>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == uiLayer)
+            {
+                uiStateCache[obj] = obj.activeSelf;
+            }
+        }
+    }
 }
