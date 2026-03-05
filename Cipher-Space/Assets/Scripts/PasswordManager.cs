@@ -113,11 +113,21 @@ public class PasswordManager : MonoBehaviour
             Debug.LogError("No active layout found!");
             return;
         }
-
+        gameObject.SetActive(true);
         activeLayout.messageDisplay.text = message;
+        activeLayout.messageDisplay.ForceMeshUpdate();
 
         if (config != null && config.lockImage != null)
             activeLayout.lockImageDisplay.sprite = config.lockImage;
+
+        EncryptText[] encryptables = activeLayout.GetComponentsInChildren<EncryptText>(true);
+        
+        foreach (var e in encryptables)
+        {
+            if (e.GetComponent<TextMeshProUGUI>() == activeLayout.messageDisplay)
+                e.SetNewOriginal(message);
+            e.Encrypt();
+        }
 
         gameObject.SetActive(true);
         UpdateDisplay();
@@ -128,12 +138,26 @@ public class PasswordManager : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    // private void ValidatePassword(string input)
+    // {
+    //     if (CipherGeneration.Encrypt(input.ToUpperInvariant()) ==
+    //         correctPassword.ToUpperInvariant())
+    //     {
+    //         journal?.UpdateJournalText(input.ToUpperInvariant(), correctPassword);
+    //         onSuccess?.Invoke();
+    //         Close();
+    //     }
+    //     else
+    //     {
+    //         currentInput = "";
+    //         UpdateDisplay();
+    //     }
+    // }
     private void ValidatePassword(string input)
     {
-        if (CipherGeneration.Encrypt(input.ToUpperInvariant()) ==
-            correctPassword.ToUpperInvariant())
+        if (input.ToUpperInvariant() == correctPassword.ToUpperInvariant())
         {
-            journal?.UpdateJournalText(input.ToUpperInvariant(), correctPassword);
+            journal?.UpdateJournalText(input.ToUpperInvariant(), CipherGeneration.Encrypt(correctPassword));
             onSuccess?.Invoke();
             Close();
         }
