@@ -54,7 +54,7 @@ def object_call(word, prompt, incorrect_items):
             index = 0
 
         content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
-        print("content:", content)
+        #print("content:", content)
         pattern = r'\*\*(.*?)\*\*'
         list_items = re.findall(pattern, content)
         if len(list_items) == 0:
