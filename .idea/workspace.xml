@@ -7,8 +7,7 @@
     <list default="true" id="87b62c91-0a0b-4138-b989-4af35ee3cff7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/AI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/AI/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/AI/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/AI/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,7 +36,7 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
   }
 }</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -50,6 +49,8 @@
       <updated>1770940113725</updated>
       <workItem from="1770940116293" duration="1243000" />
       <workItem from="1771273771287" duration="12958000" />
+      <workItem from="1772401685574" duration="39422000" />
+      <workItem from="1772927192576" duration="4889000" />
     </task>
     <servers />
   </component>
