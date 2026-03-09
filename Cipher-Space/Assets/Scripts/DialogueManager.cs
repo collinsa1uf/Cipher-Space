@@ -35,6 +35,8 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
+        if (GameStateManager.InputLocked)
+            return;
         if (isInDialogue && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
         {
             AdvanceDialogue();
