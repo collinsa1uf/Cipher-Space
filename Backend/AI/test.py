@@ -7,6 +7,9 @@ import re
 import random
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
+from english_words import get_english_words_set
+
+dictionary = get_english_words_set(['web2'], lower=True)
 
 # --- FASTAPI SETUP ---
 app = FastAPI()
@@ -25,6 +28,31 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 
 
+def AI_implementation(prompt):
+    messages = [{"role": "user", "content": prompt}]
+    text = tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
+        enable_thinking=False
+    )
+    model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
+
+    generated_ids = model.generate(
+        **model_inputs,
+        max_new_tokens=32768
+    )
+    output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
+
+    try:
+        index = len(output_ids) - output_ids[::-1].index(151668)
+    except ValueError:
+        index = 0
+
+    content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
+    return content
+
+
 # --- HELPER FUNCTION ---
 def object_call(word, prompt, incorrect_items):
     reload = True
@@ -33,28 +61,7 @@ def object_call(word, prompt, incorrect_items):
 
     while reload:
         reload = False
-        messages = [{"role": "user", "content": prompt}]
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-            enable_thinking=False
-        )
-        model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
-
-        generated_ids = model.generate(
-            **model_inputs,
-            max_new_tokens=32768
-        )
-        output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
-
-        try:
-            index = len(output_ids) - output_ids[::-1].index(151668)
-        except ValueError:
-            index = 0
-
-        content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
-        print("content:", content)
+        content = AI_implementation(prompt)
         pattern = r'\*\*(.*?)\*\*'
         list_items = re.findall(pattern, content)
         if len(list_items) == 0:
@@ -77,6 +84,20 @@ def object_call(word, prompt, incorrect_items):
 
     final_word = random.choice(synonyms)
     return final_word
+
+
+def code_call(all_letters, new_letters, no_no_words):
+    possible_codes = []
+
+    for word in dictionary:
+        if 3 < len(word) < 12:
+            if all(letter in all_letters for letter in word):
+                if (len(new_letters) == 0) or any(letter in new_letters for letter in word):
+                    if word not in no_no_words:
+                        possible_codes.append(word)
+
+    final_code = random.choice(possible_codes)
+    return final_code
 
 
 # --- PROMPTS AND INCORRECT LISTS (UNCHANGED) ---
@@ -108,7 +129,7 @@ TV_prompt = "Provide 5 unique one-word objects, no verbs, that could be used int
             "is a electric screen used to watch something. These objects should closely resemble a TV in both " \
             "appearance (large screen, display, etc.) and function (used for viewing media), and each should be " \
             "distinct with no repetition. Surround each list object with **. "
-TV_incorrect = ["set"]
+TV_incorrect = ["set", "tvd"]
 
 board_prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word " \
                "'noticeboard' for displaying announcements. These objects should closely resemble a noticeboard in " \
@@ -173,7 +194,8 @@ circuit_prompt = "Provide 5 unique one-word objects (no verbs) that are similar 
 circuit_incorrect = ["light", "relay", "fuse", "timer", "switchgear", "contacts", "fuses", "hub", "radiator",
                      "contactor", "door", "switch", "connector", "socket", "generator", "lamp", "power", "electroniser",
                      "wireframe", "powerline", "outlet", "furnace", "doorbell", "rack", "lightswitch", "electrogrid",
-                     "controlhub", "energycore", "module", "thermostat", "clock", "button", "battery", "mainboard", "screw", "plug"]
+                     "controlhub", "energycore", "module", "thermostat", "clock", "button", "battery", "mainboard",
+                     "screw", "plug"]
 
 tools_prompt = "Provide 5 unique one-word objects (no verbs) that are similar in appearance and function to a " \
                "toolbox, a case for storing tools. Each object should be distinct and not repeat. Surround each list " \
@@ -207,7 +229,8 @@ liquid_incorrect = ["oxy", "energ", "mot", "energetic", "light", "lamp", "energi
                     "steam", "vapor", "gaseous", "mist", "fueled", "batter", "chill", "bloom", "flame", "luminous",
                     "syringe", "cylinder", "liquef", "oxyd", "volumetric", "vodka", "soda", "liquor", "syrup", "melt",
                     "run", "cone", "cup", "thermometer", "spatula", "acetate", "spill", "magnet", "chrom", "liqueur",
-                    "matter", "pour", "droplet", "hydrogen", "source", "chiller", "refinery", "chim", "liqu", "phenol", "chemist"]
+                    "matter", "pour", "droplet", "hydrogen", "source", "chiller", "refinery", "chim", "liqu", "phenol",
+                    "chemist"]
 
 
 # --- FASTAPI ENDPOINT ---
@@ -215,15 +238,14 @@ liquid_incorrect = ["oxy", "energ", "mot", "energetic", "light", "lamp", "energi
 async def generate_objects():
     # Choose random items
     breakroom_items = [1, 2, 3, 4, 5]
-    hallway_items = [6]
-    medbay_items = [7, 8, 9]
-    engineroom_items = [10, 11, 12, 13]
+    medbay_items = [6, 7, 8]
+    engineroom_items = [9, 10, 11, 12, 13]
 
     item1 = random.choice(breakroom_items)
     item2 = random.choice(medbay_items)
     item3 = random.choice(engineroom_items)
 
-    remaining_items = (breakroom_items + hallway_items + medbay_items + engineroom_items)
+    remaining_items = (breakroom_items + medbay_items + engineroom_items)
     remaining_items.remove(item1)
     remaining_items.remove(item2)
     remaining_items.remove(item3)
@@ -232,94 +254,146 @@ async def generate_objects():
 
     items = [item1, item2, item3] + other_items
 
+    code1_letters = []
+    code2_letters = []
+    code3_letters = []
+    all_letters = []
+    current_words = []
+
     # Generate objects using existing prompts
-    if 1 in items:
-        mug_word = object_call("mug", mug_prompt, mug_incorrect)
-    else:
-        mug_word = "null"
-
-    if 2 in items:
-        pitcher_word = object_call("pitcher", pitcher_prompt, pitcher_incorrect)
-    else:
-        pitcher_word = "null"
-
-    if 3 in items:
-        TV_word = object_call("television", TV_prompt, TV_incorrect)
-    else:
-        TV_word = "null"
-
-    if 4 in items:
-        board_word = object_call("noticeboard", board_prompt, board_incorrect)
-    else:
-        board_word = "null"
-
-    if 5 in items:
-        chips_word = object_call("chips", chips_prompt, chips_incorrect)
-    else:
-        chips_word = "null"
-
     if 6 in items:
-        crate_word = object_call("crate", crate_prompt, crate_incorrect)
-    else:
-        crate_word = "null"
-
-    if 7 in items:
         vial_word = object_call("beaker", vial_prompt, vial_incorrect)
+        code1_letters = (set(vial_word) - set(all_letters)).union(code1_letters)
+        current_words.append(vial_word)
     else:
         vial_word = "null"
 
-    if 8 in items:
+    if 7 in items:
         vitals_word = object_call("vitals", vitals_prompt, vitals_incorrect)
+        code1_letters = (set(vitals_word) - set(all_letters)).union(code1_letters)
+        current_words.append(vitals_word)
     else:
         vitals_word = "null"
 
-    if 9 in items:
+    if 8 in items:
         computer_word = object_call("computer", computer_prompt, computer_incorrect)
+        code1_letters = (set(computer_word) - set(all_letters)).union(code1_letters)
+        current_words.append(computer_word)
     else:
         computer_word = "null"
 
+    print(code1_letters)
+    print(current_words)
+    all_letters = code1_letters.union(all_letters)
+    print(all_letters)
+    engine_code = code_call(all_letters, code1_letters, current_words)
+    current_words.append(engine_code)
+
+    if 9 in items:
+        crate_word = object_call("crate", crate_prompt, crate_incorrect)
+        code2_letters = (set(crate_word) - set(all_letters)).union(code2_letters)
+        current_words.append(crate_word)
+    else:
+        crate_word = "null"
+
     if 10 in items:
         circuit_word = object_call("circuit", circuit_prompt, circuit_incorrect)
+        code2_letters = (set(circuit_word) - set(all_letters)).union(code2_letters)
+        current_words.append(circuit_word)
     else:
         circuit_word = "null"
 
     if 11 in items:
         tools_word = object_call("toolbox", tools_prompt, tools_incorrect)
+        code2_letters = (set(tools_word) - set(all_letters)).union(code2_letters)
+        current_words.append(tools_word)
     else:
         tools_word = "null"
 
     if 12 in items:
         screws_word = object_call("screws", screws_prompt, screws_incorrect)
+        code2_letters = (set(screws_word) - set(all_letters)).union(code2_letters)
+        current_words.append(screws_word)
     else:
         screws_word = "null"
 
     if 13 in items:
         liquid_word = object_call("chemicals", liquid_prompt, liquid_incorrect)
+        code2_letters = (set(liquid_word) - set(all_letters)).union(code2_letters)
+        current_words.append(liquid_word)
     else:
         liquid_word = "null"
 
+    print(code2_letters)
+    print(current_words)
+    all_letters = code2_letters.union(all_letters)
+    print(all_letters)
+    medbay_code = code_call(all_letters, code2_letters, current_words)
+    current_words.append(medbay_code)
+
+    if 1 in items:
+        mug_word = object_call("mug", mug_prompt, mug_incorrect)
+        code3_letters = (set(mug_word) - set(all_letters)).union(code3_letters)
+        current_words.append(mug_word)
+    else:
+        mug_word = "null"
+
+    if 2 in items:
+        pitcher_word = object_call("pitcher", pitcher_prompt, pitcher_incorrect)
+        code3_letters = (set(pitcher_word) - set(all_letters)).union(code3_letters)
+        current_words.append(pitcher_word)
+    else:
+        pitcher_word = "null"
+
+    if 3 in items:
+        TV_word = object_call("television", TV_prompt, TV_incorrect)
+        code3_letters = (set(TV_word) - set(all_letters)).union(code3_letters)
+        current_words.append(TV_word)
+    else:
+        TV_word = "null"
+
+    if 4 in items:
+        board_word = object_call("noticeboard", board_prompt, board_incorrect)
+        code3_letters = (set(board_word) - set(all_letters)).union(code3_letters)
+        current_words.append(board_word)
+    else:
+        board_word = "null"
+
+    if 5 in items:
+        chips_word = object_call("chips", chips_prompt, chips_incorrect)
+        code3_letters = (set(chips_word) - set(all_letters)).union(code3_letters)
+        current_words.append(chips_word)
+    else:
+        chips_word = "null"
+
+    print(code3_letters)
+    print(current_words)
+    all_letters = code3_letters.union(all_letters)
+    print(all_letters)
+    cockpit_code = code_call(all_letters, code3_letters, current_words)
 
     # Save to data_store
     data = {
+        "vialObject": vial_word,
+        "vitalsObject": vitals_word,
+        "computerObject": computer_word,
+        "crateObject": crate_word,
+        "circuitObject": circuit_word,
+        "toolsObject": tools_word,
+        "screwsObject": screws_word,
+        "liquidObject": liquid_word,
         "mugObject": mug_word,
         "pitcherObject": pitcher_word,
         "TVObject": TV_word,
         "boardObject": board_word,
         "chipsObject": chips_word,
-        "crateObject": crate_word,
-        "vialObject": vial_word,
-        "vitalsObject": vitals_word,
-        "computerObject": computer_word,
-        "circuitObject": circuit_word,
-        "toolsObject": tools_word,
-        "screwsObject": screws_word,
-        "liquidObject": liquid_word
+        "engineCode": engine_code,
+        "medbayCode": medbay_code,
+        "cockpitCode": cockpit_code
+
     }
 
-
     return {"status": "success", "data": data}
-
-
 
 
 # --- RUN SERVER ---

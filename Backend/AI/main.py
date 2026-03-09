@@ -4,10 +4,37 @@ import re
 import random
 import json
 import requests
+from english_words import get_english_words_set
 
 from huggingface_hub import login
 
+dictionary = get_english_words_set(['web2'], lower=True)
+def AI_implementation(prompt):
+    messages = [{"role": "user", "content": prompt}]
+    text = tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=True,
+        enable_thinking=False
+    )
+    model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
 
+    generated_ids = model.generate(
+        **model_inputs,
+        max_new_tokens=32768
+    )
+    output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
+
+    try:
+        index = len(output_ids) - output_ids[::-1].index(151668)
+    except ValueError:
+        index = 0
+
+    content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
+    return content
+
+
+# --- HELPER FUNCTION ---
 def object_call(word, prompt, incorrect_items):
     reload = True
     synonyms = [word]
@@ -15,34 +42,7 @@ def object_call(word, prompt, incorrect_items):
 
     while reload:
         reload = False
-        # prepare the model input
-        messages = [
-            {"role": "user", "content": prompt}
-        ]
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-            enable_thinking=False  # Switches between thinking and non-thinking modes. Default is True.
-        )
-        model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
-
-        # conduct text completion
-        generated_ids = model.generate(
-            **model_inputs,
-            max_new_tokens=32768
-        )
-        output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
-
-        # parsing thinking content
-        try:
-            # rindex finding 151668 (</think>)
-            index = len(output_ids) - output_ids[::-1].index(151668)
-        except ValueError:
-            index = 0
-
-        content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
-        print("content:", content)
+        content = AI_implementation(prompt)
         pattern = r'\*\*(.*?)\*\*'
         list_items = re.findall(pattern, content)
         if len(list_items) == 0:
@@ -50,26 +50,80 @@ def object_call(word, prompt, incorrect_items):
         else:
             for item in list_items:
                 item = item.lower()
-
                 if ' ' in item:
                     reload = True
                 elif item in incorrect_items:
                     reload = True
                 elif item in synonyms:
                     reload = True
-                elif not item.isalnum():
-                    reload = True
                 else:
                     synonyms.append(item)
                     correct_items += 1
-
                 if correct_items == 3:
                     reload = False
                     break
 
     final_word = random.choice(synonyms)
-    print("Final Word:", final_word)
+    print(final_word)
     return final_word
+
+
+def code_call(all_letters, new_letters, no_no_words):
+    reload = True
+    any_letters = ', '.join(map(str, all_letters))
+    needed_letters = ', '.join(map(str, new_letters))
+    prompt = "Provide me random real word that contains only letters from this list: " + any_letters + ". But make sure the word includes at least one letter from this required list: " + needed_letters + ". Include nothing but the word, with no spaces between each letter. The word should be surrounded by **"
+
+    while reload:
+        reload = False
+        required = False
+        content = AI_implementation(prompt)
+        print(content)
+        pattern = r'\*\*(.*?)\*\*'
+        words = re.findall(pattern, content)
+        word = words[0]
+        word = word.lower()
+        print("word :" + word)
+        if word in no_no_words:
+            reload = True
+        elif word not in dictionary:
+            reload = True
+        elif len(word) == 0 or len(word) == 1:
+            reload = True
+        else:
+            for letter in word:
+                if ' ' in word:
+                    reload = True
+                    break
+
+                if letter not in all_letters:
+                    reload = True
+                    break
+
+                if letter in new_letters:
+                    required = True
+
+        if not required:
+            reload = True
+
+    return word
+
+def dictionary_call(all_letters, new_letters, no_no_words):
+    possible_codes = []
+
+    for word in dictionary:
+        if 3 < len(word) < 12:
+            if all(letter in all_letters for letter in word):
+                if any(letter in new_letters for letter in word):
+                    if word not in no_no_words:
+                        possible_codes.append(word)
+
+    final_code = random.choice(possible_codes)
+    print(final_code)
+    return final_code
+
+
+
 
 
 hf_token = os.getenv("HF_TOKEN")
@@ -159,7 +213,7 @@ vial_prompt = "Provide 5 unique one-word objects (no verbs) that are similar in 
               "each list object with **. "
 vial_incorrect = ["tub", "shaker", "cup", "bottle", "jars", "jar", "tumbler", "cylinder", "glasspot", "cask", "chamber",
                   "colander", "bowl", "bead"]
-# vial_word = object_call("beaker", vial_prompt, vial_incorrect)
+vial_word = object_call("beaker", vial_prompt, vial_incorrect)
 
 vitals_prompt = "Provide 5 unique one-word objects (no verbs) that are similar in appearance and function " \
                 "to a vitals monitor, a device that measures health indicators. Each object should be distinct and " \
@@ -225,7 +279,16 @@ liquid_incorrect = ["oxy", "energ", "mot", "energetic", "light", "lamp", "energi
                     "syringe", "cylinder", "liquef", "oxyd", "volumetric", "vodka", "soda", "liquor", "syrup", "melt",
                     "run", "cone", "cup", "thermometer", "spatula", "acetate", "spill", "magnet", "chrom", "liqueur",
                     "matter", "pour", "droplet", "hydrogen", "source", "chiller", "refinery", "chim", "liqu", "phenol"]
-liquid_word = object_call("chemicals", liquid_prompt, liquid_incorrect)
+# liquid_word = object_call("chemicals", liquid_prompt, liquid_incorrect)
+
+
+all_letters = ['p', 's']
+
+code1_letters = set(vial_word)
+all_letters = set(vial_word).union(all_letters)
+no_no_words = [vial_word]
+
+engine_code = dictionary_call(all_letters, code1_letters, no_no_words)
 
 data = {
     "key": "jail",
@@ -236,13 +299,14 @@ data = {
     # "boardObject": board_word,
     # "chipsObject": chips_word,
     # "crateObject": crate_word
-    # "vialObject": vial_word
+    "vialObject": vial_word,
     # "vitalsObject": vitals_word
     # "computerObject": computer_word
     # "circuitObject": circuit_word
     # "toolsObject": tools_word
     # "screwsObject": screws_word
-    "liquidObject": liquid_word
+    # "liquidObject": liquid_word
+    "engineCode": engine_code
 
 }
 
