@@ -32,6 +32,10 @@ public class ClientManager : MonoBehaviour
             ["toolsObject"] = "null",
             ["screwsObject"] = "null",
             ["liquidObject"] = "null",
+            ["jailCode"] = JailPassword.jailPassword,
+            ["engineCode"] = "null",
+            ["medbayCode"] = "null",
+            ["cockpitCode"] = "null"
         };
         RequestPuzzle();
     }
@@ -103,6 +107,7 @@ public class ClientManager : MonoBehaviour
 
             string key = kvPair[0].Trim().Replace("\"", "");
             string value = kvPair[1].Trim().Replace("\"", "");
+            value = value.TrimEnd('}');
 
             if (objects.ContainsKey(key))
             {
@@ -110,7 +115,6 @@ public class ClientManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Objects");
             foreach (var kv in objects)
             {
                 Debug.Log($"{kv.Key} = {kv.Value}");

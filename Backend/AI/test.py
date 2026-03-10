@@ -111,7 +111,7 @@ def code_call(all_letters, new_letters, no_no_words):
     possible_codes = []
 
     for word in dictionary:
-        if 3 < len(word) < 12:
+        if 3 < len(word) < 6:
             if all(letter in all_letters for letter in word):
                 if (len(new_letters) == 0) or any(letter in new_letters for letter in word):
                     if word not in no_no_words:
