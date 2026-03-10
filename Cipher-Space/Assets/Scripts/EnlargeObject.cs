@@ -22,8 +22,9 @@ public class EnlargeObject : MonoBehaviour
     private bool isInspecting = false;
 
     [Header("Inspect Data")]
-    public int objectIndex;
     public TMP_Text inspectText;
+    private bool isInteractable;
+    public string objectKey;
 
     [Header("Password Settings")]
     [SerializeField] private TranslationManager translationManager;
@@ -31,8 +32,7 @@ public class EnlargeObject : MonoBehaviour
     //public string message;
     public UnityEvent onSuccessEvent;
 
-    private bool isInteractable;
-    public string objectKey;
+    
 
     void Update()
     {

@@ -11,7 +11,7 @@ public class ClientManager : MonoBehaviour
     
     private string baseUrl = "http://localhost:8000";
     private string generateEndpoint = "/generate_objects";
-    private int timeoutSeconds = 30;
+    private int timeoutSeconds = 300;
     private bool requestInProgress = false;
     public static Dictionary<string, string> objects;
 

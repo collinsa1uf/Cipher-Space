@@ -1,21 +1,18 @@
 using UnityEngine;
 using System.Collections;
-using System.Threading;
 
 public class EnemyController : MonoBehaviour
 {
-    public EnemyTimer enemyTimer;
-
-    public Transform hiddenSpawnPoint;
+    [Header("Room-Dependent Settings")]
+    private Transform hiddenSpawnPoint; 
+    private float moveSpeed = 80f;
     public float visibleOffset = 60f;
+    private Vector3 exitPoint;
 
     private Animator animator;
     private PlayerMovement playerMovement;
 
     //public GameObject blackScreen;
-
-    private Vector3 exitPoint = new Vector3(287.7f, -120f, 0f);
-    public float moveSpeed = 80f;
 
     private void Awake()
     {
@@ -24,6 +21,12 @@ public class EnemyController : MonoBehaviour
 
     public void Activate(bool playerHidden, Transform player)
     {
+        if (hiddenSpawnPoint == null) // catch if spawn point is not assigned to avoid null reference errors
+        {
+            Debug.LogError("Hidden spawn point not assigned for this room!");
+            return;
+        }
+
         gameObject.SetActive(true); // Activate the enemy object
 
         if (playerHidden)
@@ -49,16 +52,19 @@ public class EnemyController : MonoBehaviour
             player.gameObject.SetActive(false);
         }
     }
+
     IEnumerator HiddenRoutine()
     {
         yield return new WaitForSeconds(2f);
 
         animator.SetBool("IsMoving", true);
 
-        animator.SetFloat("MoveX", 0f);
-        animator.SetFloat("MoveY", -1f);
+        Vector2 direction = (exitPoint - transform.position).normalized;
 
-        while (transform.position.y > exitPoint.y)
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
+
+        while (Vector3.Distance(transform.position, exitPoint) > 0.1f)
         {
             transform.position = Vector3.MoveTowards(
                 transform.position,
@@ -71,12 +77,29 @@ public class EnemyController : MonoBehaviour
 
         animator.SetBool("IsMoving", false);
         gameObject.SetActive(false);
-        enemyTimer.RestartTimer();
-        enemyTimer.RestoreUI();
+
+        EnemyTimer.Instance.RestartTimer();
+        EnemyTimer.Instance.RestoreUI();
         GameStateManager.InputLocked = false;
     }
 
     public void OnKillFinished() { 
         //blackScreen.SetActive(true);
     }
+
+    // Setters for room data
+    public void SetExitPoint(Vector3 point)
+    {
+        exitPoint = point;
+    }
+    public void SetSpawnPoint(Transform spawn)
+    {
+        hiddenSpawnPoint = spawn;
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = speed;
+    }
+
 }

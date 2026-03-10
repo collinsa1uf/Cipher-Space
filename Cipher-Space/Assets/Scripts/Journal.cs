@@ -1,17 +1,22 @@
-using UnityEngine;
-using TMPro;
-using UnityEngine.InputSystem;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class Journal : MonoBehaviour
 {
     [SerializeField] private GameObject journalObject; // the journal UI object to toggle on and off
-    [SerializeField] private TextMeshProUGUI alienText; // left page alien text 
-    [SerializeField] private TextMeshProUGUI journalText; // left page translation
+    [SerializeField] private TextMeshProUGUI alienText; // left page col 1 alien text 
+    [SerializeField] private TextMeshProUGUI journalText; // left page col 1 translation
     [SerializeField] private TextMeshProUGUI equalsText;
-    [SerializeField] private TextMeshProUGUI alienText2; // right page alien text
-    [SerializeField] private TextMeshProUGUI journalText2; // right page translation
+    [SerializeField] private TextMeshProUGUI alienText2; // col 2 alien text
+    [SerializeField] private TextMeshProUGUI journalText2; // col 2 translation
     [SerializeField] private TextMeshProUGUI equalsText2;
+    [SerializeField] private TextMeshProUGUI alienText3; // right page alien text
+    [SerializeField] private TextMeshProUGUI journalText3; // right page translation
+    [SerializeField] private TextMeshProUGUI equalsText3;
+
     [SerializeField] private GameObject toggleJ; // UI button to toggle journal on and off
 
     [SerializeField] private PasswordManager passwordManager; // Reference to the PasswordManager component
@@ -51,24 +56,31 @@ public class Journal : MonoBehaviour
     void createJournal() // recreates the journal text with the current list of entries 
     {
         entries.Sort((a, b) => a.letter.CompareTo(b.letter)); // sort entries alphabetically
+        int num_count = 0;
 
         for (int i = 0; i < entries.Count; i++)
         {
-            {
-                // split entries between the two pages if there are more than 13 entries
-                if (i < 13)
-                {
-                    journalText.text += entries[i].letter + "\n";
-                    alienText.text += entries[i].guess + "\n";
-                    equalsText.text += "=\n";
-                }
-                else
-                {
-                    journalText2.text += entries[i].letter + "\n";
-                    alienText2.text += entries[i].guess + "\n";
-                    equalsText2.text += "=\n";
-                }
+            if (int.TryParse(entries[i].letter, out int result)) {
+                num_count++;
+                journalText3.text += entries[i].letter + "\n";
+                alienText3.text += entries[i].guess + "\n";
+                equalsText3.text += "=\n";
             }
+
+            // split entries between the two columns if there are more than 13 entries, not counting the numbers which are on a separate page
+            else if (i-num_count < 13)
+            {
+                journalText.text += entries[i].letter + "\n";
+                alienText.text += entries[i].guess + "\n";
+                equalsText.text += "=\n";
+            }
+            else
+            {
+                journalText2.text += entries[i].letter + "\n";
+                alienText2.text += entries[i].guess + "\n";
+                equalsText2.text += "=\n";
+            }
+            
         }
     }
     public void UpdateJournalText(string guessWord, string givenWord)
@@ -86,6 +98,9 @@ public class Journal : MonoBehaviour
         journalText2.text = "";
         alienText2.text = "";
         equalsText2.text = "";
+        journalText3.text = "";
+        alienText3.text = "";
+        equalsText3.text = "";
 
         createJournal(); // recreate the journal text with the new entry so it's sorted
     }

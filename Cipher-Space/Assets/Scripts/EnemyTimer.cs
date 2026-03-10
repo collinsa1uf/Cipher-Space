@@ -6,13 +6,13 @@ using UnityEngine.Rendering.Universal;
 public class EnemyTimer : MonoBehaviour
 {
     [Header("Lighting")]
-    public Light2D[] allLights;
-    public Light2D[] sceneLights;
+    private Light2D[] allLights;
+    private Light2D[] sceneLights;
 
     [Header("Timer")]
-    public float countdownDuration = 30f; 
-    private float timeLeft;
-    private bool timerRunning = false;
+    private float countdownDuration = 30f; 
+    public float timeLeft;
+    public bool timerRunning = false;
 
     [Header("Sprites")]
     public GameObject enemySprite;
@@ -31,16 +31,25 @@ public class EnemyTimer : MonoBehaviour
     [Header("UI")]
     private Dictionary<GameObject, bool> uiStateCache = new Dictionary<GameObject, bool>();
     private int uiLayer;
+    
+    [Header("Rooms")]
+    public static EnemyTimer Instance;
+    private RoomEnemyData currentRoom;
+    public RoomEnemyData startingRoom;
 
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void Start()
     {
-        timeLeft = countdownDuration; // set countdown time
         playerHiding = player.GetComponent<PlayerHiding>(); // get reference to the PlayerHiding component on the player
         enemySprite.SetActive(false); // ensure enemy is hidden at the start
-        timerRunning = true; // start the countdwon
         alarmSound.volume = startingVolume; // set the initial volume of the alarm sound
         uiLayer = LayerMask.NameToLayer("UI"); // cache the UI layer index for later use
+
+        SetRoom(startingRoom); // initialize the timer with the starting room's settings
     }
 
     // Update is called once per frame
@@ -48,7 +57,9 @@ public class EnemyTimer : MonoBehaviour
     {
         if (!timerRunning) return; // during enemy attack, timer stops and does not update
         timeLeft -= Time.deltaTime;
-        Debug.Log(timeLeft);
+        
+        // Debug.Log(timeLeft);
+        
 
         // Check for alarm warnings
         if (warningIndex < warningTimes.Length && timeLeft <= warningTimes[warningIndex])
@@ -117,11 +128,11 @@ public class EnemyTimer : MonoBehaviour
         {
             for (int i = 0; i < sceneLights.Length; i++)
             {
-                sceneLights[i].intensity = Random.Range(0.05f, originalIntensities[i]);
+                sceneLights[i].intensity = UnityEngine.Random.Range(0.05f, originalIntensities[i]);
             }
 
-            yield return new WaitForSeconds(Random.Range(0.05f, 0.1f));
-            elapsed += Random.Range(0.05f, 0.1f);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(0.05f, 0.1f));
+            elapsed += UnityEngine.Random.Range(0.05f, 0.1f);
         }
 
         // Restore
@@ -134,8 +145,13 @@ public class EnemyTimer : MonoBehaviour
     {
         timeLeft = countdownDuration;
         warningIndex = 0;
-        alarmSound.volume = 0.15f;
+        alarmSound.volume = 0.05f;
         timerRunning = true;
+    }
+
+    public void StopTimer()
+    {
+        timerRunning = false;
     }
 
     void HideUI()
@@ -158,7 +174,7 @@ public class EnemyTimer : MonoBehaviour
     {
         uiStateCache.Clear();
 
-        GameObject[] allObjects = Object.FindObjectsByType<GameObject>(
+        GameObject[] allObjects = UnityEngine.Object.FindObjectsByType<GameObject>(
             FindObjectsInactive.Include,
             FindObjectsSortMode.None
         );
@@ -170,5 +186,32 @@ public class EnemyTimer : MonoBehaviour
                 uiStateCache[obj] = obj.activeSelf;
             }
         }
+    }
+
+    public void SetRoom(RoomEnemyData room)
+    {
+        currentRoom = room;
+
+        countdownDuration = room.countdownDuration;
+
+        if (enemyController != null)
+        {
+            enemyController.SetSpawnPoint(room.hiddenSpawnPoint);
+            enemyController.SetMoveSpeed(room.moveSpeed);
+            enemyController.SetExitPoint(room.exitPoint.position);
+            SetRoomLights(room.roomLights);
+            SetAllLights(room.allLights);
+        }
+
+        RestartTimer();
+    }
+
+    void SetRoomLights(Light2D[] lights)
+    {
+        sceneLights = lights;
+    }
+    void SetAllLights(Light2D[] lights)
+    {
+        allLights = lights;
     }
 }
