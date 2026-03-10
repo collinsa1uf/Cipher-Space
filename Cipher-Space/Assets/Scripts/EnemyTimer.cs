@@ -6,13 +6,13 @@ using UnityEngine.Rendering.Universal;
 public class EnemyTimer : MonoBehaviour
 {
     [Header("Lighting")]
-    public Light2D[] allLights;
-    public Light2D[] sceneLights;
+    private Light2D[] allLights;
+    private Light2D[] sceneLights;
 
     [Header("Timer")]
-    public float countdownDuration = 30f; 
-    private float timeLeft;
-    private bool timerRunning = false;
+    private float countdownDuration = 30f; 
+    public float timeLeft;
+    public bool timerRunning = false;
 
     [Header("Sprites")]
     public GameObject enemySprite;
@@ -57,10 +57,8 @@ public class EnemyTimer : MonoBehaviour
     {
         if (!timerRunning) return; // during enemy attack, timer stops and does not update
         timeLeft -= Time.deltaTime;
-        //if (timeLeft % 2 == 0)
-        //{
-        //    Debug.Log(timeLeft);
-        //}
+        
+        // Debug.Log(timeLeft);
         
 
         // Check for alarm warnings
@@ -200,9 +198,20 @@ public class EnemyTimer : MonoBehaviour
         {
             enemyController.SetSpawnPoint(room.hiddenSpawnPoint);
             enemyController.SetMoveSpeed(room.moveSpeed);
-            enemyController.SetExitPoint(room.exitPoint);
+            enemyController.SetExitPoint(room.exitPoint.position);
+            SetRoomLights(room.roomLights);
+            SetAllLights(room.allLights);
         }
 
         RestartTimer();
+    }
+
+    void SetRoomLights(Light2D[] lights)
+    {
+        sceneLights = lights;
+    }
+    void SetAllLights(Light2D[] lights)
+    {
+        allLights = lights;
     }
 }

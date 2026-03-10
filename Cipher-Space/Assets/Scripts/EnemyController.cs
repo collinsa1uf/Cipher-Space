@@ -59,8 +59,10 @@ public class EnemyController : MonoBehaviour
 
         animator.SetBool("IsMoving", true);
 
-        animator.SetFloat("MoveX", 0f);
-        animator.SetFloat("MoveY", -1f);
+        Vector2 direction = (exitPoint - transform.position).normalized;
+
+        animator.SetFloat("MoveX", direction.x);
+        animator.SetFloat("MoveY", direction.y);
 
         while (Vector3.Distance(transform.position, exitPoint) > 0.1f)
         {
@@ -99,4 +101,5 @@ public class EnemyController : MonoBehaviour
     {
         moveSpeed = speed;
     }
+
 }

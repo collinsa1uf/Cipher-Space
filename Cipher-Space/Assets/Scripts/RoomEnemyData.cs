@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class RoomEnemyData : MonoBehaviour
 {
@@ -10,11 +11,14 @@ public class RoomEnemyData : MonoBehaviour
     public Transform hiddenSpawnPoint;
 
     [Header("Enemy Exit")]
-    public Vector3 exitPoint;
+    public Transform exitPoint;
 
     [Header("Enemy Movement")]
     public float moveSpeed = 80f;
 
+    [Header("Room Lighting")]
+    public Light2D[] roomLights;
+    public Light2D[] allLights;
 
     private void Awake()
     {
