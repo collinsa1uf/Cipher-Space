@@ -20,18 +20,26 @@ public class ClientManager : MonoBehaviour
         objects = new Dictionary<string, string>()
         {
             ["mugObject"] = "null",
+
+            //break room objects
             ["pitcherObject"] = "null",
             ["TVObject"] = "null",
             ["boardObject"] = "null",
             ["chipsObject"] = "null",
             ["crateObject"] = "null",
+
+            //medbay objects
             ["vialObject"] = "null",
             ["vitalsObject"] = "null",
+            ["liquidObject"] = "null",
+
+            //engine room objects
             ["computerObject"] = "null",
             ["circuitObject"] = "null",
             ["toolsObject"] = "null",
             ["screwsObject"] = "null",
-            ["liquidObject"] = "null",
+            
+            //passwords
             ["jailCode"] = JailPassword.jailPassword,
             ["engineCode"] = "null",
             ["medbayCode"] = "null",
