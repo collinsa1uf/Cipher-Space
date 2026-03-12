@@ -19,7 +19,7 @@ public class EnlargeObject : MonoBehaviour
 
     [Header("Inspect Object")]
     public Sprite enlargedSprite; // changes per object user inspects
-    private bool isInspecting = false;
+    public static bool isInspecting = false;
 
     [Header("Inspect Data")]
     public TMP_Text inspectText;

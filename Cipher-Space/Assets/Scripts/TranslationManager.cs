@@ -101,6 +101,7 @@ public class TranslationManager : MonoBehaviour
             onSuccess.Invoke(); // Invoke the success event
             inspectPanel.SetActive(false); // hide the inspect panel if it's open
             journal.UpdateJournalText(input.ToUpperInvariant(), correctPassword);
+            EnlargeObject.isInspecting = false;
             Close();
         }
         else

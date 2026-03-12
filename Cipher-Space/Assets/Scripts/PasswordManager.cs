@@ -38,6 +38,9 @@ public class PasswordManager : MonoBehaviour
         if (dialogueManager != null && dialogueManager.isInDialogue)
             return;
 
+        if (journal != null && journal.IsOpen)
+            return;
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             Close();
@@ -88,6 +91,9 @@ public class PasswordManager : MonoBehaviour
             return;
 
         if (dialogueManager != null && dialogueManager.isInDialogue)
+            return;
+
+        if (journal != null && journal.IsOpen)
             return;
 
         if (!char.IsLetterOrDigit(c))
