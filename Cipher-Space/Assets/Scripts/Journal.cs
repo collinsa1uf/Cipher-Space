@@ -6,7 +6,10 @@ using UnityEngine.Windows;
 
 public class Journal : MonoBehaviour
 {
-    [SerializeField] private GameObject journalObject; // the journal UI object to toggle on and off
+    //[SerializeField] private GameObject journalObject; // the journal UI object to toggle on and off
+    [SerializeField] private GameObject journalObject;
+
+    public bool IsOpen => journalObject.activeSelf;
     [SerializeField] private TextMeshProUGUI alienText; // left page col 1 alien text 
     [SerializeField] private TextMeshProUGUI journalText; // left page col 1 translation
     [SerializeField] private TextMeshProUGUI equalsText;
@@ -17,7 +20,7 @@ public class Journal : MonoBehaviour
     [SerializeField] private TextMeshProUGUI journalText3; // right page translation
     [SerializeField] private TextMeshProUGUI equalsText3;
 
-    [SerializeField] private GameObject toggleJ; // UI button to toggle journal on and off
+    [SerializeField] private GameObject toggleTab; // UI button to toggle journal on and off
 
     [SerializeField] private PasswordManager passwordManager; // Reference to the PasswordManager component
     [SerializeField] private TranslationManager translationManager;
@@ -28,7 +31,7 @@ public class Journal : MonoBehaviour
     void Start()
     {
         journalObject.SetActive(false); // Ensure the journal is hidden at the start
-        toggleJ.SetActive(true); // Ensure the toggle button is visible
+        toggleTab.SetActive(true); // Ensure the toggle button is visible
 
         // initialize all the text fields to be empty at the start of the game
         journalText.text = ""; 
@@ -43,13 +46,13 @@ public class Journal : MonoBehaviour
 
     void Update()
     {
-        if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
+        //if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
         if (translationManager != null && translationManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the translation manager is open
         if (GameStateManager.InputLocked) return;
-        if (Keyboard.current != null && Keyboard.current.jKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
         {
             journalObject.SetActive(!journalObject.activeSelf);
-            toggleJ.SetActive(!toggleJ.activeSelf);
+            toggleTab.SetActive(!toggleTab.activeSelf);
         }
 
     }

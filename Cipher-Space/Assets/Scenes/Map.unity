@@ -3209,7 +3209,7 @@ MonoBehaviour:
   alienText3: {fileID: 533411167}
   journalText3: {fileID: 531033262}
   equalsText3: {fileID: 628809247}
-  toggleJ: {fileID: 1324813430}
+  toggleTab: {fileID: 1324813430}
   passwordManager: {fileID: 370912466}
   translationManager: {fileID: 454901249}
 --- !u!4 &389979219
@@ -66186,11 +66186,11 @@ RectTransform:
   m_Children:
   - {fileID: 1324813431}
   - {fileID: 91296609}
-  - {fileID: 575923850}
   - {fileID: 370912465}
   - {fileID: 1884562440}
   - {fileID: 1468923556}
   - {fileID: 454901248}
+  - {fileID: 575923850}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
