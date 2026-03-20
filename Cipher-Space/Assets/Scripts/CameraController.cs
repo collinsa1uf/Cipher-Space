@@ -69,4 +69,9 @@ public class CameraController : MonoBehaviour
         if (edgeBuffer < 0) edgeBuffer = 0;
         if (edgeBoostMultiplier < 1f) edgeBoostMultiplier = 1f;
     }
+
+    public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+    }
 }

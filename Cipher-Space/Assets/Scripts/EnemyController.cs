@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
 
     private Animator animator;
     private PlayerMovement playerMovement;
+    public Camera mainCamera;
 
     //public GameObject blackScreen;
 
@@ -32,6 +33,8 @@ public class EnemyController : MonoBehaviour
         if (playerHidden)
         {
             transform.position = hiddenSpawnPoint.position;
+            CameraController camController = mainCamera.GetComponent<CameraController>();
+            camController.SetTarget(this.transform);
             StartCoroutine(HiddenRoutine());
         }
         else
@@ -77,6 +80,13 @@ public class EnemyController : MonoBehaviour
 
         animator.SetBool("IsMoving", false);
         gameObject.SetActive(false);
+
+        if (Camera.main != null)
+        {
+            CameraController camController = Camera.main.GetComponent<CameraController>();
+            if (camController != null)
+                camController.SetTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        }
 
         EnemyTimer.Instance.RestartTimer();
         EnemyTimer.Instance.RestoreUI();
