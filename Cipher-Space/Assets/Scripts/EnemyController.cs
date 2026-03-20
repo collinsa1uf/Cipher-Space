@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
     private PlayerMovement playerMovement;
     public Camera mainCamera;
+    public DialogueManager dialogueManager;
 
     //public GameObject blackScreen;
 
@@ -32,6 +33,10 @@ public class EnemyController : MonoBehaviour
 
         if (playerHidden)
         {
+            if (dialogueManager != null)
+            {
+                dialogueManager.PauseDialogue();
+            }
             transform.position = hiddenSpawnPoint.position;
             CameraController camController = mainCamera.GetComponent<CameraController>();
             camController.SetTarget(this.transform);
@@ -86,6 +91,11 @@ public class EnemyController : MonoBehaviour
             CameraController camController = Camera.main.GetComponent<CameraController>();
             if (camController != null)
                 camController.SetTarget(GameObject.FindGameObjectWithTag("Player").transform);
+        }
+
+        if (dialogueManager != null)
+        {
+            dialogueManager.ResumeDialogue();
         }
 
         EnemyTimer.Instance.RestartTimer();
