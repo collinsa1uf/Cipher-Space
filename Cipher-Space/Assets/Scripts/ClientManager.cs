@@ -8,12 +8,18 @@ using UnityEngine.Networking;
 
 public class ClientManager : MonoBehaviour
 {
+
+    [Header("Events")]
+    public UnityEngine.Events.UnityEvent onPuzzleReceived;
     
     private string baseUrl = "http://localhost:8000";
     private string generateEndpoint = "/generate_objects";
     private int timeoutSeconds = 300;
     private bool requestInProgress = false;
     public static Dictionary<string, string> objects;
+
+    public DialogueManager dialogueManager;
+    public Queue<string> dialogue;
 
     void Start()
     {
@@ -123,9 +129,21 @@ public class ClientManager : MonoBehaviour
             }
         }
 
-            foreach (var kv in objects)
-            {
-                Debug.Log($"{kv.Key} = {kv.Value}");
-            }
+        foreach (var kv in objects)
+        {
+            Debug.Log($"{kv.Key} = {kv.Value}");
+        }
+
+        StartCoroutine(StartUnityEvent());
+    }
+
+    private IEnumerator StartUnityEvent()
+    {
+        while (dialogueManager.isInDialogue)
+        {
+            yield return null;
+        }
+
+        onPuzzleReceived?.Invoke();
     }
 }

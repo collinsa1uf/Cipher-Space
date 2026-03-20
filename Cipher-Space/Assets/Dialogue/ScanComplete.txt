@@ -1,0 +1,2 @@
+Scan complete! You can now interact with objects throughout the ship to learn their language!
+But be careful, touching things may trigger a silent alarm!
