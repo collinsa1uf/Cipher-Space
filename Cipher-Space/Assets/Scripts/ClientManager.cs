@@ -19,7 +19,6 @@ public class ClientManager : MonoBehaviour
     public static Dictionary<string, string> objects;
 
     public DialogueManager dialogueManager;
-    public Queue<string> dialogue;
 
     void Start()
     {
