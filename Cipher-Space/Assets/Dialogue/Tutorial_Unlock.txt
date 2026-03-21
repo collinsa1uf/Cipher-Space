@@ -1,0 +1,4 @@
+Wow it worked! Now the door is unlocked and you can leave the cell.
+Once you do, you will return to the menu where you can play the full game.
+Oh, and if you click TAB, you can open your journal and see what you've learned so far.
+This will be useful later.
