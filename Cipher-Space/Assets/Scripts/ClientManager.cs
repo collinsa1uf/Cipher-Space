@@ -2,36 +2,54 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class ClientManager : MonoBehaviour
 {
+
+    [Header("Events")]
+    public UnityEngine.Events.UnityEvent onPuzzleReceived;
     
     private string baseUrl = "http://localhost:8000";
     private string generateEndpoint = "/generate_objects";
-    private int timeoutSeconds = 30;
+    private int timeoutSeconds = 300;
     private bool requestInProgress = false;
     public static Dictionary<string, string> objects;
+
+    public DialogueManager dialogueManager;
 
     void Start()
     {
         objects = new Dictionary<string, string>()
         {
+
+            //break room objects
             ["mugObject"] = "null",
             ["pitcherObject"] = "null",
             ["TVObject"] = "null",
-            ["boardObject"] = "null",
             ["chipsObject"] = "null",
+
+            //other objects
+            ["boardObject"] = "null",
             ["crateObject"] = "null",
+
+            //medbay objects
             ["vialObject"] = "null",
             ["vitalsObject"] = "null",
+
+            //engine room objects
+            ["liquidObject"] = "null",
             ["computerObject"] = "null",
             ["circuitObject"] = "null",
             ["toolsObject"] = "null",
             ["screwsObject"] = "null",
-            ["liquidObject"] = "null",
+            
+            //passwords
+            ["jailCode"] = JailPassword.jailPassword,
+            ["engineCode"] = "null",
+            ["medbayCode"] = "null",
+            ["cockpitCode"] = "null"
         };
         RequestPuzzle();
     }
@@ -103,6 +121,7 @@ public class ClientManager : MonoBehaviour
 
             string key = kvPair[0].Trim().Replace("\"", "");
             string value = kvPair[1].Trim().Replace("\"", "");
+            value = value.TrimEnd('}');
 
             if (objects.ContainsKey(key))
             {
@@ -110,10 +129,21 @@ public class ClientManager : MonoBehaviour
             }
         }
 
-        Debug.Log("Objects");
-            foreach (var kv in objects)
-            {
-                Debug.Log($"{kv.Key} = {kv.Value}");
-            }
+        foreach (var kv in objects)
+        {
+            Debug.Log($"{kv.Key} = {kv.Value}");
+        }
+
+        StartCoroutine(StartUnityEvent());
+    }
+
+    private IEnumerator StartUnityEvent()
+    {
+        while (dialogueManager.isInDialogue)
+        {
+            yield return null;
+        }
+
+        onPuzzleReceived?.Invoke();
     }
 }

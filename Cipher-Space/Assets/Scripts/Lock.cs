@@ -16,6 +16,30 @@ public class Lock : MonoBehaviour
     public Sprite lockSprite;         // Optional lock sprite override
 
     private bool unlocked = false;
+    private bool isInteractable;
+    public bool isJail;
+    public string objectKey;
+
+    void Update()
+    {
+        if (ClientManager.objects[objectKey] != "null")
+        {
+            isInteractable = true;
+            gameObject.tag = "Interactable Object";
+        }
+
+        else
+        {
+            isInteractable = false;
+            gameObject.tag = "Untagged";
+        }
+
+        if (isInteractable && !isJail)
+        {
+            password = ClientManager.objects[objectKey];
+            message = password;
+        }
+    }
 
     public void Interact()
     {

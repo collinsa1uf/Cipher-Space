@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable Object
   - Hiding Spot
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Spaceship Layer
+  - Space Layer
   - 
   - 
   - 
@@ -43,11 +44,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Space
+    uniqueID: 1955976969
+    locked: 0
+  - name: Spaceship
+    uniqueID: 4236469855
+    locked: 0
   - name: Props
     uniqueID: 1183798275
     locked: 0
+  - name: Alien
+    uniqueID: 1276358099
+    locked: 0
   - name: Player
     uniqueID: 1258108821
+    locked: 0
+  - name: Decorations
+    uniqueID: 3813842523
     locked: 0
   - name: UI
     uniqueID: 555060459

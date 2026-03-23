@@ -32,10 +32,18 @@ public class PasswordManager : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
         if (!gameObject.activeSelf)
             return;
 
         if (dialogueManager != null && dialogueManager.isInDialogue)
+            return;
+
+        if (journal != null && journal.IsOpen)
             return;
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
@@ -84,10 +92,18 @@ public class PasswordManager : MonoBehaviour
 
     private void OnTextInput(char c)
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+        
         if (!gameObject.activeSelf)
             return;
 
         if (dialogueManager != null && dialogueManager.isInDialogue)
+            return;
+
+        if (journal != null && journal.IsOpen)
             return;
 
         if (!char.IsLetterOrDigit(c))

@@ -19,11 +19,12 @@ public class EnlargeObject : MonoBehaviour
 
     [Header("Inspect Object")]
     public Sprite enlargedSprite; // changes per object user inspects
-    private bool isInspecting = false;
+    public static bool isInspecting = false;
 
     [Header("Inspect Data")]
-    public int objectIndex;
     public TMP_Text inspectText;
+    private bool isInteractable;
+    public string objectKey;
 
     [Header("Password Settings")]
     [SerializeField] private TranslationManager translationManager;
@@ -31,11 +32,15 @@ public class EnlargeObject : MonoBehaviour
     //public string message;
     public UnityEvent onSuccessEvent;
 
-    private bool isInteractable;
-    public string objectKey;
+    
 
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+        
         if (ClientManager.objects[objectKey] != "null")
         {
             isInteractable = true;
@@ -61,7 +66,7 @@ public class EnlargeObject : MonoBehaviour
             }
             return;
         }
-        else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger && isInteractable) // Check if 'E' key was pressed this frame and player is in trigger
+        else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger && isInteractable && !PauseMenu.isPaused) // Check if 'E' key was pressed this frame and player is in trigger
         {
            if(!isInspecting) // inspect the image = display the enlarged sprite
             { 

@@ -28,6 +28,10 @@ public class DialogueManager : MonoBehaviour
     [Header("Unity Events")]
     public UnityEvent onDialogueBegan;
     public UnityEvent onDialogueEnded;
+    private bool isPaused = false;
+    private string currentLine;
+    private int currentLetterIndex = 0;
+
     void Start()
     {
         dialogueManager.SetActive(false);
@@ -35,9 +39,9 @@ public class DialogueManager : MonoBehaviour
 
     void Update()
     {
-        if (GameStateManager.InputLocked)
+        if (GameStateManager.InputLocked || isPaused)
             return;
-        if (isInDialogue && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (isInDialogue && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame && !PauseMenu.isPaused)
         {
             AdvanceDialogue();
         }
@@ -58,6 +62,7 @@ public class DialogueManager : MonoBehaviour
     public void AdvanceDialogue()
     {
         if (!isInDialogue) return;
+
         if (isTyping)
         {
             cancelTyping = true;
@@ -103,7 +108,8 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator TextScroll(string lineOfText)
     {
-        int letter = 0;
+        currentLine = lineOfText;
+        //int letter = 0;
         dialogueText.text = "";
         isTyping = true;
         cancelTyping = false;
@@ -112,14 +118,29 @@ public class DialogueManager : MonoBehaviour
         {
             speakerAnimator.SetBool(isSpeakingParam, true);
         }
-        while (isTyping && !cancelTyping && (letter < lineOfText.Length))
+        while (currentLetterIndex < currentLine.Length)
         {
-            dialogueText.text += lineOfText[letter];
-            letter++;
+            if (isPaused)
+            {
+                if (speakerAnimator != null)
+                {
+                    speakerAnimator.SetBool(isSpeakingParam, false);
+                }
+                yield return null;
+                continue;
+            }
+
+            if (cancelTyping)
+            {
+                break;
+            }
+
+            dialogueText.text += lineOfText[currentLetterIndex];
+            currentLetterIndex++;
             yield return new WaitForSeconds(typeSpeed);
         }
 
-        dialogueText.text = lineOfText;
+        dialogueText.text = currentLine;
 
         if (speakerAnimator != null)
         {
@@ -129,6 +150,9 @@ public class DialogueManager : MonoBehaviour
         continueImage.SetActive(true);
         isTyping = false;
         cancelTyping = false;
+        currentLetterIndex = 0;
+        currentLine = lineOfText;
+        scrollCoroutine = null;
     }
 
     public void EndDialogue()
@@ -152,4 +176,50 @@ public class DialogueManager : MonoBehaviour
     {
         typeSpeed = Mathf.Max(0f, typeSpeed);
     }
+
+    public void PauseDialogue()
+    {
+        if (!isInDialogue) return;
+
+        //If currently typing instantly finish the line
+        if (isTyping)
+        {
+            cancelTyping = true;
+
+            // Force full line display
+            dialogueText.text = currentLine;
+
+            isTyping = false;
+            cancelTyping = false;
+            currentLetterIndex = 0;
+
+            continueImage.SetActive(true);
+
+            // Stop coroutine cleanly
+            if (scrollCoroutine != null)
+            {
+                StopCoroutine(scrollCoroutine);
+                scrollCoroutine = null;
+            }
+        }
+
+        // Now pause before next line
+        isPaused = true;
+
+        if (speakerAnimator != null)
+        {
+            speakerAnimator.SetBool(isSpeakingParam, false);
+        }
+    }
+
+    public void ResumeDialogue()
+    {
+        if (!isInDialogue) return;
+
+        isPaused = false;
+
+        if (!dialogueManager.activeSelf)
+            dialogueManager.SetActive(true);
+    }
+
 }

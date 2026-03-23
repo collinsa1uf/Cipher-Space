@@ -20,6 +20,8 @@ public class HidingSpot : MonoBehaviour
                 playerHiding.ToggleHiding(); // Toggle the hiding state of the player
             }
         }
+
+        UpdateSprite(); // Updates specific sprites to indicate if player is hiding there or not. Ex: Open -> Closed state
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
@@ -29,7 +31,6 @@ public class HidingSpot : MonoBehaviour
             isInTrigger = true;
             playerHiding = collider.GetComponent<PlayerHiding>(); // Get the PlayerHiding component from the colliding object
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collider)
@@ -38,6 +39,43 @@ public class HidingSpot : MonoBehaviour
         {
             isInTrigger = false;
             playerHiding = null; // Clear the reference to the PlayerHiding component when the player exits the trigger
+        }
+    }
+
+    private void UpdateSprite()
+    {
+        SpriteRenderer sr = gameObject.GetComponent<SpriteRenderer>();
+
+        if (playerHiding != null)
+        {
+            // Closed states
+            if (playerHiding.getIsHiding())
+            {
+                if (sr.sprite.name == "Locker-Open")
+                {
+                    Sprite newSprite = Resources.Load<Sprite>("Locker-Closed");
+                    sr.sprite = newSprite;
+                }
+                else if (sr.sprite.name == "Cabinet-Open")
+                {
+                    Sprite newSprite = Resources.Load<Sprite>("Cabinet-Closed");
+                    sr.sprite = newSprite;
+                }
+            }
+            // Open states
+            else
+            {
+                if (sr.sprite.name == "Locker-Closed")
+                {
+                    Sprite newSprite = Resources.Load<Sprite>("Locker-Open");
+                    sr.sprite = newSprite;
+                }
+                else if (sr.sprite.name == "Cabinet-Closed")
+                {
+                    Sprite newSprite = Resources.Load<Sprite>("Cabinet-Open");
+                    sr.sprite = newSprite;
+                }
+            }
         }
     }
 }
