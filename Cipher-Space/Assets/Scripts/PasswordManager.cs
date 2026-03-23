@@ -32,6 +32,11 @@ public class PasswordManager : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+
         if (!gameObject.activeSelf)
             return;
 
@@ -87,6 +92,11 @@ public class PasswordManager : MonoBehaviour
 
     private void OnTextInput(char c)
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
+        
         if (!gameObject.activeSelf)
             return;
 

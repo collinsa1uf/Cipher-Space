@@ -23,21 +23,23 @@ public class ClientManager : MonoBehaviour
     {
         objects = new Dictionary<string, string>()
         {
-            ["mugObject"] = "null",
 
             //break room objects
+            ["mugObject"] = "null",
             ["pitcherObject"] = "null",
             ["TVObject"] = "null",
-            ["boardObject"] = "null",
             ["chipsObject"] = "null",
+
+            //other objects
+            ["boardObject"] = "null",
             ["crateObject"] = "null",
 
             //medbay objects
             ["vialObject"] = "null",
             ["vitalsObject"] = "null",
-            ["liquidObject"] = "null",
 
             //engine room objects
+            ["liquidObject"] = "null",
             ["computerObject"] = "null",
             ["circuitObject"] = "null",
             ["toolsObject"] = "null",

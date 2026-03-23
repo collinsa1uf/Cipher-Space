@@ -41,7 +41,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (GameStateManager.InputLocked || isPaused)
             return;
-        if (isInDialogue && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
+        if (isInDialogue && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame && !PauseMenu.isPaused)
         {
             AdvanceDialogue();
         }

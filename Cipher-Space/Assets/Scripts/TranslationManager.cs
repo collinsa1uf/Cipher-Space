@@ -23,6 +23,10 @@ public class TranslationManager : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame) // Check if 'Escape' key was pressed this frame
@@ -66,6 +70,10 @@ public class TranslationManager : MonoBehaviour
 
     private void OnTextInput(char c)
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
         if (!char.IsLetterOrDigit(c)) return; // Only allow letters and digits

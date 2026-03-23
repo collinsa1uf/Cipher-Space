@@ -12,7 +12,7 @@ public class HidingSpot : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame && isInTrigger && playerHiding != null) // Check if 'E' key was pressed this frame and player is in trigger
+        if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame && isInTrigger && playerHiding != null && !PauseMenu.isPaused) // Check if 'E' key was pressed this frame and player is in trigger
         {
             PlayerHiding playerHiding = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHiding>(); // Get the PlayerHiding component from the player GameObject
             if (playerHiding != null) // Check if the PlayerHiding component exists
