@@ -1,34 +1,46 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyTimer : MonoBehaviour
 {
+    [Header("Lighting")]
     public Light2D[] allLights;
     public Light2D[] sceneLights;
 
+    [Header("Timer")]
     public float countdownDuration = 30f; 
     private float timeLeft;
     private bool timerRunning = false;
-    
-    public GameObject enemySprite;
-    public string tagName = "Player";
 
+    [Header("Sprites")]
+    public GameObject enemySprite;
+    public EnemyController enemyController;
+    public Transform player;
+    private PlayerHiding playerHiding;
+
+
+    [Header("Audio")]
     public AudioSource alarmSound;
     [Range(0f, 1f)]
     public float startingVolume = 0.05f;
-    // Alarm warnings
     private readonly float[] warningTimes = { 9f, 7f, 5f, 3f, 2f, 1f }; // Times at which to play warnings
     private int warningIndex = 0;
+
+    [Header("UI")]
+    private Dictionary<GameObject, bool> uiStateCache = new Dictionary<GameObject, bool>();
+    private int uiLayer;
 
 
     void Start()
     {
-        timeLeft = countdownDuration;
-
-        enemySprite.SetActive(false);
-        timerRunning = true;
-        alarmSound.volume = startingVolume;
+        timeLeft = countdownDuration; // set countdown time
+        playerHiding = player.GetComponent<PlayerHiding>(); // get reference to the PlayerHiding component on the player
+        enemySprite.SetActive(false); // ensure enemy is hidden at the start
+        timerRunning = true; // start the countdwon
+        alarmSound.volume = startingVolume; // set the initial volume of the alarm sound
+        uiLayer = LayerMask.NameToLayer("UI"); // cache the UI layer index for later use
     }
 
     // Update is called once per frame
@@ -49,8 +61,9 @@ public class EnemyTimer : MonoBehaviour
             timerRunning = false;
             StartCoroutine(SpawnSequence());
         }
-
+        
     }
+
     void PlayWarning()
     {
         alarmSound.Play();
@@ -62,8 +75,11 @@ public class EnemyTimer : MonoBehaviour
             1f
         );
     }
+
     IEnumerator SpawnSequence()
     {
+        GameStateManager.InputLocked = true; // lock player input during spawn sequence
+
         yield return StartCoroutine(FlickerLights());
 
         // Store original intensities
@@ -81,11 +97,15 @@ public class EnemyTimer : MonoBehaviour
         for (int i = 0; i < allLights.Length; i++)
             allLights[i].intensity = originalIntensities[i];
 
-        SpawnEnemy();
+        bool hidden = player.GetComponent<PlayerHiding>().getIsHiding();
+        enemyController.Activate(hidden, player);
     }
 
     IEnumerator FlickerLights()
     {
+        CacheUIState();
+        HideUI(); // hide UI during flicker
+
         float duration = 1f;
         float elapsed = 0f;
 
@@ -109,20 +129,46 @@ public class EnemyTimer : MonoBehaviour
             sceneLights[i].intensity = originalIntensities[i];
     }
 
-    void SpawnEnemy()
-    {
-        
-        enemySprite.SetActive(true);
-        
-        timerRunning = false;
-    }
 
     public void RestartTimer()
     {
         timeLeft = countdownDuration;
         warningIndex = 0;
-        alarmSound.volume = 0.2f;
+        alarmSound.volume = 0.15f;
         timerRunning = true;
     }
-    
+
+    void HideUI()
+    {
+        foreach (var entry in uiStateCache)
+        {
+            entry.Key.SetActive(false);
+        }
+    }
+
+    public void RestoreUI()
+    {
+        foreach (var entry in uiStateCache)
+        {
+            entry.Key.SetActive(entry.Value);
+        }
+    }
+
+    void CacheUIState() // cache the active state of all UI objects so we can restore them after enemy attack
+    {
+        uiStateCache.Clear();
+
+        GameObject[] allObjects = Object.FindObjectsByType<GameObject>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.None
+        );
+
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == uiLayer)
+            {
+                uiStateCache[obj] = obj.activeSelf;
+            }
+        }
+    }
 }

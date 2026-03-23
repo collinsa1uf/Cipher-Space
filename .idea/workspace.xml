@@ -5,9 +5,139 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87b62c91-0a0b-4138-b989-4af35ee3cff7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Alien/GameOver_Alien.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Alien/GameOver_Alien.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Win Animation.anim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Win Animation.anim.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Win Animation.controller" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Win Animation.controller.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Map.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Map.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/map_scene.unity" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/map_scene.unity.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/EnemyController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/EnemyController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/GameStateManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/GameStateManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Console.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Console.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/ConsoleUI.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/ConsoleUI.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/DeathAnimationBackground.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/DeathAnimationBackground.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Interactable Objects/MRI-Machine.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Interactable Objects/MRI-Machine.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_10.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_10.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_11.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_11.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_12.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_12.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_13.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_13.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_4.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_4.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_5.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_5.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_6.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_6.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_7.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_7.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_8.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_8.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_9.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/64x64/Master/Master_Tileset-Sheet_9.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Jail_Tileset 1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Jail_Tileset 1.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Master.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Master.prefab.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Master_Tileset-Sheet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Master_Tileset-Sheet.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Master_Walls.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/Master_Walls.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset 1_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Jail_Tileset_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_0.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_0.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_1.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_1.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_10.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_10.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_11.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_11.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_12.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_12.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_13.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_13.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_2.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_2.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_3.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_3.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_4.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_4.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_5.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_5.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_6.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_6.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_7.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_7.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_8.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_8.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_9.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Master_Walls_9.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Wall-with-Inscription.asset" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/sprite/Wall-with-Inscription.asset.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Wall-with-Inscription.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Wall-with-Inscription.png.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Win-Animation.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Win-Animation.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/AI/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/AI/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Alien/Alien.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Animations/Alien/Alien.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Audio/animal-crossing.mp3" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Audio/animal-crossing.mp3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Audio/animal-crossing.mp3.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Audio/animal-crossing.mp3.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/Cipher-Space SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/Cipher-Space SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/HandwritingRegular-owLLA SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/HandwritingRegular-owLLA SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/SpaceShards-RpExo SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/SpaceShards-RpExo SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/SpaceShardsItalic-nRem1 SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Fonts/SpaceShardsItalic-nRem1 SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Amber-testing.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Amber-testing.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Cockpit.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Cockpit.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/G-testing3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/G-testing3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Tutorial.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Tutorial.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Tutorial/Global Volume Profile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Tutorial/Global Volume Profile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Zack-Testing2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scenes/Zack-Testing2.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/CipherGeneration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/CipherGeneration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/ClientManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/ClientManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/DialogueManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/DialogueManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/EnemyTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/EnemyTimer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/EnlargeObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/EnlargeObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/Journal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/Journal.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/PlayerHiding.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Scripts/PlayerHiding.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/AI_Assistant-Sheet.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/AI_Assistant-Sheet.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/32x32/Jail_Decorations.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Cipher-Space/Assets/Sprites/Tilemaps/32x32/Jail_Decorations.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +180,7 @@
       <workItem from="1770940116293" duration="1243000" />
       <workItem from="1771273771287" duration="12958000" />
       <workItem from="1772401685574" duration="39422000" />
-      <workItem from="1772927192576" duration="4889000" />
+      <workItem from="1772927192576" duration="22709000" />
     </task>
     <servers />
   </component>
