@@ -281,7 +281,6 @@ async def generate_objects():
     all_letters = []
     current_words = []
 
-    print("Y")
     # Generate objects using existing prompts
     if 6 in items:
         vial_word = object_call("beaker", vial_prompt, vial_incorrect)
@@ -289,7 +288,6 @@ async def generate_objects():
         current_words.append(vial_word)
     else:
         vial_word = "null"
-    print(vial_word)
 
     if 7 in items:
         vitals_word = object_call("vitals", vitals_prompt, vitals_incorrect)
@@ -297,19 +295,19 @@ async def generate_objects():
         current_words.append(vitals_word)
     else:
         vitals_word = "null"
-    print(vitals_word)
+
     if 8 in items:
         computer_word = object_call("computer", computer_prompt, computer_incorrect)
         code1_letters = (set(computer_word) - set(all_letters)).union(code1_letters)
         current_words.append(computer_word)
     else:
         computer_word = "null"
-    print(computer_word)
+
 
     all_letters = code1_letters.union(all_letters)
     engine_code = code_call(all_letters, code1_letters, current_words)
     current_words.append(engine_code)
-    print(current_words)
+
 
     if 9 in items:
         crate_word = object_call("crate", crate_prompt, crate_incorrect)
@@ -349,7 +347,7 @@ async def generate_objects():
     all_letters = code2_letters.union(all_letters)
     medbay_code = code_call(all_letters, code2_letters, current_words)
     current_words.append(medbay_code)
-    print(current_words)
+
 
     if 1 in items:
         mug_word = object_call("mug", mug_prompt, mug_incorrect)
@@ -388,7 +386,7 @@ async def generate_objects():
 
     all_letters = code3_letters.union(all_letters)
     cockpit_code = code_call(all_letters, code3_letters, current_words)
-    print(current_words)
+    
 
     blueprints = blueprint(all_letters)
 
