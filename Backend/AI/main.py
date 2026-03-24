@@ -43,6 +43,7 @@ def object_call(word, prompt, incorrect_items):
     while reload:
         reload = False
         content = AI_implementation(prompt)
+        print(content)
         pattern = r'\*\*(.*?)\*\*'
         list_items = re.findall(pattern, content)
         if len(list_items) == 0:
@@ -121,6 +122,7 @@ def dictionary_call(all_letters, new_letters, no_no_words):
     final_code = random.choice(possible_codes)
     print(final_code)
     return final_code
+
 
 
 
@@ -213,7 +215,7 @@ vial_prompt = "Provide 5 unique one-word objects (no verbs) that are similar in 
               "each list object with **. "
 vial_incorrect = ["tub", "shaker", "cup", "bottle", "jars", "jar", "tumbler", "cylinder", "glasspot", "cask", "chamber",
                   "colander", "bowl", "bead"]
-vial_word = object_call("beaker", vial_prompt, vial_incorrect)
+#vial_word = object_call("beaker", vial_prompt, vial_incorrect)
 
 vitals_prompt = "Provide 5 unique one-word objects (no verbs) that are similar in appearance and function " \
                 "to a vitals monitor, a device that measures health indicators. Each object should be distinct and " \
@@ -282,13 +284,7 @@ liquid_incorrect = ["oxy", "energ", "mot", "energetic", "light", "lamp", "energi
 # liquid_word = object_call("chemicals", liquid_prompt, liquid_incorrect)
 
 
-all_letters = ['p', 's']
-
-code1_letters = set(vial_word)
-all_letters = set(vial_word).union(all_letters)
-no_no_words = [vial_word]
-
-engine_code = dictionary_call(all_letters, code1_letters, no_no_words)
+red_word = object_call("red", red_prompt, red_incorrect)
 
 data = {
     "key": "jail",
@@ -299,14 +295,14 @@ data = {
     # "boardObject": board_word,
     # "chipsObject": chips_word,
     # "crateObject": crate_word
-    "vialObject": vial_word,
+    # "vialObject": vial_word,
     # "vitalsObject": vitals_word
     # "computerObject": computer_word
     # "circuitObject": circuit_word
     # "toolsObject": tools_word
     # "screwsObject": screws_word
     # "liquidObject": liquid_word
-    "engineCode": engine_code
+    "redObject": red_word
 
 }
 
