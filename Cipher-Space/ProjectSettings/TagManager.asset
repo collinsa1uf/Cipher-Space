@@ -50,9 +50,6 @@ TagManager:
   - name: Spaceship
     uniqueID: 4236469855
     locked: 0
-  - name: Props
-    uniqueID: 1183798275
-    locked: 0
   - name: Alien
     uniqueID: 1276358099
     locked: 0
@@ -61,6 +58,9 @@ TagManager:
     locked: 0
   - name: Decorations
     uniqueID: 3813842523
+    locked: 0
+  - name: Props
+    uniqueID: 1183798275
     locked: 0
   - name: UI
     uniqueID: 555060459
