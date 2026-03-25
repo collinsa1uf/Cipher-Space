@@ -1,10 +1,16 @@
 fileFormatVersion: 2
-guid: 75685bcae693e44afba0939c0459ef41
+guid: dbeb40e5df3c2750aa09e9c19f288946
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2310741906306117267
-    second: Notif_board-Sheet_0
+      213: -5473069829789002059
+    second: Decoration_Center_Console_0
+  - first:
+      213: 7307987762776959863
+    second: Decoration_Center_Console_1
+  - first:
+      213: -2747774341764986888
+    second: Decoration_Center_Console_2
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,12 +52,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 1
+  spritePixelsToUnits: 2
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -96,30 +102,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Notif_board-Sheet_0
+      name: Decoration_Center_Console_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 64
-        height: 58
+        width: 384
+        height: 131
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +121,52 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 39e2cfc5587611020800000000000000
-      internalID: 2310741906306117267
+      spriteID: 5b6d484ccffbb04b0800000000000000
+      internalID: -5473069829789002059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoration_Center_Console_1
+      rect:
+        serializedVersion: 2
+        x: 97
+        y: 80
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77be83f96203b6560800000000000000
+      internalID: 7307987762776959863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Decoration_Center_Console_2
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 83
+        width: 37
+        height: 57
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f74a246bc1fdd9d0800000000000000
+      internalID: -2747774341764986888
       vertices: []
       indices: 
       edges: []
@@ -138,7 +175,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +185,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Notif_board-Sheet_0: 2310741906306117267
+      Decoration_Center_Console_0: -5473069829789002059
+      Decoration_Center_Console_1: 7307987762776959863
+      Decoration_Center_Console_2: -2747774341764986888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
