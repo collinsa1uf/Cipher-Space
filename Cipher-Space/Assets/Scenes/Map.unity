@@ -75648,6 +75648,7 @@ MonoBehaviour:
   leverPanel: {fileID: 2090016812}
   playerMovement: {fileID: 401158281778333455}
   enemyTimer: {fileID: 483772313}
+  encryptedMessageText: {fileID: 728890137}
   onSuccess:
     m_PersistentCalls:
       m_Calls:
@@ -89270,7 +89271,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 534.2604, y: 3311.2166, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.68194, y: 0.66233426, z: 0.68194}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2102533913}
@@ -92497,7 +92498,7 @@ Transform:
   m_GameObject: {fileID: 1571776171641337905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 456, y: 5465, z: -0}
+  m_LocalPosition: {x: 593, y: 519, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

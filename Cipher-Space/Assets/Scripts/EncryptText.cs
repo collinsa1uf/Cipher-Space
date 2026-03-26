@@ -40,4 +40,11 @@ public class EncryptText : MonoBehaviour
         originalText = newText;
         tmp.text = newText;
     }
+
+    public string EncryptInput(string input)
+    {
+        if (tmp == null) tmp = GetComponent<TextMeshProUGUI>();
+        tmp.text = CipherGeneration.Encrypt(input);
+        return tmp.text;
+    }
 }

@@ -15,6 +15,7 @@ public class LeverManager : MonoBehaviour
     public GameObject leverPanel;
     public PlayerMovement playerMovement;
     public EnemyTimer enemyTimer;
+    public EncryptText encryptedMessageText;
 
     [Header("Events")]
     public UnityEvent onSuccess;
@@ -27,7 +28,7 @@ public class LeverManager : MonoBehaviour
             isInteractable = true;
             gameObject.tag = "Interactable Object";
             password = ClientManager.objects[objectKey];
-            message.text = password.ToUpper();
+            encryptedMessageText.EncryptInput(password.ToUpper());
         }
         else
         {
