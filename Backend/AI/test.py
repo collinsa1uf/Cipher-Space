@@ -36,7 +36,7 @@ def AI_implementation(prompt):
 
     generated_ids = model.generate(
         **model_inputs,
-        max_new_tokens=32768
+        max_new_tokens=1024
     )
     output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
 
@@ -118,7 +118,22 @@ def blueprint(letters):
             checker = True
             correct_button = random.choice(buttons)
 
-    return [correct_lever, correct_button]
+    possible_codes = []
+
+    if len(letters) < 7:
+        min_letters = len(letters)
+    else:
+        min_letters = 7
+
+    for word in dictionary:
+        if 10 < len(word) <= 12:
+            if sum(1 for letter in word if letter not in letters) <= 2:
+                if len(set(word)) >= min_letters:
+                    possible_codes.append(word)
+
+    blueprint_code = random.choice(possible_codes)
+
+    return [correct_lever, correct_button, blueprint_code]
 
 
 # --- PROMPTS AND INCORRECT LISTS (UNCHANGED) ---
@@ -303,11 +318,9 @@ async def generate_objects():
     else:
         computer_word = "null"
 
-
     all_letters = code1_letters.union(all_letters)
     engine_code = code_call(all_letters, code1_letters, current_words)
     current_words.append(engine_code)
-
 
     if 9 in items:
         crate_word = object_call("crate", crate_prompt, crate_incorrect)
@@ -348,7 +361,6 @@ async def generate_objects():
     medbay_code = code_call(all_letters, code2_letters, current_words)
     current_words.append(medbay_code)
 
-
     if 1 in items:
         mug_word = object_call("mug", mug_prompt, mug_incorrect)
         code3_letters = (set(mug_word) - set(all_letters)).union(code3_letters)
@@ -386,7 +398,6 @@ async def generate_objects():
 
     all_letters = code3_letters.union(all_letters)
     cockpit_code = code_call(all_letters, code3_letters, current_words)
-    
 
     blueprints = blueprint(all_letters)
 
@@ -409,7 +420,8 @@ async def generate_objects():
         "medbayCode": medbay_code,
         "cockpitCode": cockpit_code,
         "leverCode": blueprints[0],
-        "buttonCode": blueprints[1]
+        "buttonCode": blueprints[1],
+        "blueprintCode": blueprints[2]
 
     }
 
