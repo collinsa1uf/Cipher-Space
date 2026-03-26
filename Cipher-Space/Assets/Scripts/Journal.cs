@@ -47,7 +47,6 @@ public class Journal : MonoBehaviour
     void Update()
     {
         //if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
-        if (translationManager != null && translationManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the translation manager is open
         if (GameStateManager.InputLocked) return;
         if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame && !PauseMenu.isPaused)
         {

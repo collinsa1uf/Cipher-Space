@@ -14,7 +14,6 @@ public class EnemyController : MonoBehaviour
     public Camera mainCamera;
     public DialogueManager dialogueManager;
 
-    //public GameObject blackScreen;
 
     private void Awake()
     {
@@ -84,6 +83,7 @@ public class EnemyController : MonoBehaviour
         }
 
         animator.SetBool("IsMoving", false);
+
         gameObject.SetActive(false);
 
         if (Camera.main != null)
@@ -98,7 +98,8 @@ public class EnemyController : MonoBehaviour
             dialogueManager.ResumeDialogue();
         }
 
-        EnemyTimer.Instance.RestartTimer();
+        EnemyTimer.Instance.enemyRoutineActive = false;
+
         EnemyTimer.Instance.RestoreUI();
         GameStateManager.InputLocked = false;
     }

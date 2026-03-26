@@ -20,15 +20,5 @@ public class RoomEnemyData : MonoBehaviour
     public Light2D[] roomLights;
     public Light2D[] allLights;
 
-    private void Awake()
-    {
-        roomData = GetComponent<RoomEnemyData>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (!other.CompareTag("Player")) return;
-
-        EnemyTimer.Instance.SetRoom(roomData);
-    }
 }
+

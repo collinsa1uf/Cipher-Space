@@ -10,6 +10,9 @@ public class RoomTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             EnemyTimer.Instance.SetRoom(roomData);
+            EnemyTimer.Instance.TriggerFirstRoomDialogue();
+            EnemyTimer.Instance.TryActivateTimer();
+
             playerInside = true;
         }
     }
@@ -18,15 +21,8 @@ public class RoomTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EnemyTimer.Instance.StopTimer();
+            EnemyTimer.Instance.ClearRoom();
             playerInside = false;
         }
     }
-    //void OnTriggerStay2D(Collider2D other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        Debug.Log("Player still inside room");
-    //    }
-    //}
 }

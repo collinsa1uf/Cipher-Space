@@ -29,6 +29,9 @@ public class TranslationManager : MonoBehaviour
         }
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
+        if (journal != null && journal.IsOpen)
+            return;
+
         if (Keyboard.current.escapeKey.wasPressedThisFrame) // Check if 'Escape' key was pressed this frame
         {
             Close(); // hide password entry UI
@@ -75,6 +78,9 @@ public class TranslationManager : MonoBehaviour
             return;
         }
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
+
+        if (journal != null && journal.IsOpen)
+            return;
 
         if (!char.IsLetterOrDigit(c)) return; // Only allow letters and digits
 

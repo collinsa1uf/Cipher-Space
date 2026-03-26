@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -32,7 +31,9 @@ public class EnlargeObject : MonoBehaviour
     //public string message;
     public UnityEvent onSuccessEvent;
 
-    
+    [SerializeField] private Journal journal;
+
+
 
     void Update()
     {
@@ -52,11 +53,19 @@ public class EnlargeObject : MonoBehaviour
             gameObject.tag = "Untagged";
         }
 
+        if (journal != null && journal.IsOpen)
+        {
+            return;
+        }
+
         if (translationManager != null && translationManager.gameObject.activeSelf)
         {
             // If the password input manager is active, check to see if user pressed escape to close the input
             if (Keyboard.current.escapeKey.wasPressedThisFrame)
             {
+                if (journal != null && journal.IsOpen)
+                    return;
+
                 translationManager.Close();
                 inspectPanel.SetActive(false);
                 isInspecting = false;
@@ -68,7 +77,10 @@ public class EnlargeObject : MonoBehaviour
         }
         else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger && isInteractable && !PauseMenu.isPaused) // Check if 'E' key was pressed this frame and player is in trigger
         {
-           if(!isInspecting) // inspect the image = display the enlarged sprite
+            EnemyTimer.Instance.TriggerFirstObjectDialogue();
+            EnemyTimer.Instance.TryActivateTimer();
+
+            if (!isInspecting) // inspect the image = display the enlarged sprite
             { 
                 inspectImage.sprite = enlargedSprite; // assign the enlarged sprite to the correct image
                 // Console.WriteLine("Object Index: " + objectIndex); 
