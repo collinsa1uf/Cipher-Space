@@ -23,6 +23,10 @@ public class TranslationManager : MonoBehaviour
 
     void Update()
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
         if (journal != null && journal.IsOpen)
@@ -69,6 +73,10 @@ public class TranslationManager : MonoBehaviour
 
     private void OnTextInput(char c)
     {
+        if (PauseMenu.isPaused)
+        {
+            return;
+        }
         if (!gameObject.activeSelf) return; // If the password manager is not active, do nothing
 
         if (journal != null && journal.IsOpen)

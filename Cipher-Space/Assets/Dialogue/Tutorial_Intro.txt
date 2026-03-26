@@ -1,2 +1,5 @@
-Phew! You're finally awake. I was beginning to worry that I was left here alone.
-We've been captured by an alien life form and thrown into a cell. We need to find a way to escape.
+Welcome to Cipher-Space!
+Every time you play this game, it will be different. 
+A new alien cipher will be generated every time you play the game, along with new interactable objects.
+In this tutorial, you will learn how to move, hide, and enter passwords to navigate the ship and escape.
+Go ahead and begin exploring your cell.

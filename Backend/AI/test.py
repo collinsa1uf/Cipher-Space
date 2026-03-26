@@ -1,11 +1,7 @@
 from fastapi import FastAPI
-from fastapi.responses import JSONResponse
-from typing import Dict, Any
 import uvicorn
-import os
 import re
 import random
-import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from english_words import get_english_words_set
 
@@ -61,28 +57,9 @@ def object_call(word, prompt, incorrect_items):
 
     while reload:
         reload = False
-        messages = [{"role": "user", "content": prompt}]
-        text = tokenizer.apply_chat_template(
-            messages,
-            tokenize=False,
-            add_generation_prompt=True,
-            enable_thinking=False
-        )
-        model_inputs = tokenizer([text], return_tensors="pt").to(model.device)
 
-        generated_ids = model.generate(
-            **model_inputs,
-            max_new_tokens=32768
-        )
-        output_ids = generated_ids[0][len(model_inputs.input_ids[0]):].tolist()
+        content = AI_implementation(prompt)
 
-        try:
-            index = len(output_ids) - output_ids[::-1].index(151668)
-        except ValueError:
-            index = 0
-
-        content = tokenizer.decode(output_ids[index:], skip_special_tokens=True).strip("\n")
-        #print("content:", content)
         pattern = r'\*\*(.*?)\*\*'
         list_items = re.findall(pattern, content)
         if len(list_items) == 0:
@@ -111,7 +88,7 @@ def code_call(all_letters, new_letters, no_no_words):
     possible_codes = []
 
     for word in dictionary:
-        if 3 < len(word) < 6:
+        if 3 < len(word) <= 6:
             if all(letter in all_letters for letter in word):
                 if (len(new_letters) == 0) or any(letter in new_letters for letter in word):
                     if word not in no_no_words:
@@ -119,6 +96,29 @@ def code_call(all_letters, new_letters, no_no_words):
 
     final_code = random.choice(possible_codes)
     return final_code
+
+
+def blueprint(letters):
+    levers = ["red", "orange", "yellow", "green", "blue", "purple", 1, 2, 3, 4, 5, 6]
+    buttons = ["red", "orange", "yellow", "green", "blue", "purple", 1, 2, 3, 4, 5, 6]
+
+    correct_lever = random.choice(levers)
+    checker = True
+    while checker:
+        checker = False
+        if not isinstance(correct_lever, int) and not all(letter in letters for letter in correct_lever):
+            checker = True
+            correct_lever = random.choice(levers)
+
+    correct_button = random.choice(buttons)
+    checker = True
+    while checker:
+        checker = False
+        if not isinstance(correct_button, int) and not all(letter in letters for letter in correct_button):
+            checker = True
+            correct_button = random.choice(buttons)
+
+    return [correct_lever, correct_button]
 
 
 # --- PROMPTS AND INCORRECT LISTS (UNCHANGED) ---
@@ -134,7 +134,7 @@ mug_prompt = "Provide 5 unique one-word objects with handles, no verbs, that cou
              "word 'mug' for drinking. These objects should closely resemble a mug in both appearance and function, " \
              "and each should be distinct with no repetition. Surround each list object with **. "
 mug_incorrect = ["bowl", "spoon", "sack", "tongs", "serving", "plate", "tongue", "tea", "ulp", "ladle", "gourd",
-                 "dagger", "platter", "pitcher", "gallon", "teapot", "ulpit"]
+                 "dagger", "platter", "pitcher", "gallon", "teapot", "ulpit", "strawberry"]
 
 pitcher_prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word " \
                  "'pitcher' for pouring liquids. Each object should have a similar shape (narrow neck, handle, " \
@@ -303,12 +303,11 @@ async def generate_objects():
     else:
         computer_word = "null"
 
-    print(code1_letters)
-    print(current_words)
+
     all_letters = code1_letters.union(all_letters)
-    print(all_letters)
     engine_code = code_call(all_letters, code1_letters, current_words)
     current_words.append(engine_code)
+
 
     if 9 in items:
         crate_word = object_call("crate", crate_prompt, crate_incorrect)
@@ -345,12 +344,10 @@ async def generate_objects():
     else:
         liquid_word = "null"
 
-    print(code2_letters)
-    print(current_words)
     all_letters = code2_letters.union(all_letters)
-    print(all_letters)
     medbay_code = code_call(all_letters, code2_letters, current_words)
     current_words.append(medbay_code)
+
 
     if 1 in items:
         mug_word = object_call("mug", mug_prompt, mug_incorrect)
@@ -387,11 +384,11 @@ async def generate_objects():
     else:
         chips_word = "null"
 
-    print(code3_letters)
-    print(current_words)
     all_letters = code3_letters.union(all_letters)
-    print(all_letters)
     cockpit_code = code_call(all_letters, code3_letters, current_words)
+    
+
+    blueprints = blueprint(all_letters)
 
     # Save to data_store
     data = {
@@ -410,7 +407,9 @@ async def generate_objects():
         "chipsObject": chips_word,
         "engineCode": engine_code,
         "medbayCode": medbay_code,
-        "cockpitCode": cockpit_code
+        "cockpitCode": cockpit_code,
+        "leverCode": blueprints[0],
+        "buttonCode": blueprints[1]
 
     }
 

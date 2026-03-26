@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
 
 public class ClientManager : MonoBehaviour
 {
+
+    [Header("Events")]
+    public UnityEngine.Events.UnityEvent onPuzzleReceived;
     
     private string baseUrl = "http://localhost:8000";
     private string generateEndpoint = "/generate_objects";
@@ -15,25 +17,29 @@ public class ClientManager : MonoBehaviour
     private bool requestInProgress = false;
     public static Dictionary<string, string> objects;
 
+    public DialogueManager dialogueManager;
+
     void Start()
     {
         objects = new Dictionary<string, string>()
         {
-            ["mugObject"] = "null",
 
             //break room objects
+            ["mugObject"] = "null",
             ["pitcherObject"] = "null",
             ["TVObject"] = "null",
-            ["boardObject"] = "null",
             ["chipsObject"] = "null",
+
+            //other objects
+            ["boardObject"] = "null",
             ["crateObject"] = "null",
 
             //medbay objects
             ["vialObject"] = "null",
             ["vitalsObject"] = "null",
-            ["liquidObject"] = "null",
 
             //engine room objects
+            ["liquidObject"] = "null",
             ["computerObject"] = "null",
             ["circuitObject"] = "null",
             ["toolsObject"] = "null",
@@ -123,9 +129,21 @@ public class ClientManager : MonoBehaviour
             }
         }
 
-            foreach (var kv in objects)
-            {
-                Debug.Log($"{kv.Key} = {kv.Value}");
-            }
+        foreach (var kv in objects)
+        {
+            Debug.Log($"{kv.Key} = {kv.Value}");
+        }
+
+        StartCoroutine(StartUnityEvent());
+    }
+
+    private IEnumerator StartUnityEvent()
+    {
+        while (dialogueManager.isInDialogue)
+        {
+            yield return null;
+        }
+
+        onPuzzleReceived?.Invoke();
     }
 }

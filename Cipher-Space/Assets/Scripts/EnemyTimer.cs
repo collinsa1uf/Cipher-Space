@@ -162,6 +162,11 @@ public class EnemyTimer : MonoBehaviour
         timerRunning = false;
     }
 
+    public void StartTimer()
+    {
+        timerRunning = true;
+    }
+
     void HideUI()
     {
         foreach (var entry in uiStateCache)

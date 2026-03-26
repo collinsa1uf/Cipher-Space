@@ -22,6 +22,12 @@ public class PlayerHiding : MonoBehaviour
         sprite.enabled = !isHiding; // Enable or disable the SpriteRenderer based on the hiding state
         playerMovement.enabled = !isHiding; // Enable or disable player movement based on the hiding state 
     
+        if (isHiding)
+        {
+            Rigidbody2D rb = GetComponent<Rigidbody2D>();
+            if (rb != null)
+                rb.linearVelocity = Vector2.zero;
+        }
     }
 
     public bool getIsHiding()

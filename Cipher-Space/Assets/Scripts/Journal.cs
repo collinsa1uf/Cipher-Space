@@ -48,7 +48,7 @@ public class Journal : MonoBehaviour
     {
         //if (passwordManager != null && passwordManager.gameObject.activeSelf) return; // Don't allow toggling the journal if the password manager is open
         if (GameStateManager.InputLocked) return;
-        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame)
+        if (Keyboard.current != null && Keyboard.current.tabKey.wasPressedThisFrame && !PauseMenu.isPaused)
         {
             journalObject.SetActive(!journalObject.activeSelf);
             toggleTab.SetActive(!toggleTab.activeSelf);

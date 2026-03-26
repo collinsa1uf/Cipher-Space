@@ -15,7 +15,7 @@ public class ButtonEvent : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger) // Check if 'E' key was pressed this frame and player is in trigger
+        if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger && !PauseMenu.isPaused) // Check if 'E' key was pressed this frame and player is in trigger
         {
             onButtonPressed.Invoke(); // Invoke the button pressed event
         }
