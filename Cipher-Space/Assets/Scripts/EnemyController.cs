@@ -57,6 +57,26 @@ public class EnemyController : MonoBehaviour
     {
         yield return new WaitForSeconds(2f);
 
+        // Set the current room so we can open the correct door
+        RoomEnemyData currentRoom = EnemyTimer.Instance.GetCurrentRoom();
+
+        DoorController door = null;
+        bool doorWasOpen = false;
+
+        if (currentRoom != null && currentRoom.roomDoor != null) // null checks
+        {
+            door = currentRoom.roomDoor; // set current door for this room
+
+            doorWasOpen = door.IsOpen; // track state of the door so we can restore it after the enemy leaves
+
+            if (!doorWasOpen) // only open the door if it was closed to begin with, otherwise we might mess with the player's progress
+            {
+                door.OpenDoor();
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+
+
         animator.SetBool("IsMoving", true);
 
         Vector2 direction = (exitPoint - transform.position).normalized;
@@ -76,9 +96,16 @@ public class EnemyController : MonoBehaviour
         }
 
         animator.SetBool("IsMoving", false);
+
+        // Close door only if enemy opened it
+        if (door != null && !doorWasOpen)
+        {
+            door.CloseDoor();
+        }
+
         gameObject.SetActive(false);
 
-        EnemyTimer.Instance.RestartTimer();
+        EnemyTimer.Instance.enemyRoutineActive = false;
         EnemyTimer.Instance.RestoreUI();
         GameStateManager.InputLocked = false;
     }

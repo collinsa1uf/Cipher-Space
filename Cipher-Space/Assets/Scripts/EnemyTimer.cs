@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Rendering.Universal;
 
 public class EnemyTimer : MonoBehaviour
@@ -13,13 +14,14 @@ public class EnemyTimer : MonoBehaviour
     private float countdownDuration = 30f; 
     public float timeLeft;
     public bool timerRunning = false;
+    public bool enemySystemEnabled = false;
 
     [Header("Sprites")]
     public GameObject enemySprite;
     public EnemyController enemyController;
     public Transform player;
     private PlayerHiding playerHiding;
-
+    public bool enemyRoutineActive = false;
 
     [Header("Audio")]
     public AudioSource alarmSound;
@@ -36,6 +38,12 @@ public class EnemyTimer : MonoBehaviour
     public static EnemyTimer Instance;
     private RoomEnemyData currentRoom;
     public RoomEnemyData startingRoom;
+
+    [Header("Dialogue Triggers")]
+    private bool firstRoomEntered = false;
+    private bool firstObjectInteracted = false;
+    public UnityEvent OnFirstRoomEntered;
+    public UnityEvent OnFirstObjectInteracted;
 
     void Awake()
     {
@@ -90,7 +98,7 @@ public class EnemyTimer : MonoBehaviour
     IEnumerator SpawnSequence()
     {
         GameStateManager.InputLocked = true; // lock player input during spawn sequence
-
+        enemyRoutineActive = true;
         yield return StartCoroutine(FlickerLights());
 
         // Store original intensities
@@ -202,8 +210,6 @@ public class EnemyTimer : MonoBehaviour
             SetRoomLights(room.roomLights);
             SetAllLights(room.allLights);
         }
-
-        RestartTimer();
     }
 
     void SetRoomLights(Light2D[] lights)
@@ -213,5 +219,48 @@ public class EnemyTimer : MonoBehaviour
     void SetAllLights(Light2D[] lights)
     {
         allLights = lights;
+    }
+
+    // Prevention against restarting the timer with an overlapping trigger
+    public void TryActivateTimer()
+    {
+        // System not enabled yet (JSON not loaded)
+        if (!enemySystemEnabled) return;
+
+        // Must be inside a room
+        if (currentRoom == null) return;
+
+        // Prevent restarting the timer
+        if (timerRunning) return;
+
+        // Prevent activation during enemy routine
+        if (enemyRoutineActive) return;
+
+        RestartTimer();
+    }
+
+    public void TriggerFirstRoomDialogue()
+    {
+        if (firstRoomEntered) return;
+
+        firstRoomEntered = true;
+        OnFirstRoomEntered?.Invoke();
+    }
+
+    public void TriggerFirstObjectDialogue()
+    {
+        if (firstObjectInteracted) return;
+
+        firstObjectInteracted = true;
+        OnFirstObjectInteracted?.Invoke();
+    }
+    public void ClearRoom()
+    {
+        currentRoom = null;
+    }
+
+    public RoomEnemyData GetCurrentRoom()
+    {
+        return currentRoom;
     }
 }

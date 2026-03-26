@@ -10,6 +10,9 @@ public class RoomTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             EnemyTimer.Instance.SetRoom(roomData);
+            EnemyTimer.Instance.TriggerFirstRoomDialogue();
+            EnemyTimer.Instance.TryActivateTimer();
+
             playerInside = true;
         }
     }
@@ -18,7 +21,7 @@ public class RoomTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            EnemyTimer.Instance.StopTimer();
+            EnemyTimer.Instance.ClearRoom();
             playerInside = false;
         }
     }
