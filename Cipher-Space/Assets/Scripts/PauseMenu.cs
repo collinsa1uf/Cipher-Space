@@ -9,12 +9,16 @@ public class PauseMenu : MonoBehaviour
     public PlayerMovement playerMovement;
     public PasswordManager passwordManager;
     public TranslationManager translationManager;
+    private bool wasTimerRunning;
 
     public void PauseGame()
     {
         isPaused = true;
         dialogueManager.PauseDialogue();
+
+        wasTimerRunning = timer.timerRunning; // store state
         timer.StopTimer();
+
         playerMovement.SetCanMove(false);
     }
 
@@ -22,7 +26,9 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         dialogueManager.ResumeDialogue();
-        timer.StartTimer();
+
+        if (wasTimerRunning)
+            timer.StartTimer();
 
         if (!passwordManager.gameObject.activeSelf && !translationManager.gameObject.activeSelf){
             playerMovement.SetCanMove(true);

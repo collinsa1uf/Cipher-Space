@@ -20,7 +20,5 @@ public class RoomEnemyData : MonoBehaviour
     public Light2D[] roomLights;
     public Light2D[] allLights;
 
-    [Header("Door")]
-    public DoorController roomDoor;
 }
 

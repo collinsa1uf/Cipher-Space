@@ -268,4 +268,8 @@ public class EnemyTimer : MonoBehaviour
     {
         return currentRoom;
     }
+    public void startEnemySystem()
+    {
+        enemySystemEnabled = true;
+    }
 }
