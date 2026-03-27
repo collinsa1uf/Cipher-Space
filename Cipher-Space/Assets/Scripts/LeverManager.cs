@@ -14,14 +14,13 @@ public class LeverManager : MonoBehaviour
     public TextMeshProUGUI message;
     public GameObject leverPanel;
     public GameObject blueprint;
+    public ButtonEvent buttonEvent;
     public PlayerMovement playerMovement;
     public EnemyTimer enemyTimer;
     public EncryptText encryptedMessageText;
     public string encryptedPassword;
 
     [Header("Events")]
-    public UnityEvent onSuccess;
-    public UnityEvent onFailure;
 
     public bool leverComplete;
 
@@ -70,17 +69,34 @@ public class LeverManager : MonoBehaviour
 
         if (isCorrect)
         {
-            Debug.Log("Correct Lever");
-            isInteractable = false;
-            gameObject.tag = "Untagged";
-            onSuccess?.Invoke();
+            //Debug.Log("Correct Lever");
+
+            var cockpit = FindFirstObjectByType<CockpitManager>();
+            bool valid = cockpit.OnLeverPressed(true);
+
+            if (valid)
+            {
+                isInteractable = false;
+                gameObject.tag = "Untagged";
+
+                if (buttonEvent != null)
+                    buttonEvent.enabled = false;
+            }
+            else
+            {
+                enemyTimer.timeLeft = 10.0f;
+                enemyTimer.StartTimer();
+            }
         }
+        
         else
         {
-            Debug.Log("Incorrect Lever");
+            //Debug.Log("Incorrect Lever");
             enemyTimer.timeLeft = 10.0f;
             enemyTimer.StartTimer();
-            onFailure?.Invoke();
+            FindFirstObjectByType<CockpitManager>().OnLeverPressed(false);
+            isInteractable = true;
+            //onFailure?.Invoke();
         }
     }
 }

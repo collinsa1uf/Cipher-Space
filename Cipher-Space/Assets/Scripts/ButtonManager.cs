@@ -13,6 +13,7 @@ public class ButtonManager : MonoBehaviour
     public string password;
     public TextMeshProUGUI message;
     public GameObject buttonPanel;
+    public ButtonEvent buttonEvent;
     public GameObject blueprint;
     public PlayerMovement playerMovement;
     public EnemyTimer enemyTimer;
@@ -20,9 +21,8 @@ public class ButtonManager : MonoBehaviour
     public string encryptedPassword;
 
     [Header("Events")]
-    public UnityEvent onSuccess;
-    public UnityEvent onFailure;
-
+    //public UnityEvent onSuccess;
+    //public UnityEvent onFailure;
     public bool buttonComplete;
 
     void Update()
@@ -70,17 +70,34 @@ public class ButtonManager : MonoBehaviour
 
         if (isCorrect)
         {
-            Debug.Log("Correct Button");
-            isInteractable = false;
-            gameObject.tag = "Untagged";
-            onSuccess?.Invoke();
+            //Debug.Log("Correct Button");
+
+            var cockpit = FindFirstObjectByType<CockpitManager>();
+            bool valid = cockpit.OnButtonPressed(true);
+
+            if (valid)
+            {
+                isInteractable = false;
+                gameObject.tag = "Untagged";
+
+                if (buttonEvent != null)
+                    buttonEvent.enabled = false;
+            }
+            else
+            {
+                enemyTimer.timeLeft = 10.0f;
+                enemyTimer.StartTimer();
+            }
         }
+        
         else
         {
-            Debug.Log("Incorrect Button");
+            //Debug.Log("Incorrect Button");
             enemyTimer.timeLeft = 10.0f;
             enemyTimer.StartTimer();
-            onFailure?.Invoke();
+            //onFailure?.Invoke();
+            FindFirstObjectByType<CockpitManager>().OnButtonPressed(false);
+            isInteractable = true;
         }
     }
 }
