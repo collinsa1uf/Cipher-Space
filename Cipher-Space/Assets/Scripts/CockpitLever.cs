@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class LeverButton : MonoBehaviour
+public class CockpitLever : MonoBehaviour
 {
     public LeverManager leverManager;
     public string value1;

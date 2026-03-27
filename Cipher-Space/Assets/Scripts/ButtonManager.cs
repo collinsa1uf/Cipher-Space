@@ -5,14 +5,14 @@ using UnityEngine.InputSystem;
 using System.Collections.Generic;
 using TMPro;
 
-public class LeverManager : MonoBehaviour
+public class ButtonManager : MonoBehaviour
 {
     public ClientManager clientManager;
     public bool isInteractable;
     public string objectKey;
     public string password;
     public TextMeshProUGUI message;
-    public GameObject leverPanel;
+    public GameObject buttonPanel;
     public GameObject blueprint;
     public PlayerMovement playerMovement;
     public EnemyTimer enemyTimer;
@@ -23,7 +23,7 @@ public class LeverManager : MonoBehaviour
     public UnityEvent onSuccess;
     public UnityEvent onFailure;
 
-    public bool leverComplete;
+    public bool buttonComplete;
 
     void Update()
     {
@@ -40,9 +40,9 @@ public class LeverManager : MonoBehaviour
             gameObject.tag = "Untagged";
         }
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame && leverPanel.activeSelf)
+        if (Keyboard.current.escapeKey.wasPressedThisFrame && buttonPanel.activeSelf)
         {
-            leverPanel.SetActive(false);
+            buttonPanel.SetActive(false);
             blueprint.SetActive(false);
             playerMovement.SetCanMove(true);
         }
@@ -54,17 +54,17 @@ public class LeverManager : MonoBehaviour
 
         string pw = password.Trim().ToLower();
 
-        CockpitLever lever = buttonObj.GetComponent<CockpitLever>();
+        CockpitButton button = buttonObj.GetComponent<CockpitButton>();
 
-        if (lever == null)
+        if (button == null)
         {
-            Debug.LogWarning("Button missing LeverButton component!");
+            Debug.LogWarning("Button missing CockpitButton component!");
             return;
         }
 
-        bool isCorrect = pw == lever.value1.Trim().ToLower() || pw == lever.value2.Trim().ToLower();
+        bool isCorrect = pw == button.value1.Trim().ToLower() || pw == button.value2.Trim().ToLower();
 
-        leverPanel.SetActive(false);
+        buttonPanel.SetActive(false);
         blueprint.SetActive(false);
         playerMovement.SetCanMove(true);
 
