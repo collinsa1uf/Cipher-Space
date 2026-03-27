@@ -24,6 +24,8 @@ public class PasswordManager : MonoBehaviour
     public DialogueManager dialogueManager;
     public Journal journal;
 
+    public GameObject blueprint;
+
     private PasswordLayout activeLayout;
 
     private UnityEvent onSuccess;
@@ -48,6 +50,7 @@ public class PasswordManager : MonoBehaviour
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            blueprint.SetActive(false);
             Close();
             return;
         }
@@ -153,22 +156,7 @@ public class PasswordManager : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
-
-    // private void ValidatePassword(string input)
-    // {
-    //     if (CipherGeneration.Encrypt(input.ToUpperInvariant()) ==
-    //         correctPassword.ToUpperInvariant())
-    //     {
-    //         journal?.UpdateJournalText(input.ToUpperInvariant(), correctPassword);
-    //         onSuccess?.Invoke();
-    //         Close();
-    //     }
-    //     else
-    //     {
-    //         currentInput = "";
-    //         UpdateDisplay();
-    //     }
-    // }
+    
     private void ValidatePassword(string input)
     {
         if (input.ToUpperInvariant() == correctPassword.ToUpperInvariant())

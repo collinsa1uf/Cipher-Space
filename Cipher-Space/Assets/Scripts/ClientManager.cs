@@ -49,7 +49,10 @@ public class ClientManager : MonoBehaviour
             ["jailCode"] = JailPassword.jailPassword,
             ["engineCode"] = "null",
             ["medbayCode"] = "null",
-            ["cockpitCode"] = "null"
+            ["cockpitCode"] = "null",
+            ["leverCode"] = "null",
+            ["buttonCode"] = "null",
+            ["blueprintCode"] = "null"
         };
         RequestPuzzle();
     }
