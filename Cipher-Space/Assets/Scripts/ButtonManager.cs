@@ -70,14 +70,14 @@ public class ButtonManager : MonoBehaviour
 
         if (isCorrect)
         {
-            Debug.Log("Correct button");
+            Debug.Log("Correct Button");
             isInteractable = false;
             gameObject.tag = "Untagged";
             onSuccess?.Invoke();
         }
         else
         {
-            Debug.Log("Incorrect button");
+            Debug.Log("Incorrect Button");
             enemyTimer.timeLeft = 10.0f;
             enemyTimer.StartTimer();
             onFailure?.Invoke();

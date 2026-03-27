@@ -24,6 +24,8 @@ public class PasswordManager : MonoBehaviour
     public DialogueManager dialogueManager;
     public Journal journal;
 
+    public GameObject blueprint;
+
     private PasswordLayout activeLayout;
 
     private UnityEvent onSuccess;
@@ -48,6 +50,7 @@ public class PasswordManager : MonoBehaviour
 
         if (Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            blueprint.SetActive(false);
             Close();
             return;
         }

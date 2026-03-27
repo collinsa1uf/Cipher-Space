@@ -70,14 +70,14 @@ public class LeverManager : MonoBehaviour
 
         if (isCorrect)
         {
-            Debug.Log("Correct button");
+            Debug.Log("Correct Lever");
             isInteractable = false;
             gameObject.tag = "Untagged";
             onSuccess?.Invoke();
         }
         else
         {
-            Debug.Log("Incorrect button");
+            Debug.Log("Incorrect Lever");
             enemyTimer.timeLeft = 10.0f;
             enemyTimer.StartTimer();
             onFailure?.Invoke();
