@@ -10,6 +10,13 @@ public class HidingSpot : MonoBehaviour
 
     private PlayerHiding playerHiding; // Reference to the PlayerHiding component
 
+    [Header("Audio Settings")]
+    public AudioClip lockerClosed;
+    public AudioClip lockerOpened;
+    public AudioClip cabinetClosed;
+    public AudioClip cabinetOpened;
+    public AudioSource audioSource;
+
     void Update()
     {
         if (Keyboard.current != null && Keyboard.current.hKey.wasPressedThisFrame && isInTrigger && playerHiding != null && !PauseMenu.isPaused) // Check if 'E' key was pressed this frame and player is in trigger
@@ -55,11 +62,17 @@ public class HidingSpot : MonoBehaviour
                 {
                     Sprite newSprite = Resources.Load<Sprite>("Locker-Closed");
                     sr.sprite = newSprite;
+
+                    audioSource.volume = 0.25f;
+                    audioSource.PlayOneShot(lockerClosed);
                 }
                 else if (sr.sprite.name == "Cabinet-Open")
                 {
                     Sprite newSprite = Resources.Load<Sprite>("Cabinet-Closed");
                     sr.sprite = newSprite;
+
+                    audioSource.volume = 0.25f;
+                    audioSource.PlayOneShot(cabinetClosed);
                 }
             }
             // Open states
@@ -69,11 +82,17 @@ public class HidingSpot : MonoBehaviour
                 {
                     Sprite newSprite = Resources.Load<Sprite>("Locker-Open");
                     sr.sprite = newSprite;
+
+                    audioSource.volume = 0.5f;
+                    audioSource.PlayOneShot(lockerOpened);
                 }
                 else if (sr.sprite.name == "Cabinet-Closed")
                 {
                     Sprite newSprite = Resources.Load<Sprite>("Cabinet-Open");
                     sr.sprite = newSprite;
+
+                    audioSource.volume = 0.5f;
+                    audioSource.PlayOneShot(cabinetOpened);
                 }
             }
         }

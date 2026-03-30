@@ -14,6 +14,9 @@ public class EnemyController : MonoBehaviour
     public Camera mainCamera;
     public DialogueManager dialogueManager;
 
+    [Header("Fade to Black Settings")]
+    public GameObject canvas;
+    public GameObject blackScreen;
 
     private void Awake()
     {
@@ -104,8 +107,9 @@ public class EnemyController : MonoBehaviour
         GameStateManager.InputLocked = false;
     }
 
-    public void OnKillFinished() { 
-        //blackScreen.SetActive(true);
+    public void OnKillFinished() {
+        canvas.SetActive(true);
+        blackScreen.SetActive(true);
     }
 
     // Setters for room data
