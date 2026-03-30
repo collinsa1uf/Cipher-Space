@@ -32,6 +32,7 @@ public class EnemyTimer : MonoBehaviour
 
     [Header("UI")]
     private Dictionary<GameObject, bool> uiStateCache = new Dictionary<GameObject, bool>();
+    public GameObject canvas;
     private int uiLayer;
     
     [Header("Rooms")]
@@ -169,14 +170,12 @@ public class EnemyTimer : MonoBehaviour
 
     void HideUI()
     {
-        foreach (var entry in uiStateCache)
-        {
-            entry.Key.SetActive(false);
-        }
+        canvas.SetActive(false);
     }
 
     public void RestoreUI()
     {
+        canvas.SetActive(true);
         foreach (var entry in uiStateCache)
         {
             entry.Key.SetActive(entry.Value);

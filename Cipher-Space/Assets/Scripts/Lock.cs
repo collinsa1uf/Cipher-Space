@@ -20,6 +20,9 @@ public class Lock : MonoBehaviour
     public bool isJail;
     public string objectKey;
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+
     void Update()
     {
         if (ClientManager.objects[objectKey] != "null")
@@ -66,5 +69,7 @@ public class Lock : MonoBehaviour
     {
         unlocked = true;
         enabled = false;
+
+        audioSource.Play();
     }
 }

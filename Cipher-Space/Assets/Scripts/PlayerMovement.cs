@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [Header("Animator Settings")]
     public Animator animator; // Reference to the Animator component
 
+    [Header("Audio Settings")]
+    public AudioSource audioSource;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>(); // Initialize Rigidbody2D reference
@@ -44,6 +47,10 @@ public class PlayerMovement : MonoBehaviour
         {
             movementVector.x += 1;
             isMoving = true;
+        }
+        if (isMoving && !audioSource.isPlaying)
+        {
+            audioSource.Play();
         }
         movementVector.Normalize(); // Normalize the movement vector to prevent faster diagonal movement
         UpdateAnimator(); // Update animator parameters based on movement
