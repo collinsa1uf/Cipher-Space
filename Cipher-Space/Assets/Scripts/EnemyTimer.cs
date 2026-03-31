@@ -15,6 +15,7 @@ public class EnemyTimer : MonoBehaviour
     public float timeLeft;
     public bool timerRunning = false;
     public bool enemySystemEnabled = false;
+    private RoomEnemyData lastRoom;
 
     [Header("Sprites")]
     public GameObject enemySprite;
@@ -40,11 +41,6 @@ public class EnemyTimer : MonoBehaviour
     private RoomEnemyData currentRoom;
     public RoomEnemyData startingRoom;
 
-    [Header("Dialogue Triggers")]
-    private bool firstRoomEntered = false;
-    private bool firstObjectInteracted = false;
-    public UnityEvent OnFirstRoomEntered;
-    public UnityEvent OnFirstObjectInteracted;
 
     void Awake()
     {
@@ -203,8 +199,10 @@ public class EnemyTimer : MonoBehaviour
     public void SetRoom(RoomEnemyData room)
     {
         currentRoom = room;
-
-        countdownDuration = room.countdownDuration;
+        if (lastRoom != room)
+        {
+            countdownDuration = room.countdownDuration;
+        }
 
         if (enemyController != null)
         {
@@ -214,6 +212,7 @@ public class EnemyTimer : MonoBehaviour
             SetRoomLights(room.roomLights);
             SetAllLights(room.allLights);
         }
+        
     }
 
     void SetRoomLights(Light2D[] lights)
@@ -234,33 +233,37 @@ public class EnemyTimer : MonoBehaviour
         // Must be inside a room
         if (currentRoom == null) return;
 
-        // Prevent restarting the timer
+        // Prevent restarting the timer mid countdown
         if (timerRunning) return;
 
         // Prevent activation during enemy routine
         if (enemyRoutineActive) return;
 
-        RestartTimer();
+        // entering a NEW room, restart timer
+        if (currentRoom != lastRoom)
+        {
+            RestartTimer();
+            return;
+        }
+
+        // re-entering SAME room or object interaction, resume timer
+        if (timeLeft > 0f)
+        {
+            StartTimer();
+        }
+        else
+        {
+            RestartTimer();
+        }
     }
 
-    public void TriggerFirstRoomDialogue()
-    {
-        if (firstRoomEntered) return;
-
-        firstRoomEntered = true;
-        OnFirstRoomEntered?.Invoke();
-    }
-
-    public void TriggerFirstObjectDialogue()
-    {
-        if (firstObjectInteracted) return;
-
-        firstObjectInteracted = true;
-        OnFirstObjectInteracted?.Invoke();
-    }
     public void ClearRoom()
     {
+        lastRoom = currentRoom;
         currentRoom = null;
+
+        if (timerRunning)
+            StopTimer();
     }
 
     public RoomEnemyData GetCurrentRoom()
