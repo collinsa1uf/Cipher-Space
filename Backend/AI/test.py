@@ -1,11 +1,30 @@
+import sys
 from fastapi import FastAPI
 import uvicorn
+import os
 import re
 import random
 from transformers import AutoModelForCausalLM, AutoTokenizer
-from english_words import get_english_words_set
 
-dictionary = get_english_words_set(['web2'], lower=True)
+
+if getattr(sys, 'frozen', False):
+    base_path = sys._MEIPASS
+else:
+    base_path = os.path.dirname(os.path.abspath(__file__))
+
+
+file_path = os.path.join(base_path, 'words.txt')
+
+dictionary = []
+
+with open(file_path, 'r') as file:
+    for line in file:
+
+        if line.lower().strip().isalpha():
+            dictionary.append(line.lower().strip())
+
+if not dictionary:
+    sys.exit(1)
 
 # --- FASTAPI SETUP ---
 app = FastAPI()
@@ -13,7 +32,11 @@ app = FastAPI()
 # --- HUGGINGFACE MODEL SETUP ---
 # hf_token = os.getenv("HF_TOKEN")
 
-model_name = "Qwen/Qwen3-0.6B"
+if hasattr(sys, '_MEIPASS'):
+    model_name = os.path.join(sys._MEIPASS, "Models")
+else:
+    model_name = os.path.join(os.path.dirname(__file__), "Models")
+
 
 # Load tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -93,8 +116,11 @@ def code_call(all_letters, new_letters, no_no_words):
                 if (len(new_letters) == 0) or any(letter in new_letters for letter in word):
                     if word not in no_no_words:
                         possible_codes.append(word)
-
-    final_code = random.choice(possible_codes)
+    if possible_codes:
+        final_code = random.choice(possible_codes)
+    else:
+        print("rip lol")
+        sys.exit(1)
     return final_code
 
 
@@ -127,8 +153,8 @@ def blueprint(letters):
 
     for word in dictionary:
         if 10 < len(word) <= 12:
-            if sum(1 for letter in word if letter not in letters) <= 2:
-                if len(set(word)) >= min_letters:
+            if sum(1 for letter in set(word) if letter not in letters) <= 2:
+                if len(set(word).intersection(letters)) >= min_letters:
                     possible_codes.append(word)
 
     blueprint_code = random.choice(possible_codes)
@@ -172,7 +198,7 @@ board_prompt = "Provide 5 unique one-word objects, no verbs, that could be used 
                "both appearance and function and each should be distinct with no repetition. Surround each list object " \
                "with **. "
 board_incorrect = ["boardcase", "boardspare", "box", "post", "note", "tag", "postcard", "boardroom", "signpost",
-                   "poster", "sheet", "notice", "ann"]
+                   "poster", "sheet", "notice", "ann", "plate"]
 
 chips_prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word 'chips' " \
                "(bagged food for snacking). These objects should closely resemble chips in both " \
