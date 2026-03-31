@@ -107,3 +107,7 @@ InitTestScene*.unity*
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Executable Files
+dist/
+Models/

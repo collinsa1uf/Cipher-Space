@@ -1,10 +1,8 @@
-main: main.py .venv/Scripts/activate
-	.venv/Scripts/python.exe -m PyInstaller --onefile main.py
-
-server: server.py .venv/Scripts/activate
-	.venv/Scripts/python.exe -m PyInstaller --onefile server.py
+server: test.py .venv/Scripts/activate
+	.venv/Scripts/python.exe -m PyInstaller --onefile --add-data "words.txt;." --add-data "Models;Models" --name=server test.py
 
 clean:
-	rm -rf dist build spec __pycache__ .venv *.spec
+	- rmdir /s /q build
+	- del /f server.spec
 
-all: main server
+all: server clean
