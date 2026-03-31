@@ -10,7 +10,6 @@ public class RoomTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             EnemyTimer.Instance.SetRoom(roomData);
-            EnemyTimer.Instance.TriggerFirstRoomDialogue();
             EnemyTimer.Instance.TryActivateTimer();
 
             playerInside = true;

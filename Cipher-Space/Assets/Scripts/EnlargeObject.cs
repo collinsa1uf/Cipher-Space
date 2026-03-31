@@ -77,7 +77,6 @@ public class EnlargeObject : MonoBehaviour
         }
         else if (Keyboard.current.eKey.wasPressedThisFrame && isInTrigger && isInteractable && !PauseMenu.isPaused) // Check if 'E' key was pressed this frame and player is in trigger
         {
-            EnemyTimer.Instance.TriggerFirstObjectDialogue();
             EnemyTimer.Instance.TryActivateTimer();
 
             if (!isInspecting) // inspect the image = display the enlarged sprite
