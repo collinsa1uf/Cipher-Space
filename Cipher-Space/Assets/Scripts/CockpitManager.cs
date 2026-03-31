@@ -10,6 +10,7 @@ public class CockpitManager : MonoBehaviour
     public int buttonIndex;
     public LeverManager leverManager;
     public int leverIndex;
+    //public GameObject blueprintPanel;
 
     public EnemyTimer enemyTimer;
     public TextMeshProUGUI firstInstruction;
@@ -17,6 +18,8 @@ public class CockpitManager : MonoBehaviour
     public TextMeshProUGUI passwordField;
     private string buttonExtension = " BUTTON";
     private string leverExtension = " LEVER";
+    public TextMeshProUGUI leverLabel;
+    public TextMeshProUGUI buttonLabel;
     public string passwordText;
 
     private int currentStep = 0;
@@ -41,11 +44,15 @@ public class CockpitManager : MonoBehaviour
             {
                 firstInstruction.text = buttonManager.encryptedPassword + CipherGeneration.Encrypt(buttonExtension);
                 secondInstruction.text = leverManager.encryptedPassword + CipherGeneration.Encrypt(leverExtension);
+                buttonLabel.text = CipherGeneration.Encrypt("1");
+                leverLabel.text = CipherGeneration.Encrypt("2");
             }
             else
             {
                 firstInstruction.text = leverManager.encryptedPassword + CipherGeneration.Encrypt(leverExtension);
                 secondInstruction.text = buttonManager.encryptedPassword + CipherGeneration.Encrypt(buttonExtension);
+                buttonLabel.text = CipherGeneration.Encrypt("2");
+                leverLabel.text = CipherGeneration.Encrypt("1");
             }
 
             passwordText = ClientManager.objects["blueprintCode"];

@@ -1,2 +1,3 @@
-Scan complete! You can now interact with objects throughout the ship to learn their language!
+Scan complete! You can now interact with objects throughout the ship, I'll label them so you can guess their language!
 But be careful, touching things may trigger a silent alarm!
+Keep listening for that scary sound I told you about, that'll tell you the aliens are coming and you need to hide.
