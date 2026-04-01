@@ -4,18 +4,27 @@ public class PlayerCollisionDetection : MonoBehaviour
 {  
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Hiding Spot" || other.tag == "Interactable Object")
+        if (other.tag == "Hiding Spot")
         {
-            ButtonPopUp.triggered = true;
-            ButtonPopUp.collidedObject = other.gameObject;
+            ButtonPopUp.triggeredHiding = true;
+            ButtonPopUp.collidedHidingObject = other.gameObject;
+        }
+        else if (other.tag == "Interactable Object")
+        {
+            ButtonPopUp.triggeredInteractable = true;
+            ButtonPopUp.collidedInteractableObject = other.gameObject;
         }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Hiding Spot" || other.tag == "Interactable Object")
+        if (other.tag == "Hiding Spot")
         {
-            ButtonPopUp.triggered = false;
+            ButtonPopUp.triggeredHiding = false;
+        }
+        else if (other.tag == "Interactable Object")
+        {
+            ButtonPopUp.triggeredInteractable = false;
         }
     }
 }

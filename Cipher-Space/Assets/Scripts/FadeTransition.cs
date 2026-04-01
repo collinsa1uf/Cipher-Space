@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FadeTransition : MonoBehaviour
 {
@@ -12,11 +13,16 @@ public class FadeTransition : MonoBehaviour
     public AudioClip audioClip;
     public AudioSource audioSource;
 
+    [Header("Animation Settings")]
+    public bool hasAnimation = false;
+
     private void Start()
     {
-        Fade();
-        audioSource.clip = audioClip;
-        audioSource.Play();
+       if (fadeInCanvasGroup.gameObject.name == "Game Over Screen")
+        {
+            Fade();
+            PlayAudio();
+        }
     }
 
     public void Fade()
@@ -52,6 +58,14 @@ public class FadeTransition : MonoBehaviour
             // Sets fade out canvas group object to be inactive
             fadeOutCanvasGroup.gameObject.SetActive(false);
         }
+
+        PlayAnimation();
+        // Returns to credits after playing win animation
+        yield return new WaitForSeconds(5f);
+        if (fadeInCanvasGroup.gameObject.name == "Win Screen")
+        {
+            SceneManager.LoadScene(3);
+        }
     }
 
     private IEnumerator FadeRoutine(CanvasGroup cg, float startAlpha, float endAlpha, float duration)
@@ -73,6 +87,29 @@ public class FadeTransition : MonoBehaviour
         else if (endAlpha == 1f)
         {
             cg.alpha = 1f;
+        }
+    }
+
+    public void PlayAudio()
+    {
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = audioClip;
+
+            if (audioClip != null)
+            {
+                audioSource.Play();
+            }
+        }
+    }
+
+    private void PlayAnimation()
+    {
+        if (hasAnimation == true)
+        {
+            Animator animator = fadeInCanvasGroup.gameObject.transform.GetChild(1).gameObject.GetComponent<Animator>();
+            animator.SetBool("playAnimation", true);
         }
     }
 }

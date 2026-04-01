@@ -849,7 +849,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The_Mountain
+  m_text: 'The_Mountain
+
+    Chrisiex
+
+    Elijah_k
+
+    Freesound_Community
+
+    Kuzu420
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2c3c7cb1e5133344f8bbe41b9a5904ad, type: 2}
   m_sharedMaterial: {fileID: -781076707776928295, guid: 2c3c7cb1e5133344f8bbe41b9a5904ad, type: 2}
@@ -915,7 +925,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -57.06775, w: 0}
+  m_margin: {x: -71.242065, y: 0, z: -123.62268, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1436,6 +1446,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf5f7b8dbca6c2479e51e138e596011, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollText
+  scrollTextSpeed: 0.1
 --- !u!1 &1552206301
 GameObject:
   m_ObjectHideFlags: 0
