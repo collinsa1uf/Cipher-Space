@@ -60,6 +60,11 @@ public class EnemyTimer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (timeLeft <= 0f)
+        {
+            TryActivateTimer();
+        }
+
         if (!timerRunning) return; // during enemy attack, timer stops and does not update
         timeLeft -= Time.deltaTime;
         
@@ -76,8 +81,8 @@ public class EnemyTimer : MonoBehaviour
         {
             timerRunning = false;
             StartCoroutine(SpawnSequence());
+            
         }
-        
     }
 
     void PlayWarning()
