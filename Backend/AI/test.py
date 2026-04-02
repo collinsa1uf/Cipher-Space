@@ -300,8 +300,8 @@ liquid_incorrect = ["oxy", "energ", "mot", "energetic", "light", "lamp", "energi
 async def generate_objects():
     # Choose random items
     breakroom_items = [1, 2, 3, 4, 5]
-    medbay_items = [6, 7, 8]
-    engineroom_items = [9, 10, 11, 12, 13]
+    medbay_items = [6, 7, 8, 9]
+    engineroom_items = [10, 11, 12, 13]
 
     item1 = random.choice(breakroom_items)
     item2 = random.choice(medbay_items)
@@ -344,16 +344,16 @@ async def generate_objects():
     else:
         computer_word = "null"
 
-    all_letters = code1_letters.union(all_letters)
-    engine_code = code_call(all_letters, code1_letters, current_words)
-    current_words.append(engine_code)
-
     if 9 in items:
         crate_word = object_call("crate", crate_prompt, crate_incorrect)
-        code2_letters = (set(crate_word) - set(all_letters)).union(code2_letters)
+        code1_letters = (set(crate_word) - set(all_letters)).union(code1_letters)
         current_words.append(crate_word)
     else:
         crate_word = "null"
+
+    all_letters = code1_letters.union(all_letters)
+    engine_code = code_call(all_letters, code1_letters, current_words)
+    current_words.append(engine_code)
 
     if 10 in items:
         circuit_word = object_call("circuit", circuit_prompt, circuit_incorrect)
