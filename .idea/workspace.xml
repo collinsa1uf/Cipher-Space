@@ -5,17 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="87b62c91-0a0b-4138-b989-4af35ee3cff7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/generation_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/merges.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/model.safetensors" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/tokenizer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/tokenizer_config.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/Models/vocab.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Backend/AI/words.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Backend/AI/makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Backend/AI/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/AI/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +51,8 @@
       <workItem from="1772401685574" duration="39422000" />
       <workItem from="1772927192576" duration="22709000" />
       <workItem from="1774489420076" duration="7959000" />
-      <workItem from="1774911568530" duration="10060000" />
+      <workItem from="1774911568530" duration="10063000" />
+      <workItem from="1775153668599" duration="892000" />
     </task>
     <servers />
   </component>
