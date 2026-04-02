@@ -1,3 +1,2 @@
-This room appears to be locked. There must be something important in there.
-I bet that once we learn a bit more we can come back and unlock this door!
-Let's explore the ship more.
+This room appears to be locked.
+Explore a bit then come back later.
