@@ -17113,7 +17113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5250c6680e64ecb4197cd7361f8d228c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomEnemyData
-  countdownDuration: 30
+  countdownDuration: 45
   hiddenSpawnPoint: {fileID: 1014767358}
   exitPoint: {fileID: 191590514}
   moveSpeed: 80
@@ -86671,7 +86671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5250c6680e64ecb4197cd7361f8d228c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomEnemyData
-  countdownDuration: 35
+  countdownDuration: 40
   hiddenSpawnPoint: {fileID: 1262365722}
   exitPoint: {fileID: 488951745}
   moveSpeed: 80
@@ -88901,7 +88901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5250c6680e64ecb4197cd7361f8d228c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomEnemyData
-  countdownDuration: 30
+  countdownDuration: 35
   hiddenSpawnPoint: {fileID: 252572859}
   exitPoint: {fileID: 1711642045}
   moveSpeed: 80
@@ -96989,7 +96989,7 @@ Transform:
   m_GameObject: {fileID: 1571776171641337905}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 599, y: 507, z: -0}
+  m_LocalPosition: {x: 597.7, y: 513.3, z: -0}
   m_LocalScale: {x: 100, y: 100, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
