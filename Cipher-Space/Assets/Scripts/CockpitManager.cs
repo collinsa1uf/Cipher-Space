@@ -143,9 +143,8 @@ public class CockpitManager : MonoBehaviour
 
     private void Fail()
     {
-        //Debug.Log("Wrong order");
-        enemyTimer.timeLeft = 10.0f;
-        enemyTimer.StartTimer();
+        enemyTimer.countdownDuration = 10f;
+        enemyTimer.RestartTimer();
         onFailure?.Invoke();
     }
 }

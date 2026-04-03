@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using TMPro;
 
 public class ClientManager : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class ClientManager : MonoBehaviour
     private int timeoutSeconds = 300;
     private bool requestInProgress = false;
     public static Dictionary<string, string> objects;
+    public TextMeshProUGUI requestStatus;
 
     public DialogueManager dialogueManager;
 
@@ -65,36 +67,38 @@ public class ClientManager : MonoBehaviour
         }
         StartCoroutine(SendGenerateRequest());
     }
-
+    private UnityWebRequest currentRequest;
     private IEnumerator SendGenerateRequest()
     {
         requestInProgress = true;
         string url = baseUrl + generateEndpoint;
-        //string url = baseUrl;
 
         string jsonBody = "{}";
         byte[] bodyRaw = Encoding.UTF8.GetBytes(jsonBody); // Convert JSON string to byte array
 
-        using UnityWebRequest request = new UnityWebRequest(url, "POST"); // Create POST request
+        currentRequest = new UnityWebRequest(url, "POST"); // Create POST request
 
-        request.uploadHandler = new UploadHandlerRaw(bodyRaw); // Set the request body
-        request.downloadHandler = new DownloadHandlerBuffer();
-        request.SetRequestHeader("Content-Type", "application/json"); // Set content type header
-        request.timeout = timeoutSeconds;
+        currentRequest.uploadHandler = new UploadHandlerRaw(bodyRaw); // Set the request body
+        currentRequest.downloadHandler = new DownloadHandlerBuffer();
+        currentRequest.SetRequestHeader("Content-Type", "application/json"); // Set content type header
+        currentRequest.timeout = timeoutSeconds;
 
         Debug.Log($"Sending request to: {url}");
 
-        yield return request.SendWebRequest(); // Wait for the request to complete
+        yield return currentRequest.SendWebRequest(); // Wait for the request to complete
 
-        if (request.result != UnityWebRequest.Result.Success) // Check for errors
+        if (currentRequest == null) yield break; // Aborted mid request
+
+        if (currentRequest.result != UnityWebRequest.Result.Success) // Check for errors
         {
-            Debug.LogError($"[ClientManager] Error: {request.error}");
+            Debug.LogError($"[ClientManager] Error: {currentRequest.error}");
             yield break;
         }
 
-        string responseJson = request.downloadHandler.text; // Get the response text
-        // Debug.Log(responseJson);
+        string responseJson = currentRequest.downloadHandler.text; // Get the response text
         requestInProgress = false;
+        currentRequest.Dispose();
+        currentRequest = null;
         ParseJSON(responseJson);
     }
 
@@ -148,5 +152,34 @@ public class ClientManager : MonoBehaviour
         }
 
         onPuzzleReceived?.Invoke();
+    }
+
+    void OnDestroy()
+    {
+        if (currentRequest != null)
+        {
+            currentRequest.Abort();
+            currentRequest.Dispose();
+            currentRequest = null;
+        }
+    }
+
+    void OnEnable()
+    {
+        Application.logMessageReceived += HandleLog;
+    }
+
+    void OnDisable()
+    {
+        Application.logMessageReceived -= HandleLog;
+    }
+
+    void HandleLog(string message, string stackTrace, LogType type)
+    {
+        requestStatus.text += $"\n[{type}] {message}";
+
+        string[] lines = requestStatus.text.Split('\n');
+        if (lines.Length > 20)
+            requestStatus.text = string.Join("\n", lines[^20..]);
     }
 }
