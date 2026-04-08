@@ -35,20 +35,38 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         dialogueManager.SetActive(false);
+        isPaused = false;
+        isInDialogue = false;
+        isTyping = false;
+        cancelTyping = false;
+        currentLetterIndex = 0;
+        dialogueLines.Clear();
+
+        if (scrollCoroutine != null)
+        {
+            StopCoroutine(scrollCoroutine);
+            scrollCoroutine = null;
+        }
     }
 
     void Update()
     {
         if (GameStateManager.InputLocked || isPaused)
+        {
+            //Debug.Log($"Input blocked — InputLocked: {GameStateManager.InputLocked}, isPaused: {isPaused}");
             return;
+        }
+            
         if (isInDialogue && Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame && !PauseMenu.isPaused)
         {
+            //Debug.Log("E pressed, advancing dialogue");
             AdvanceDialogue();
         }
     }
 
     public void BeginDialogue(Queue<string> dialogue)
     {
+        //Debug.Log("BeginDialogue called");
 
         isInDialogue = true;
         dialogueManager.SetActive(true);

@@ -11,7 +11,7 @@ public class EnemyTimer : MonoBehaviour
     private Light2D[] sceneLights;
 
     [Header("Timer")]
-    private float countdownDuration = 30f; 
+    public float countdownDuration = 30f; 
     public float timeLeft;
     public bool timerRunning = false;
     public bool enemySystemEnabled = false;

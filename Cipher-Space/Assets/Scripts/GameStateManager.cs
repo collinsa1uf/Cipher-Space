@@ -7,7 +7,7 @@ public class GameStateManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        InputLocked = false; // reset on scene load
     }
 
     // Update is called once per frame
