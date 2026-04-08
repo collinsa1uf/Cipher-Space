@@ -18,8 +18,8 @@ public class CockpitBlueprint : MonoBehaviour
     public TextMeshProUGUI firstInstruction;
     public TextMeshProUGUI secondInstruction;
     public TextMeshProUGUI passwordField;
-    private string buttonExtension = " BUTTON";
-    private string leverExtension = " LEVER";
+    private string buttonExtension = "PRESS ";
+    private string leverExtension = "PULL ";
     public TextMeshProUGUI leverLabel;
     public TextMeshProUGUI buttonLabel;
     public string passwordText;
@@ -40,15 +40,15 @@ public class CockpitBlueprint : MonoBehaviour
         {
             if (buttonIndex == 1)
             {
-                firstInstruction.text = buttonManager.encryptedPassword + CipherGeneration.Encrypt(buttonExtension);
-                secondInstruction.text = leverManager.encryptedPassword + CipherGeneration.Encrypt(leverExtension);
+                firstInstruction.text = CipherGeneration.Encrypt(buttonExtension) + buttonManager.encryptedPassword;
+                secondInstruction.text = CipherGeneration.Encrypt(leverExtension) + leverManager.encryptedPassword;
                 buttonLabel.text = CipherGeneration.Encrypt("1");
                 leverLabel.text = CipherGeneration.Encrypt("2");
             }
             else
             {
-                firstInstruction.text = leverManager.encryptedPassword + CipherGeneration.Encrypt(leverExtension);
-                secondInstruction.text = buttonManager.encryptedPassword + CipherGeneration.Encrypt(buttonExtension);
+                firstInstruction.text = CipherGeneration.Encrypt(leverExtension) + leverManager.encryptedPassword;
+                secondInstruction.text = CipherGeneration.Encrypt(buttonExtension) + buttonManager.encryptedPassword;
                 buttonLabel.text = CipherGeneration.Encrypt("2");
                 leverLabel.text = CipherGeneration.Encrypt("1");
             }
