@@ -6742,7 +6742,7 @@ GameObject:
   - component: {fileID: 1696993897}
   - component: {fileID: 1696993896}
   m_Layer: 5
-  m_Name: About
+  m_Name: About Us Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6780,7 +6780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0e7d2fb436fbd94f9aca8f44b0f342a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LoadScene
-  sceneIndex: 3
+  sceneIndex: 4
 --- !u!114 &1696993897
 MonoBehaviour:
   m_ObjectHideFlags: 0
