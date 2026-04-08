@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     private Vector3 exitPoint;
 
     private Animator animator;
+    private SpriteRenderer sr;
     private PlayerMovement playerMovement;
     public Camera mainCamera;
     public DialogueManager dialogueManager;
@@ -21,6 +22,7 @@ public class EnemyController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void Activate(bool playerHidden, Transform player)
@@ -73,6 +75,16 @@ public class EnemyController : MonoBehaviour
 
         animator.SetFloat("MoveX", direction.x);
         animator.SetFloat("MoveY", direction.y);
+
+        // Flip sprite if break room
+        if (EnemyTimer.Instance.GetCurrentRoom().gameObject.name == "BreakRoomZone")
+        {
+            sr.flipX = true;
+        }
+        else
+        {
+            sr.flipX = false;
+        }
 
         while (Vector3.Distance(transform.position, exitPoint) > 0.1f)
         {

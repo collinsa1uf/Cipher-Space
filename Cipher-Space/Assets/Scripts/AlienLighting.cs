@@ -23,7 +23,8 @@ public class AlienLighting : MonoBehaviour
         }
 
         // Lighting for if alien is facing to the right
-        if (alienSpriteRender.sprite.name == "Alien-Idle_0" || alienSpriteRender.sprite.name == "Alien-Idle_1" || alienSpriteRender.sprite.name == "Alien-Idle_2" || alienSpriteRender.sprite.name == "Alien-Idle_3" || alienSpriteRender.sprite.name == "Alien-Idle_4")
+        if (((alienSpriteRender.sprite.name == "Alien-MoveSide_0" || alienSpriteRender.sprite.name == "Alien-MoveSide_1" || alienSpriteRender.sprite.name == "Alien-MoveSide_2" || alienSpriteRender.sprite.name == "Alien-MoveSide_3" || alienSpriteRender.sprite.name == "Alien-MoveSide_4") ||
+            (alienSpriteRender.sprite.name == "Alien-Idle_0" || alienSpriteRender.sprite.name == "Alien-Idle_1" || alienSpriteRender.sprite.name == "Alien-Idle_2" || alienSpriteRender.sprite.name == "Alien-Idle_3" || alienSpriteRender.sprite.name == "Alien-Idle_4")) && alienSpriteRender.flipX == false)
         {
             prevLighting = lightingTransform.GetChild(1).gameObject;
             prevLighting.SetActive(true);
@@ -35,9 +36,10 @@ public class AlienLighting : MonoBehaviour
             prevLighting.SetActive(true);
         }
         // Lighting for if alien is facing to the left
-        else if ((alienSpriteRender.sprite.name == "Alien-Idle_0" || alienSpriteRender.sprite.name == "Alien-Idle_1" || alienSpriteRender.sprite.name == "Alien-Idle_2" || alienSpriteRender.sprite.name == "Alien-Idle_3" || alienSpriteRender.sprite.name == "Alien-Idle_4") && alienSpriteRender.flipX == true)
+        else if (((alienSpriteRender.sprite.name == "Alien-MoveSide_0" || alienSpriteRender.sprite.name == "Alien-MoveSide_1" || alienSpriteRender.sprite.name == "Alien-MoveSide_2" || alienSpriteRender.sprite.name == "Alien-MoveSide_3" || alienSpriteRender.sprite.name == "Alien-MoveSide_4") ||
+            (alienSpriteRender.sprite.name == "Alien-Idle_0" || alienSpriteRender.sprite.name == "Alien-Idle_1" || alienSpriteRender.sprite.name == "Alien-Idle_2" || alienSpriteRender.sprite.name == "Alien-Idle_3" || alienSpriteRender.sprite.name == "Alien-Idle_4")) && alienSpriteRender.flipX == true)
         {
-            prevLighting = lightingTransform.GetChild(2).gameObject;
+            prevLighting = lightingTransform.GetChild(3).gameObject;
             prevLighting.SetActive(true);
         }
         else

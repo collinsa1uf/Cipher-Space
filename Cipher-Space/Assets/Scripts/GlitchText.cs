@@ -12,7 +12,7 @@ public class GlitchText : MonoBehaviour
     [SerializeField] public TextMeshProUGUI textMeshProUGUI;
     [SerializeField] public TMP_FontAsset font;
 
-    [Header("Display Length Settings")]
+    [Header("Display Time Settings")]
     public float englishDisplayLength = 10f;
     public float alienDisplayLength = 1f;
 
@@ -26,13 +26,13 @@ public class GlitchText : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= 10f && !isAlienText) // Converts to alien text every 10 seconds
+        if (timer >= englishDisplayLength && !isAlienText) // Converts to alien text every (englishDisplayLength) seconds
         {
             ConvertToAlienText();
             isAlienText = true;
             timer = 0f;
         }
-        else if (timer >= 1f && isAlienText) // Converts back to English text after 1 second
+        else if (timer >= alienDisplayLength && isAlienText) // Converts back to English text after (alienDisplayLength) seconds
         {
             ConvertToEnglishText();
             isAlienText = false;
@@ -48,16 +48,17 @@ public class GlitchText : MonoBehaviour
 
         foreach (char c in textMeshProUGUI.text)
         {
+            char c_lower = char.ToLower(c);
             int randomIndex = Random.Range(0, charSubstring.Length);
 
-            if (characterEquiv.ContainsKey(c)) // If letter is already associated with alien character, use that value for same letter
+            if (characterEquiv.ContainsKey(c_lower)) // If letter is already associated with alien character, use that value for same letter
             {
-                alienText += characterEquiv.GetValueOrDefault(c);
+                alienText += characterEquiv.GetValueOrDefault(c_lower);
             }
             else // If letter is not assigned to an alien character, assign it
             {
                 alienText += charSubstring[randomIndex];
-                characterEquiv.Add(char.ToLower(c), charSubstring[randomIndex]);
+                characterEquiv.Add(c_lower, charSubstring[randomIndex]);
                 charSubstring = charSubstring.Remove(randomIndex, 1);
             }
         }
