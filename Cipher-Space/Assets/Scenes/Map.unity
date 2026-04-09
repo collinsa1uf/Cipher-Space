@@ -8298,37 +8298,6 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
---- !u!1 &347882609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 347882610}
-  m_Layer: 0
-  m_Name: JailSpawn
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &347882610
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 347882609}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 591.5574, y: 250.26111, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 452508148}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &349942474
 GameObject:
   m_ObjectHideFlags: 0
@@ -11269,6 +11238,8 @@ GameObject:
   - component: {fileID: 434675851}
   - component: {fileID: 434675850}
   - component: {fileID: 434675849}
+  - component: {fileID: 434675853}
+  - component: {fileID: 434675852}
   m_Layer: 0
   m_Name: CockpitZone
   m_TagString: Untagged
@@ -11307,6 +11278,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomTrigger
   playerInside: 0
   roomData: {fileID: 434675850}
+  roomTag: {fileID: 1047896335}
+  appears: {fileID: 434675853}
+  disappears: {fileID: 434675852}
 --- !u!114 &434675850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11346,6 +11320,7 @@ MonoBehaviour:
   - {fileID: 1895950888}
   - {fileID: 21870388}
   - {fileID: 1845754540}
+  roomName: Cockpit
 --- !u!61 &434675851
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -11392,6 +11367,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 366.65076, y: 392.65527}
   m_EdgeRadius: 0
+--- !u!114 &434675852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434675847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 0}
+  fadeOutCanvasGroup: {fileID: 590788518}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
+--- !u!114 &434675853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 434675847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 590788518}
+  fadeOutCanvasGroup: {fileID: 0}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
 --- !u!1 &437093150
 GameObject:
   m_ObjectHideFlags: 0
@@ -11692,8 +11703,6 @@ GameObject:
   m_Component:
   - component: {fileID: 452508148}
   - component: {fileID: 452508151}
-  - component: {fileID: 452508150}
-  - component: {fileID: 452508149}
   m_Layer: 0
   m_Name: JailCellZone
   m_TagString: Untagged
@@ -11713,58 +11722,9 @@ Transform:
   m_LocalPosition: {x: -3035.1, y: -2237.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 347882610}
-  - {fileID: 1785996611}
+  m_Children: []
   m_Father: {fileID: 1766432068}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &452508149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452508147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa605f4eca24c704c8f778bd41ab5c71, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomTrigger
-  playerInside: 1
-  roomData: {fileID: 452508150}
---- !u!114 &452508150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452508147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5250c6680e64ecb4197cd7361f8d228c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomEnemyData
-  countdownDuration: 45
-  hiddenSpawnPoint: {fileID: 347882610}
-  exitPoint: {fileID: 1785996611}
-  moveSpeed: 80
-  roomLights:
-  - {fileID: 1338632811}
-  - {fileID: 1047435695}
-  - {fileID: 1743641134}
-  - {fileID: 1461749309}
-  - {fileID: 518921375}
-  - {fileID: 590866163}
-  - {fileID: 138139771}
-  allLights:
-  - {fileID: 1338632811}
-  - {fileID: 1047435695}
-  - {fileID: 1743641134}
-  - {fileID: 1461749309}
-  - {fileID: 518921375}
-  - {fileID: 590866163}
-  - {fileID: 1845754540}
-  - {fileID: 138139771}
 --- !u!61 &452508151
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -12185,7 +12145,7 @@ MonoBehaviour:
   alarmSound: {fileID: 483772312}
   startingVolume: 0.5
   canvas: {fileID: 976594296}
-  startingRoom: {fileID: 452508150}
+  startingRoom: {fileID: 0}
 --- !u!1 &488951744
 GameObject:
   m_ObjectHideFlags: 0
@@ -15582,6 +15542,95 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &590788516
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 590788517}
+  - component: {fileID: 590788520}
+  - component: {fileID: 590788519}
+  - component: {fileID: 590788518}
+  m_Layer: 5
+  m_Name: Name Plate
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &590788517
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590788516}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 1047896334}
+  m_Father: {fileID: 976594300}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -760, y: -428}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &590788518
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590788516}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 0
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &590788519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590788516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 07e159267f3f81344877d0da0627c71b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &590788520
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 590788516}
+  m_CullTransparentMesh: 1
 --- !u!1 &590866161
 GameObject:
   m_ObjectHideFlags: 0
@@ -17474,6 +17523,8 @@ GameObject:
   - component: {fileID: 649627701}
   - component: {fileID: 649627700}
   - component: {fileID: 649627699}
+  - component: {fileID: 649627703}
+  - component: {fileID: 649627702}
   m_Layer: 0
   m_Name: MedBayZone
   m_TagString: Untagged
@@ -17512,6 +17563,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomTrigger
   playerInside: 0
   roomData: {fileID: 649627700}
+  roomTag: {fileID: 1047896335}
+  appears: {fileID: 649627703}
+  disappears: {fileID: 649627702}
 --- !u!114 &649627700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17569,6 +17623,7 @@ MonoBehaviour:
   - {fileID: 1419627812}
   - {fileID: 1301783459}
   - {fileID: 1214542860}
+  roomName: Med Bay
 --- !u!61 &649627701
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -17615,6 +17670,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 612.5276, y: 319.18506}
   m_EdgeRadius: 0
+--- !u!114 &649627702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649627697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 0}
+  fadeOutCanvasGroup: {fileID: 590788518}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
+--- !u!114 &649627703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 649627697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 590788518}
+  fadeOutCanvasGroup: {fileID: 0}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
 --- !u!1 &672854585
 GameObject:
   m_ObjectHideFlags: 0
@@ -72087,6 +72178,7 @@ RectTransform:
   - {fileID: 771679611}
   - {fileID: 2106513264}
   - {fileID: 1454481841}
+  - {fileID: 590788517}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -73015,6 +73107,143 @@ MonoBehaviour:
   - {x: 99.602844, y: -55.199036, z: 0}
   - {x: 99.60278, y: 55.472412, z: 0}
   - {x: -74.75763, y: 56.317017, z: 0}
+--- !u!1 &1047896333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1047896334}
+  - component: {fileID: 1047896336}
+  - component: {fileID: 1047896335}
+  m_Layer: 5
+  m_Name: Room Name
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1047896334
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047896333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 590788517}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1.2, y: -1.7}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1047896335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047896333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: New Text
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 2c3c7cb1e5133344f8bbe41b9a5904ad, type: 2}
+  m_sharedMaterial: {fileID: -781076707776928295, guid: 2c3c7cb1e5133344f8bbe41b9a5904ad, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 48
+  m_fontSizeBase: 48
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: -72.34766, y: 0, z: -59.193787, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1047896336
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047896333}
+  m_CullTransparentMesh: 1
 --- !u!1 &1048141478
 GameObject:
   m_ObjectHideFlags: 0
@@ -73229,7 +73458,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -895.6177, y: -25.126167, z: 101.27502, w: -30.55923}
+  m_margin: {x: -875.3224, y: -25.126167, z: 123.04387, w: -41.834316}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -87485,6 +87714,8 @@ GameObject:
   - component: {fileID: 1688348619}
   - component: {fileID: 1688348618}
   - component: {fileID: 1688348617}
+  - component: {fileID: 1688348621}
+  - component: {fileID: 1688348620}
   m_Layer: 0
   m_Name: EngineRoomZone
   m_TagString: Untagged
@@ -87523,6 +87754,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomTrigger
   playerInside: 0
   roomData: {fileID: 1688348618}
+  roomTag: {fileID: 1047896335}
+  appears: {fileID: 1688348621}
+  disappears: {fileID: 1688348620}
 --- !u!114 &1688348618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -87568,6 +87802,7 @@ MonoBehaviour:
   - {fileID: 1364875833}
   - {fileID: 102428761}
   - {fileID: 1532566967}
+  roomName: Engine Room
 --- !u!61 &1688348619
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -87614,6 +87849,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 675.18274, y: 417.91113}
   m_EdgeRadius: 0
+--- !u!114 &1688348620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688348615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 0}
+  fadeOutCanvasGroup: {fileID: 590788518}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
+--- !u!114 &1688348621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1688348615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 590788518}
+  fadeOutCanvasGroup: {fileID: 0}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
 --- !u!1 &1694555238
 GameObject:
   m_ObjectHideFlags: 0
@@ -89715,6 +89986,8 @@ GameObject:
   - component: {fileID: 1783395505}
   - component: {fileID: 1783395504}
   - component: {fileID: 1783395503}
+  - component: {fileID: 1783395507}
+  - component: {fileID: 1783395506}
   m_Layer: 0
   m_Name: BreakRoomZone
   m_TagString: Untagged
@@ -89753,6 +90026,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::RoomTrigger
   playerInside: 0
   roomData: {fileID: 1783395504}
+  roomTag: {fileID: 1047896335}
+  appears: {fileID: 1783395507}
+  disappears: {fileID: 1783395506}
 --- !u!114 &1783395504
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89792,6 +90068,7 @@ MonoBehaviour:
   - {fileID: 1459786413}
   - {fileID: 138139771}
   - {fileID: 1845754540}
+  roomName: Break Room
 --- !u!61 &1783395505
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -89838,37 +90115,42 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 491.93237, y: 649.511}
   m_EdgeRadius: 0
---- !u!1 &1785996610
-GameObject:
+--- !u!114 &1783395506
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1785996611}
-  m_Layer: 0
-  m_Name: JailExit
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1785996611
-Transform:
+  m_GameObject: {fileID: 1783395501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 0}
+  fadeOutCanvasGroup: {fileID: 590788518}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
+--- !u!114 &1783395507
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1785996610}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 590.3, y: -39.7, z: 1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 452508148}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 1783395501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d24019d202018a4d8e64e2b154e551e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FadeTransition
+  fadeInCanvasGroup: {fileID: 590788518}
+  fadeOutCanvasGroup: {fileID: 0}
+  fadeDuration: 1
+  audioClip: {fileID: 0}
+  audioSource: {fileID: 0}
+  hasAnimation: 0
 --- !u!1 &1788670162
 GameObject:
   m_ObjectHideFlags: 0
