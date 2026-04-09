@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -19,6 +20,8 @@ public class RoomEnemyData : MonoBehaviour
     [Header("Room Lighting")]
     public Light2D[] roomLights;
     public Light2D[] allLights;
+
+    public string roomName; // Name of the room for identification
 
 }
 
