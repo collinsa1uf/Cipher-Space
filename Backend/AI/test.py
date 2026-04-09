@@ -191,14 +191,14 @@ TV_prompt = "Provide 5 unique one-word objects, no verbs, that could be used int
             "is a electric screen used to watch something. These objects should closely resemble a TV in both " \
             "appearance (large screen, display, etc.) and function (used for viewing media), and each should be " \
             "distinct with no repetition. Surround each list object with **. "
-TV_incorrect = ["set", "tvd"]
+TV_incorrect = ["set", "tvd", "tvc"]
 
 board_prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word " \
                "'noticeboard' for displaying announcements. These objects should closely resemble a noticeboard in " \
                "both appearance and function and each should be distinct with no repetition. Surround each list object " \
                "with **. "
 board_incorrect = ["boardcase", "boardspare", "box", "post", "note", "tag", "postcard", "boardroom", "signpost",
-                   "poster", "sheet", "notice", "ann", "plate"]
+                   "poster", "sheet", "notice", "ann", "plate", "spot"]
 
 chips_prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word 'chips' " \
                "(bagged food for snacking). These objects should closely resemble chips in both " \
@@ -216,7 +216,7 @@ chips_incorrect = ["crunch", "dust", "grain", "coke", "pill", "chip", "packs", "
                    "slate", "breadsticks", "crispiness", "crispies", "chiplets", "chiplet", "muffins", "snacky",
                    "snacktime", "grits", "grit", "peanut", "sizzled", "sauté", "grill", "pots", "bowl", "plates",
                    "plate", "dairy", "meat", "pudding", "nut", "pale", "snackies", "milk", "pops", "snackbox",
-                   "snackpile", "mors", "bottles", "bottle"]
+                   "snackpile", "mors", "bottles", "bottle", "parchment"]
 
 crate_prompt = "Provide 5 unique one-word objects, no verbs, that could be used interchangeably with the word " \
                "'crate' for holding large objects. These objects should closely resemble a crate in " \
