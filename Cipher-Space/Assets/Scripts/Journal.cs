@@ -89,8 +89,16 @@ public class Journal : MonoBehaviour
     {
         for (int i = 0; i < guessWord.Length; i++)
         {
-            entries.RemoveAll(p => p.letter == guessWord.Substring(i,1));
-            entries.Add((guessWord.Substring(i,1), givenWord.Substring(i,1)));
+            string guessedLetter = guessWord.Substring(i,1);
+            string encryptedGuess = CipherGeneration.Encrypt(guessedLetter);
+            string correctLetter = givenWord.Substring(i,1);
+
+            if (encryptedGuess == correctLetter)
+            {
+                entries.RemoveAll(p => p.letter == guessedLetter);
+                entries.Add((guessedLetter, correctLetter));
+                continue;
+            }
         }
 
         // reinitialize all the text fields to be empty before repopulating them with the updated list of entries
