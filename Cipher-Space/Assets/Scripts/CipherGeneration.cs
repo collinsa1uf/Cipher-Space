@@ -9,7 +9,7 @@ public class CipherGeneration : MonoBehaviour
     public static Dictionary<char, char> letterCipherMap;
     public static Dictionary<char, char> numberCipherMap;
     
-    void Start()
+    void Awake()
     {
         GenerateLetterCipher();
         GenerateNumberCipher();
@@ -91,5 +91,10 @@ public class CipherGeneration : MonoBehaviour
             }
         }
         return encrypted;
+    }
+
+    public static Dictionary<char, char> GetLetterCipher()
+    {
+        return letterCipherMap;
     }
 }

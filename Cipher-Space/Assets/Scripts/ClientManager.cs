@@ -35,6 +35,7 @@ public class ClientManager : MonoBehaviour
             //other objects
             ["boardObject"] = "null",
             ["crateObject"] = "null",
+            ["forkObject"] = "fork",
 
             //medbay objects
             ["vialObject"] = "null",

@@ -1,10 +1,7 @@
-Good morning sleepyhead. Took you long enough.
-You don't remember what happened? You don't even remember me? I'm your personal AI assistant, obviously.
-You were exploring the depths of space and accidentally encountered an alien life form.
-Now you've been captured and you've doomed me... us, I mean.
-Luckily for you, I analyzed the alien patrol patterns when you were asleep.
-When they're about to enter the room, I'll play a loud sound so you can quickly hide. I'll mark hiding spots with an H.
-If you don't hide in time, something bad could happen to me... I mean us.
-Anyways, I'm in the process of doing a full scan of the ship. 
-Once I finish my scan, I'll add some more info to your helmet's HUD which should help you gather clues.
-I'm overworked and underpaid so that may take a while. You just focus on getting out of this cell.
+Good morning. You're finally awake!
+You don't remember what happened? You don't even remember me? I'm your onboard AI assistant.
+During our last mission, you encountered an alien life form. They captured us, and now we're trapped on their ship.
+We need to get out of this cell block and reach an escape pod.
+There's a complication - their language is scrambled in my database.
+Without understanding it, we can't bypass password-protected doors.
+I will perform a scan of the ship to find some clues. We can use them to reconstruct the language so we can reach the cockpit and escape.
