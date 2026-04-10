@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LearnLetter : MonoBehaviour
 {
-    private List<char> mostCommonLetters = new List<char>(){'E', 'A', 'T', 'S', 'N', 'L', 'R'};
+    private List<char> mostCommonLetters = new List<char>(){'E', 'A', 'T', 'S', 'N', 'L', 'C'};
     public Dictionary<char, char> cipher = new Dictionary<char, char>();
     public Journal journal;
 
