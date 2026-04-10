@@ -6,7 +6,6 @@ public class LearnLetter : MonoBehaviour
 {
     private List<char> mostCommonLetters = new List<char>(){'E', 'A', 'T', 'S', 'N', 'L', 'R'};
     public Dictionary<char, char> cipher = new Dictionary<char, char>();
-    private int listSize;
     public Journal journal;
 
     void Start()
@@ -18,7 +17,7 @@ public class LearnLetter : MonoBehaviour
     {
         if (mostCommonLetters.Count == 0) return;
 
-        int randomIndex = Random.Range(0, listSize);
+        int randomIndex = Random.Range(0, mostCommonLetters.Count);
         char learnedLetter = mostCommonLetters[randomIndex];
 
         if (journal.ContainsLetter(learnedLetter.ToString()))
@@ -31,10 +30,5 @@ public class LearnLetter : MonoBehaviour
         char translated = cipher[learnedLetter];
         journal.AddEntry(learnedLetter.ToString(), translated.ToString());
         mostCommonLetters.RemoveAt(randomIndex); 
-    }
-
-    void Update()
-    {
-        listSize = mostCommonLetters.Count;
     }
 }

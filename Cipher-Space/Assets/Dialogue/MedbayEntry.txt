@@ -1,2 +1,5 @@
 I guess even scary aliens get sick sometimes.
 I wonder how similar an alien hospital is to a human one.
+Uh oh! My scanners detected that you triggered a silent alarm when you entered the room. The aliens will be making their way here any minute now.
+When they are getting close, I will play an alarm sound to let you know to hide.
+I will mark hiding spots with an H. Click the H key to enter the hiding spot.

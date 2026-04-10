@@ -1,5 +1,6 @@
 What's this? It looks like some kind of eating utensil.
-Fascinating, the alien objects seem to resemble human objects very closely. But they might call them something different.
+Fascinating! The alien objects seem to resemble human objects very closely. But they might call them something different.
 For example, this could be a fork, a skewer, a utensil, or anything of that nature.
 When interacting with an object, enter what you think the aliens could call it.
-When you click ENTER, I will compare it to my database and add the correct letters to your journal. Open the journal by clicking TAB.
+When you click ENTER, I will compare it to my database and add the correct letters to your journal. Use them to decipher any codes we encounter.
+Open the journal by clicking TAB.

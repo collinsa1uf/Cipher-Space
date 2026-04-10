@@ -16073,7 +16073,7 @@ MonoBehaviour:
   m_Intensity: 8.54
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c9537fd4a5b9e52e3eb8c1521
+  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c5b9e52e3eb8c1521
   m_LightCookieSprite: {fileID: 21300000, guid: 3f48e42e6e72f92459309739049689ca, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -69829,7 +69829,7 @@ MonoBehaviour:
   m_Intensity: 8.54
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c9537fd4a5b9e52e3eb8c1521
+  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c5b9e52e3eb8c1521
   m_LightCookieSprite: {fileID: -5558048104374737550, guid: 4aa1e6df8b4ce1ccd862e47899805dd2, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -71082,7 +71082,7 @@ MonoBehaviour:
   m_Intensity: 8.54
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c9537fd4a5b9e52e3eb8c1521
+  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c5b9e52e3eb8c1521
   m_LightCookieSprite: {fileID: 21300000, guid: f8463cf8ca603454b91e6757681f9937, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -71166,7 +71166,7 @@ MonoBehaviour:
   m_Intensity: 8.54
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c9537fd4a5b9e52e3eb8c1521
+  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c5b9e52e3eb8c1521
   m_LightCookieSprite: {fileID: 21300000, guid: 46a12f5f39032534f8f4e09d342f09bb, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -85839,7 +85839,7 @@ MonoBehaviour:
   m_Intensity: 8.54
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c9537fd4a5b9e52e3eb8c1521
+  m_ApplyToSortingLayers: 0000000009d795745f6683fc03548f46d3ad134c5b9e52e3eb8c1521
   m_LightCookieSprite: {fileID: 21300000, guid: 5178f99379a5f0f46bbbc3725e629a11, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0

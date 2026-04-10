@@ -1,3 +1,3 @@
 I guess these aliens are just as forgetful as you. They left a note with the password on it.
-Hey, this keypad looks just like a human one! If that's true, then the first row of numbers is 1, 2, 3.
-With that in mind, I bet I can use the labels on the keypad to enter the correct password.
+Hey, this keypad looks just like a human one! If that's true, then the first row of numbers is 1, 2, 3... you get the idea.
+With that in mind, use the labels on the keypad to decipher the password.
