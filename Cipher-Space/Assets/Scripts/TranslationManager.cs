@@ -20,10 +20,11 @@ public class TranslationManager : MonoBehaviour
     private UnityEvent onSuccess; // Event to invoke on successful password entry
     private string correctPassword;
     private string currentInput = ""; // Input field for password entry
+    public DialogueManager dialogueManager;
 
     void Update()
     {
-        if (PauseMenu.isPaused)
+        if (PauseMenu.isPaused || dialogueManager.isInDialogue)
         {
             return;
         }
@@ -73,7 +74,7 @@ public class TranslationManager : MonoBehaviour
 
     private void OnTextInput(char c)
     {
-        if (PauseMenu.isPaused)
+        if (PauseMenu.isPaused || dialogueManager.isInDialogue)
         {
             return;
         }

@@ -7,7 +7,7 @@ public class JailPassword : MonoBehaviour
     public Lock lockObject;
     void Start()
     {
-        List<char> digits = new List<char>("123456789".ToCharArray());
+        List<char> digits = new List<char>("123456".ToCharArray());
         System.Random rng = new System.Random();
 
         int n = digits.Count;

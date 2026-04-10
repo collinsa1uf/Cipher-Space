@@ -115,4 +115,28 @@ public class Journal : MonoBehaviour
         createJournal(); // recreate the journal text with the new entry so it's sorted
     }
 
+    public bool ContainsLetter(string letter)
+    {
+        return entries.Exists(e => e.letter == letter);
+    }
+
+    public void AddEntry(string letter, string translation)
+    {
+        entries.RemoveAll(e => e.letter == letter);
+        entries.Add((letter, translation));
+
+        // reset UI
+        journalText.text = "";
+        alienText.text = "";
+        equalsText.text = "";
+        journalText2.text = "";
+        alienText2.text = "";
+        equalsText2.text = "";
+        journalText3.text = "";
+        alienText3.text = "";
+        equalsText3.text = "";
+
+        createJournal();
+    }
+
 }

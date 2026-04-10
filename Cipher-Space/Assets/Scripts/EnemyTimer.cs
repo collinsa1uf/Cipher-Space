@@ -39,7 +39,7 @@ public class EnemyTimer : MonoBehaviour
     [Header("Rooms")]
     public static EnemyTimer Instance;
     private RoomEnemyData currentRoom;
-    public RoomEnemyData startingRoom;
+    //public RoomEnemyData startingRoom;
 
 
     void Awake()
@@ -54,7 +54,7 @@ public class EnemyTimer : MonoBehaviour
         alarmSound.volume = startingVolume; // set the initial volume of the alarm sound
         uiLayer = LayerMask.NameToLayer("UI"); // cache the UI layer index for later use
 
-        SetRoom(startingRoom); // initialize the timer with the starting room's settings
+        //SetRoom(startingRoom); // initialize the timer with the starting room's settings
     }
 
     // Update is called once per frame
