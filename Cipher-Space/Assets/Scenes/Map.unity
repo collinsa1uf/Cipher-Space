@@ -7979,6 +7979,7 @@ GameObject:
   - component: {fileID: 295200067}
   - component: {fileID: 295200066}
   - component: {fileID: 295200065}
+  - component: {fileID: 295200069}
   m_Layer: 0
   m_Name: Engine Room
   m_TagString: Interactable Object
@@ -8046,6 +8047,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: set_tag
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Untagged
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 295200069}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8172,6 +8185,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &295200069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295200063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f998ed57d122f4e7c9eed0e055e95b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueManager: {fileID: 1884562441}
+  textFile: {fileID: 4900000, guid: 13e016b7a03e84bd4a3366b7b797c080, type: 3}
+  singleUse: 1
 --- !u!1 &303689969
 GameObject:
   m_ObjectHideFlags: 0
@@ -78696,6 +78724,7 @@ GameObject:
   - component: {fileID: 1226399038}
   - component: {fileID: 1226399037}
   - component: {fileID: 1226399036}
+  - component: {fileID: 1226399040}
   m_Layer: 0
   m_Name: Medbay Hallway
   m_TagString: Interactable Object
@@ -78763,6 +78792,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: set_tag
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Untagged
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1226399040}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -78889,6 +78930,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1226399040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226399034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f998ed57d122f4e7c9eed0e055e95b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueManager: {fileID: 1884562441}
+  textFile: {fileID: 4900000, guid: 13e016b7a03e84bd4a3366b7b797c080, type: 3}
+  singleUse: 1
 --- !u!1 &1239624736
 GameObject:
   m_ObjectHideFlags: 0
@@ -95621,6 +95677,7 @@ GameObject:
   - component: {fileID: 1975114650}
   - component: {fileID: 1975114649}
   - component: {fileID: 1975114648}
+  - component: {fileID: 1975114652}
   m_Layer: 0
   m_Name: Break Room Hallway
   m_TagString: Interactable Object
@@ -95688,6 +95745,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: set_tag
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Untagged
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1975114652}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -95814,6 +95883,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1975114652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975114646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f998ed57d122f4e7c9eed0e055e95b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueManager: {fileID: 1884562441}
+  textFile: {fileID: 4900000, guid: 13e016b7a03e84bd4a3366b7b797c080, type: 3}
+  singleUse: 1
 --- !u!1 &1976192986
 GameObject:
   m_ObjectHideFlags: 0
@@ -99194,6 +99278,7 @@ GameObject:
   - component: {fileID: 2137199388}
   - component: {fileID: 2137199387}
   - component: {fileID: 2137199386}
+  - component: {fileID: 2137199390}
   m_Layer: 0
   m_Name: Jail Hallway
   m_TagString: Interactable Object
@@ -99261,6 +99346,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: set_tag
         m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Untagged
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2137199390}
+        m_TargetAssemblyTypeName: DialogueTrigger, Assembly-CSharp
+        m_MethodName: StartDialogue
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -99387,6 +99484,21 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &2137199390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2137199384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f998ed57d122f4e7c9eed0e055e95b78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueTrigger
+  dialogueManager: {fileID: 1884562441}
+  textFile: {fileID: 4900000, guid: 13e016b7a03e84bd4a3366b7b797c080, type: 3}
+  singleUse: 1
 --- !u!1 &2137916421
 GameObject:
   m_ObjectHideFlags: 0
